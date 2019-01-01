@@ -23,6 +23,9 @@ defmodule Metalove.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.5.0"},
+      # html parsing
+      {:floki, "~> 0.20.4"},
+      # rss feed parsing
       {:sweet_xml, "~> 0.6.5"},
       {:timex, "~> 3.4"}
 
