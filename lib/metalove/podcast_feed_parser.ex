@@ -2,6 +2,8 @@ defmodule Metalove.PodcastFeedParser do
   import SweetXml, except: [parse: 1, parse: 2]
 
   def parse(xml) do
+    # IO.inspect(xml, label: "xml to parse")
+
     try do
       with channel <- xpath(xml, ~x"//channel"e),
            items <- xpath(channel, ~x"item"el),
