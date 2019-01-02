@@ -14,7 +14,8 @@ defmodule Metalove.Episode do
   # <itunes:duration>07:04</itunes:duration>
   # <itunes:explicit>no</itunes:explicit>
 
-  defstruct guid: nil,
+  defstruct feed_url: nil,
+            guid: nil,
             author: nil,
             title: nil,
             subtitle: nil,
@@ -25,8 +26,16 @@ defmodule Metalove.Episode do
             enclosure: nil,
             pub_date: nil
 
-  def new(map) when is_map(map) do
+  def get_by_episode_id(episode_id) do
+    case Metalove.Repository.get(episode_id) do
+      {:found, result} -> result
+      _ -> nil
+    end
+  end
+
+  def new(map, feed_url) when is_map(map) do
     %__MODULE__{
+      feed_url: feed_url,
       title: map[:title],
       guid: map[:guid],
       description: map[:description],

@@ -45,7 +45,8 @@ defmodule Metalove.Fetcher do
   end
 
   defp headers do
-    %{}
+    project = Metalove.MixProject.project()
+    [{"user-agent", "#{project[:app]}/#{project[:version]}"}]
   end
 
   defp options do
@@ -64,7 +65,7 @@ defmodule Metalove.Fetcher do
   defp get_feed_url_p(url, {candidate_url, remaining_redirects}) do
     # IO.inspect(binding())
     #  try do
-    HTTPoison.head(url, [], options())
+    HTTPoison.head(url, headers(), options())
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
       {:ok, %HTTPoison.Response{status_code: 200, body: _body, headers: headers}} ->

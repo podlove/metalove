@@ -29,7 +29,8 @@ defmodule Metalove.PodcastFeedParser do
       itunes_author: xpath(channel, ~x"itunes:author/text()"s),
       itunes_owner_email: xpath(channel, ~x"itunes:owner/itunes:email/text()"s),
       itunes_owner_name: xpath(channel, ~x"itunes:owner/itunes:name/text()"s),
-      image: xpath(channel, ~x"itunes:image/@href"s)
+      image: xpath(channel, ~x"itunes:image/@href"s),
+      next_page_url: xpath(channel, ~x"atom:link[@rel='next']/@href"s)
     }
   end
 

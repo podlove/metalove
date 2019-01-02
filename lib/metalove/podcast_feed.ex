@@ -16,34 +16,45 @@ defmodule Metalove.PodcastFeed do
             copyright: nil,
             episodes: nil
 
-  def new(feed_url, content \\ nil)
+  def get_by_feed_url(url) do
+    case Metalove.Repository.get({:feed, url}) do
+      {:found, result} -> result
+      _ -> nil
+    end
+  end
 
-  def new(feed_url, nil) do
+  def fetch_and_parse(feed_url) do
     {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(feed_url)
-    new(feed_url, body)
+
+    {:ok, cast, episodes} = PodcastFeedParser.parse(body)
+
+    episodes = collect_episodes(cast, episodes)
+
+    {:ok,
+     %__MODULE__{
+       feed_url: feed_url,
+       title: cast[:title],
+       link: cast[:link],
+       language: cast[:language],
+       copyright: cast[:copyright],
+       author: cast[:itunes_author],
+       description: cast[:description],
+       summary: cast[:itunes_summary],
+       subtitle: cast[:itunes_subtitle],
+       image_url: cast[:image],
+       episodes: Enum.map(episodes, fn episode -> {:episode, feed_url, episode[:guid]} end)
+     }, Enum.map(episodes, fn episode -> Episode.new(episode, feed_url) end)}
   end
 
-  def new(feed_url, content) do
-    %__MODULE__{
-      parse_content(content)
-      | feed_url: feed_url
-    }
-  end
+  defp collect_episodes(cast, episodes) do
+    case cast[:next_page_url] do
+      url when is_binary(url) and byte_size(url) > 0 ->
+        {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(url)
+        {:ok, cast, page_episodes} = PodcastFeedParser.parse(body)
+        collect_episodes(cast, episodes ++ page_episodes)
 
-  def parse_content(content) do
-    {:ok, cast, episodes} = PodcastFeedParser.parse(content)
-
-    %__MODULE__{
-      title: cast[:title],
-      link: cast[:link],
-      language: cast[:language],
-      copyright: cast[:copyright],
-      author: cast[:itunes_author],
-      description: cast[:description],
-      summary: cast[:itunes_summary],
-      subtitle: cast[:itunes_subtitle],
-      image_url: cast[:image],
-      episodes: Enum.map(episodes, fn episode -> Episode.new(episode) end)
-    }
+      _ ->
+        episodes
+    end
   end
 end

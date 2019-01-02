@@ -9,7 +9,7 @@ defmodule Metalove.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Metalove.Worker.start_link(arg)
-      # {Metalove.Worker, arg},
+      {Metalove.Repository, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

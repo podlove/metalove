@@ -27,7 +27,8 @@ defmodule Metalove.MixProject do
       {:floki, "~> 0.20.4"},
       # rss feed parsing
       {:sweet_xml, "~> 0.6.5"},
-      {:timex, "~> 3.4"}
+      {:timex, "~> 3.4"},
+      {:cachex, "~> 3.1.1"}
 
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
