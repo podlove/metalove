@@ -21,10 +21,15 @@ defmodule Metalove.Episode do
             subtitle: nil,
             summary: nil,
             description: nil,
+            content_encoded: nil,
             image_url: nil,
             duration: nil,
             enclosure: nil,
-            pub_date: nil
+            contributors: [],
+            chapters: [],
+            pub_date: nil,
+            season: nil,
+            episode: nil
 
   def get_by_episode_id(episode_id) do
     case Metalove.Repository.get(episode_id) do
@@ -36,19 +41,25 @@ defmodule Metalove.Episode do
   def new(map, feed_url) when is_map(map) do
     %__MODULE__{
       feed_url: feed_url,
+      author: map[:itunes_author],
       title: map[:title],
       guid: map[:guid],
       description: map[:description],
+      content_encoded: map[:content_encoded],
       duration: map[:duration],
       summary: map[:itunes_summary],
       subtitle: map[:itunes_subtitle],
       enclosure: %Enclosure{
         url: map[:enclosure_url],
-        type: map[:enclosure_map],
+        type: map[:enclosure_type],
         size: map[:enclosure_length]
       },
       pub_date: map[:publication_date],
-      image_url: map[:image]
+      image_url: map[:image],
+      contributors: map[:contributors],
+      chapters: map[:chapters],
+      season: map[:itunes_season],
+      episode: map[:itunes_episode]
     }
   end
 end

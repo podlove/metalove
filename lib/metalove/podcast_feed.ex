@@ -9,6 +9,7 @@ defmodule Metalove.PodcastFeed do
             language: nil,
             subtitle: nil,
             author: nil,
+            contributors: [],
             summary: nil,
             description: nil,
             image_url: nil,
@@ -36,12 +37,14 @@ defmodule Metalove.PodcastFeed do
        title: cast[:title],
        link: cast[:link],
        language: cast[:language],
+       categories: cast[:categories],
        copyright: cast[:copyright],
        author: cast[:itunes_author],
        description: cast[:description],
        summary: cast[:itunes_summary],
        subtitle: cast[:itunes_subtitle],
        image_url: cast[:image],
+       contributors: cast[:contributors],
        episodes: Enum.map(episodes, fn episode -> {:episode, feed_url, episode[:guid]} end)
      }, Enum.map(episodes, fn episode -> Episode.new(episode, feed_url) end)}
   end
