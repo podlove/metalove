@@ -1,7 +1,7 @@
 defmodule Metalove.PodcastFeed do
   alias Metalove.Fetcher
   alias Metalove.PodcastFeedParser
-  alias Metalove.PodcastEpisode
+  alias Metalove.Episode
 
   defstruct feed_url: nil,
             title: nil,
@@ -19,7 +19,7 @@ defmodule Metalove.PodcastFeed do
   def new(feed_url, content \\ nil)
 
   def new(feed_url, nil) do
-    {:ok, body, _headers} = Fetcher.fetch(feed_url)
+    {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(feed_url)
     new(feed_url, body)
   end
 
@@ -43,7 +43,7 @@ defmodule Metalove.PodcastFeed do
       summary: cast[:itunes_summary],
       subtitle: cast[:itunes_subtitle],
       image_url: cast[:image],
-      episodes: Enum.map(episodes, fn episode -> PodcastEpisode.new(episode) end)
+      episodes: Enum.map(episodes, fn episode -> Episode.new(episode) end)
     }
   end
 end

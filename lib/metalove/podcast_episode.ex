@@ -1,7 +1,7 @@
-defmodule Metalove.PodcastEpisode do
-  alias Metalove.PodcastEnclosure
+defmodule Metalove.Episode do
+  alias Metalove.Enclosure
 
-  #   <title>Shake Shake Shake Your Spices</title>
+  # <title>Shake Shake Shake Your Spices</title>
   # <itunes:author>John Doe</itunes:author>
   # <itunes:subtitle>A short primer on table spices</itunes:subtitle>
   # <itunes:summary><![CDATA[This week we talk about
@@ -33,7 +33,7 @@ defmodule Metalove.PodcastEpisode do
       duration: map[:duration],
       summary: map[:itunes_summary],
       subtitle: map[:itunes_subtitle],
-      enclosure: %PodcastEnclosure{
+      enclosure: %Enclosure{
         url: map[:enclosure_url],
         type: map[:enclosure_map],
         size: map[:enclosure_length]
