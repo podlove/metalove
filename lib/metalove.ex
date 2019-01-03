@@ -44,10 +44,16 @@ defmodule Metalove do
     end
   end
 
+  @spec get_podcast(binary()) :: Metalove.Podcast.t()
   def get_podcast(url) do
-    case get_feed_url(url, follow_first: true) do
-      {:ok, feed_url} ->
-        Metalove.Podcast.new_with_main_feed_url(feed_url)
+    feed_url_fn = fn ->
+      case get_feed_url(url, follow_first: true) do
+        {:ok, feed_url} -> feed_url
+      end
     end
+
+    feed_url = Metalove.Repository.fetch({:url, url}, feed_url_fn)
+
+    Metalove.Podcast.get_by_feed_url(feed_url)
   end
 end

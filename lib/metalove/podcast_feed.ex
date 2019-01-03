@@ -29,10 +29,17 @@ defmodule Metalove.PodcastFeed do
 
     {:ok, cast, episodes} = PodcastFeedParser.parse(body)
 
-    episodes = collect_episodes(cast, episodes)
+    if cast[:next_page_ur] != nil do
+      spawn(__MODULE__, :collect_episodes, [cast, episodes, feed_url])
+    end
 
-    {:ok,
-     %__MODULE__{
+    {feed, episodes} = feed_and_episodes_with_parsed_maps(cast, episodes, feed_url)
+
+    {:ok, feed, episodes}
+  end
+
+  defp feed_and_episodes_with_parsed_maps(cast, episodes, feed_url) do
+    {%__MODULE__{
        feed_url: feed_url,
        title: cast[:title],
        link: cast[:link],
@@ -49,14 +56,21 @@ defmodule Metalove.PodcastFeed do
      }, Enum.map(episodes, fn episode -> Episode.new(episode, feed_url) end)}
   end
 
-  defp collect_episodes(cast, episodes) do
+  def collect_episodes(cast, episodes, feed_url) do
     case cast[:next_page_url] do
       url when is_binary(url) and byte_size(url) > 0 ->
         {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(url)
         {:ok, cast, page_episodes} = PodcastFeedParser.parse(body)
-        collect_episodes(cast, episodes ++ page_episodes)
+        collect_episodes(cast, episodes ++ page_episodes, feed_url)
 
       _ ->
+        {feed, episodes} = feed_and_episodes_with_parsed_maps(cast, episodes, feed_url)
+
+        episodes
+        |> Enum.each(&Metalove.Repository.put_episode/1)
+
+        Metalove.Repository.put_feed(feed)
+
         episodes
     end
   end

@@ -26,6 +26,13 @@ defmodule Metalove.Podcast do
     result
   end
 
+  def get_by_feed_url(feed_url) do
+    case Metalove.PodcastFeed.get_by_feed_url(feed_url) do
+      nil -> new_with_main_feed_url(feed_url)
+      feed -> get_by_id(id_from_link(feed.link))
+    end
+  end
+
   def get_by_id(id) do
     case Metalove.Repository.get({:podcast, id}) do
       {:found, result} -> result
