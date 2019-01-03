@@ -30,8 +30,9 @@ defmodule Metalove.Repository do
     GenServer.call(__MODULE__, {:set, key, value})
   end
 
-  def put_podcast(%Metalove.Podcast{id: id} = value) do
+  def put_podcast(%Metalove.Podcast{id: id, main_feed_url: feed_url} = value) do
     GenServer.call(__MODULE__, {:set, {:podcast, id}, value})
+    GenServer.call(__MODULE__, {:set, {:url, id}, feed_url})
   end
 
   def put_feed(%Metalove.PodcastFeed{feed_url: feed_url} = value) do

@@ -75,3 +75,25 @@ defmodule Metalove.PodcastFeed do
     end
   end
 end
+
+defimpl Jason.Encoder, for: Metalove.PodcastFeed do
+  def encode(value, opts) do
+    map =
+      value
+      |> Map.from_struct()
+      |> Enum.map(fn
+        {key, list} when is_list(list) ->
+          {key,
+           Enum.map(list, fn
+             {:episode, feed_url, guid} -> %{feed: feed_url, guid: guid}
+             e -> e
+           end)}
+
+        e ->
+          e
+      end)
+      |> Map.new()
+
+    Jason.Encode.map(map, opts)
+  end
+end

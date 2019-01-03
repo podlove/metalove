@@ -1,6 +1,7 @@
 defmodule Metalove.Podcast do
   alias Metalove.PodcastFeed
 
+  @derive Jason.Encoder
   # the content of the link tag in the main feed, minus the scheme and ://
   defstruct id: nil,
             # main feed url, when multiple feeds are present in the order of mp3, m4a, other

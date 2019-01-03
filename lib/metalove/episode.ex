@@ -14,6 +14,7 @@ defmodule Metalove.Episode do
   # <itunes:duration>07:04</itunes:duration>
   # <itunes:explicit>no</itunes:explicit>
 
+  @derive Jason.Encoder
   defstruct feed_url: nil,
             guid: nil,
             author: nil,
