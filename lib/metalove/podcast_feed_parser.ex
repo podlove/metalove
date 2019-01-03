@@ -42,6 +42,7 @@ defmodule Metalove.PodcastFeedParser do
     item
     |> xmap(
       title: ~x"title/text()"s,
+      link: ~x"link/text()"s,
       guid: ~x"guid/text()"s,
       description: ~x"description/text()"s,
       duration: ~x"itunes:duration/text()"s,

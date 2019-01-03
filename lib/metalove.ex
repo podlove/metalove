@@ -49,11 +49,13 @@ defmodule Metalove do
     feed_url_fn = fn ->
       case get_feed_url(url, follow_first: true) do
         {:ok, feed_url} -> feed_url
+        _ -> nil
       end
     end
 
-    feed_url = Metalove.Repository.fetch({:url, url}, feed_url_fn)
-
-    Metalove.Podcast.get_by_feed_url(feed_url)
+    case Metalove.Repository.fetch({:url, url}, feed_url_fn) do
+      nil -> nil
+      feed_url -> Metalove.Podcast.get_by_feed_url(feed_url)
+    end
   end
 end
