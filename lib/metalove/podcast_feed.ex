@@ -29,7 +29,7 @@ defmodule Metalove.PodcastFeed do
 
     {:ok, cast, episodes} = PodcastFeedParser.parse(body)
 
-    if cast[:next_page_ur] != nil do
+    if cast[:next_page_url] != nil do
       spawn(__MODULE__, :collect_episodes, [cast, episodes, feed_url])
     end
 
