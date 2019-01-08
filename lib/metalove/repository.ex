@@ -26,6 +26,8 @@ defmodule Metalove.Repository do
     end
   end
 
+  require Logger
+
   def set(key, value) do
     GenServer.call(__MODULE__, {:set, key, value})
   end
@@ -51,6 +53,7 @@ defmodule Metalove.Repository do
   end
 
   def handle_call({:set, key, value}, _from, state) do
+    Logger.debug("Storing: #{inspect(key)}")
     true = :ets.insert(state.table_name, {key, value})
     {:reply, value, state}
   end

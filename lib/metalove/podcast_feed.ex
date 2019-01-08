@@ -56,7 +56,11 @@ defmodule Metalove.PodcastFeed do
      }, Enum.map(episodes, fn episode -> Episode.new(episode, feed_url) end)}
   end
 
+  require Logger
+
   def collect_episodes(cast, episodes, feed_url) do
+    Logger.debug("collect_episodes: #{inspect(cast[:next_page_url])}")
+
     case cast[:next_page_url] do
       url when is_binary(url) and byte_size(url) > 0 ->
         {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(url)
