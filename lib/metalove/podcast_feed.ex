@@ -15,7 +15,9 @@ defmodule Metalove.PodcastFeed do
             image_url: nil,
             categories: nil,
             copyright: nil,
-            episodes: nil
+            episodes: nil,
+            created_at: DateTime.utc_now(),
+            updated_at: DateTime.utc_now()
 
   def get_by_feed_url(url) do
     case Metalove.Repository.get({:feed, url}) do
@@ -24,10 +26,14 @@ defmodule Metalove.PodcastFeed do
     end
   end
 
+  require Logger
+
   def fetch_and_parse(feed_url) do
     {:ok, body, _headers, {_followed_url, _}} = Fetcher.fetch_and_follow(feed_url)
 
     {:ok, cast, episodes} = PodcastFeedParser.parse(body)
+
+    alternate_feed_urls = cast[:alternate_urls] || []
 
     if cast[:next_page_url] != nil do
       spawn(__MODULE__, :collect_episodes, [cast, episodes, feed_url])
@@ -35,7 +41,7 @@ defmodule Metalove.PodcastFeed do
 
     {feed, episodes} = feed_and_episodes_with_parsed_maps(cast, episodes, feed_url)
 
-    {:ok, feed, episodes}
+    {:ok, feed, episodes, alternate_feed_urls}
   end
 
   defp feed_and_episodes_with_parsed_maps(cast, episodes, feed_url) do

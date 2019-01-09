@@ -30,7 +30,8 @@ defmodule Metalove.PodcastFeedParser do
       itunes_keywords: ~x"itunes:keywords/text()"s,
       itunes_author: ~x"itunes:author/text()"s,
       image: ~x"itunes:image/@href"s,
-      next_page_url: ~x"atom:link[@rel='next']/@href"s
+      next_page_url: ~x"atom:link[@rel='next']/@href"s,
+      alternate_urls: ~x"atom:link[@rel='alternate']/@href"sl
     )
     |> Map.put(:categories, categories(channel))
     |> Map.put(:contributors, contributors(channel))

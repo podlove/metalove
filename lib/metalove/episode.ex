@@ -65,4 +65,19 @@ defmodule Metalove.Episode do
       episode: map[:itunes_episode]
     }
   end
+
+  def all_enclosures(%__MODULE__{feed_url: feed_url, guid: guid, enclosure: enclosure}) do
+    Metalove.Podcast.get_by_feed_url(feed_url).feed_urls
+    |> Enum.reduce([enclosure], fn
+      ^feed_url, acc ->
+        acc
+
+      url, acc ->
+        case __MODULE__.get_by_episode_id({:episode, url, guid}) do
+          %__MODULE__{} = other_format -> [other_format.enclosure | acc]
+          _ -> acc
+        end
+    end)
+    |> Enum.reverse()
+  end
 end
