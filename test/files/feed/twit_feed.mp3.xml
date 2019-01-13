@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" version="2.0">
+	<channel>
+		<title>MacBreak Weekly (MP3)</title>
+		<link>https://twit.tv/shows/macbreak-weekly</link>
+		<generator>TWiT Feed Generator v3.6.5</generator>
+		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+		<language>en-US</language>
+		<copyright>This work is licensed under a Creative Commons License - Attribution-NonCommercial-NoDerivatives 4.0 International - http://creativecommons.org/licenses/by-nc-nd/4.0/</copyright>
+		<creativeCommons:license>http://creativecommons.org/licenses/by-nc-nd/4.0/</creativeCommons:license>
+		<managingEditor>distro@twit.tv (TWiT Editors)</managingEditor>
+		<webMaster>distro@twit.tv (TWiT Engineering)</webMaster>
+		<ttl>720</ttl>
+		<sy:updatePeriod>weekly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<lastBuildDate>Tue, 08 Jan 2019 16:35:47 PST</lastBuildDate>
+		<pubDate>Tue, 08 Jan 2019 16:35:47 PST</pubDate>
+		<itunes:type>episodic</itunes:type>
+		<itunes:author>TWiT</itunes:author>
+		<itunes:subtitle>Get the latest Apple news and views from the top names in tech journalism.</itunes:subtitle>
+		<itunes:summary>Get the latest Apple news and views from the top names in Mac, iPhone, iPod, and iPad journalism.
+
+Records live every Tuesday at 2:00pm Eastern / 11:00am Pacific / 19:00 UTC.</itunes:summary>
+		<description>Get the latest Apple news and views from the top names in Mac, iPhone, iPod, and iPad journalism.
+
+Records live every Tuesday at 2:00pm Eastern / 11:00am Pacific / 19:00 UTC.</description>
+<itunes:keywords>TWiT, Technology, Macintosh, Apple, Mac OS X, iPhone, iPad, iOS, iMac</itunes:keywords>
+	<itunes:explicit>clean</itunes:explicit>
+	<itunes:block>no</itunes:block>
+	<itunes:owner>
+		<itunes:name>Leo Laporte</itunes:name>
+		<itunes:email>distro@twit.tv</itunes:email>
+	</itunes:owner>
+		<itunes:category text="Technology">
+			<itunes:category text="Tech News"/>
+</itunes:category>
+		<itunes:category text="Technology">
+			<itunes:category text="Software How-To"/>
+</itunes:category>
+		<itunes:category text="Technology">
+			<itunes:category text="Gadgets"/>
+</itunes:category>
+		<itunes:category text="Business">
+		<itunes:category text="Business News"/>
+</itunes:category>
+	<image>
+		<title>MacBreak Weekly (Audio)</title>
+		<url>https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR</url>
+		<link>https://twit.tv/shows/macbreak-weekly</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:image href="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_2048x2048/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=j92PJn7N" />
+	<atom:link href="http://feeds.twit.tv/mbw.xml" type="application/rss+xml" rel="self"/>
+		<item>
+			<title>MBW 643: An Apple Branded Faraday Cage</title>
+			<itunes:title>An Apple Branded Faraday Cage</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 08 Jan 2019 15:01:32 PST</pubDate>
+			<itunes:episode>643</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/643</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/643</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Apple Hits Peak Smartphone</itunes:subtitle>
+			<itunes:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, tim cook, earnings, China, Steve Balmer, Steve Jobs, iot, Homekit, CES, privacy, iPhone, services, qualcomm, itunes, samsung, netflix, fortnite, brydge, iPad</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Tim Cook warns that earnings are not where they should be. Is China to blame?</li><li>In the age of peak smartphone, Apple needs other revenues. Could IoT save them?</li><li>Apple throws some shade at CES. </li><li>Apple vs Qualcomm: now in Germany!</li><li>Apple plays nice with Samsung TVs.</li><li>Netfix stops paying the Apple tax on subscriptions.</li><li>Garage Band hits 15.</li></ul><p>Picks of the Week:</p><ul><li>Mikah's Pick: Dongle Dangler</li><li>Andy's Pick: iFixit Toolkit</li><li>Alex's Pick: Slopes App</li><li>Leo's Pick: Brydge iPad Pro Keyboards</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://twitter.com/MikahSargent" target="_blank">Mikah Sargent</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://slack.com">slack.com</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://go.itpro.tv/macbreak">go.itpro.tv/macbreak  promo code MACBREAK30</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Tim Cook warns that earnings are not where they should be. Is China to blame?</li><li>In the age of peak smartphone, Apple needs other revenues. Could IoT save them?</li><li>Apple throws some shade at CES. </li><li>Apple vs Qualcomm: now in Germany!</li><li>Apple plays nice with Samsung TVs.</li><li>Netfix stops paying the Apple tax on subscriptions.</li><li>Garage Band hits 15.</li></ul><p>Picks of the Week:</p><ul><li>Mikah's Pick: Dongle Dangler</li><li>Andy's Pick: iFixit Toolkit</li><li>Alex's Pick: Slopes App</li><li>Leo's Pick: Brydge iPad Pro Keyboards</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://twitter.com/MikahSargent" target="_blank">Mikah Sargent</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://slack.com">slack.com</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://go.itpro.tv/macbreak">go.itpro.tv/macbreak  promo code MACBREAK30</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Tim Cook warns that earnings are not where they should be. Is China to blame?</li><li>In the age of peak smartphone, Apple needs other revenues. Could IoT save them?</li><li>Apple throws some shade at CES. </li><li>Apple vs Qualcomm: now in Germany!</li><li>Apple plays nice with Samsung TVs.</li><li>Netfix stops paying the Apple tax on subscriptions.</li><li>Garage Band hits 15.</li></ul><p>Picks of the Week:</p><ul><li>Mikah's Pick: Dongle Dangler</li><li>Andy's Pick: iFixit Toolkit</li><li>Alex's Pick: Slopes App</li><li>Leo's Pick: Brydge iPad Pro Keyboards</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://twitter.com/MikahSargent" target="_blank">Mikah Sargent</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://slack.com">slack.com</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://go.itpro.tv/macbreak">go.itpro.tv/macbreak  promo code MACBREAK30</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0643/mbw0643.mp3</guid>
+			<itunes:duration>1:49:37</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0643/mbw0643.mp3" length="52742271" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0643/mbw0643.mp3" fileSize="52742271" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 643: An Apple Branded Faraday Cage</media:title>
+				<media:description type="plain">Apple Hits Peak Smartphone</media:description>
+				<media:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, tim cook, earnings, China, Steve Balmer, Steve Jobs, iot, Homekit, CES, privacy, iPhone, services, qualcomm, itunes, samsung, netflix, fortnite, brydge, iPad</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/718441/hero/mbw0643_h264.00_40_52_38.still001.jpg?itok=L7Ap2PIo" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="reporter">Mikah Sargent</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 642: The Best of 2018</title>
+			<itunes:title>The Best of 2018</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 25 Dec 2018 11:00:00 PST</pubDate>
+			<itunes:episode>642</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/642</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/642</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>The best of MacBreak Weekly for 2018</itunes:subtitle>
+			<itunes:keywords>Apple, Macintosh, OSX, iOS, iPad, iPhone, iPhone X, iphone xs, iPhone Xr, Best of 2018</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><p>We look at back at highlights for MacBreak Weekly for 2018!</p> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://calm.com/macbreak">calm.com/macbreak</a></li>
+<li><a href="http://tryhopsy.com/macbreak">tryhopsy.com/macbreak</a></li>
+<li><a href="http://casper.com/macbreak">casper.com/macbreak - promo code MACBREAK</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<p>We look at back at highlights for MacBreak Weekly for 2018!</p> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://calm.com/macbreak">calm.com/macbreak</a></li>
+<li><a href="http://tryhopsy.com/macbreak">tryhopsy.com/macbreak</a></li>
+<li><a href="http://casper.com/macbreak">casper.com/macbreak - promo code MACBREAK</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<p>We look at back at highlights for MacBreak Weekly for 2018!</p> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://calm.com/macbreak">calm.com/macbreak</a></li>
+<li><a href="http://tryhopsy.com/macbreak">tryhopsy.com/macbreak</a></li>
+<li><a href="http://casper.com/macbreak">casper.com/macbreak - promo code MACBREAK</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0642/mbw0642.mp3</guid>
+			<itunes:duration>2:45:22</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0642/mbw0642.mp3" length="79502734" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0642/mbw0642.mp3" fileSize="79502734" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 642: The Best of 2018</media:title>
+				<media:description type="plain">The best of MacBreak Weekly for 2018</media:description>
+				<media:keywords>Apple, Macintosh, OSX, iOS, iPad, iPhone, iPhone X, iphone xs, iPhone Xr, Best of 2018</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/715311/hero/mbw0642.jpg?itok=Ckgy6OAZ" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 641: Tic-Tic-CHUNK</title>
+			<itunes:title>Tic-Tic-CHUNK</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 18 Dec 2018 20:21:38 PST</pubDate>
+			<itunes:episode>641</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/641</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/641</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Apple vs Qualcomm, Glitter Bomb</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, qualcomm, China, Austin, Pegatron, Apple Books, Cydia, notch, iOS, amazon echo, apple music, connect, paul mccartney, Emma Stone, Peanuts, Justin Lin, Adweek</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Apple is Coming to Austin.</li><li>Apple vs Qualcomm in China</li><li>Apple Music now on Amazon Echo</li><li>RIP Apple Connect</li><li>Apple TV gets Peanuts, Justin Lin, and a new casting director</li><li>Glitter bombs and KFC firelogs</li></ul><p>Picks of the Week</p><ul><li>Andy's Picks: Ella Fitzgerald Wishes You a Swinging Christmas and Patrick Stewart's A Christmas Carol</li><li>Rene's Picks: iPhone XR Clear Case and Biggest Apple MISSES of 2018</li><li>Alex's Pick: Remove Backgrounds with Remove.bg</li><li>Leo's Pick: Apple Music Web Player</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://brex.com/twit">brex.com/twit</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Apple is Coming to Austin.</li><li>Apple vs Qualcomm in China</li><li>Apple Music now on Amazon Echo</li><li>RIP Apple Connect</li><li>Apple TV gets Peanuts, Justin Lin, and a new casting director</li><li>Glitter bombs and KFC firelogs</li></ul><p>Picks of the Week</p><ul><li>Andy's Picks: Ella Fitzgerald Wishes You a Swinging Christmas and Patrick Stewart's A Christmas Carol</li><li>Rene's Picks: iPhone XR Clear Case and Biggest Apple MISSES of 2018</li><li>Alex's Pick: Remove Backgrounds with Remove.bg</li><li>Leo's Pick: Apple Music Web Player</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://brex.com/twit">brex.com/twit</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Apple is Coming to Austin.</li><li>Apple vs Qualcomm in China</li><li>Apple Music now on Amazon Echo</li><li>RIP Apple Connect</li><li>Apple TV gets Peanuts, Justin Lin, and a new casting director</li><li>Glitter bombs and KFC firelogs</li></ul><p>Picks of the Week</p><ul><li>Andy's Picks: Ella Fitzgerald Wishes You a Swinging Christmas and Patrick Stewart's A Christmas Carol</li><li>Rene's Picks: iPhone XR Clear Case and Biggest Apple MISSES of 2018</li><li>Alex's Pick: Remove Backgrounds with Remove.bg</li><li>Leo's Pick: Apple Music Web Player</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://brex.com/twit">brex.com/twit</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0641/mbw0641.mp3</guid>
+			<itunes:duration>2:05:44</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0641/mbw0641.mp3" length="60475769" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0641/mbw0641.mp3" fileSize="60475769" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 641: Tic-Tic-CHUNK</media:title>
+				<media:description type="plain">Apple vs Qualcomm, Glitter Bomb</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, qualcomm, China, Austin, Pegatron, Apple Books, Cydia, notch, iOS, amazon echo, apple music, connect, paul mccartney, Emma Stone, Peanuts, Justin Lin, Adweek</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/712781/hero/mbw0641.jpg?itok=yqL0I4ko" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 640: Fruit Company Adjacent</title>
+			<itunes:title>Fruit Company Adjacent</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 11 Dec 2018 19:40:23 PST</pubDate>
+			<itunes:episode>640</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/640</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/640</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>China Bans iPhones, No Spy Chips</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, Lory Gil, apple watch, ECG, China, iPhone, qualcomm, huawei, Beddit, Douglas Englebart, Mother of All Demos, super micro, Bloomberg, spy chip, instacart, TinType</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Apple Watch ECG feature is live</li><li>iPhone XR's great camera</li><li>Global smartphone growth is down</li><li>Trade war heats up: China bans iPhones, US arrests Huawei CFO</li><li>Apple's new sleep monitor</li><li>50th anniversary of the "Mother of All Demos"</li><li>Super Micro audit: no Chinese spy chips found</li></ul><p>Picks of the Week</p><ul><li>Lory's Pick: Instacart</li><li>Alex's Pick: TinType photo app</li><li>Andy's Pick: swap the SSD in your 2015 MacBook Pro</li><li>Leo's Pick: HyperDrive 2018 iPad Pro USB-C Hub</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Apple Watch ECG feature is live</li><li>iPhone XR's great camera</li><li>Global smartphone growth is down</li><li>Trade war heats up: China bans iPhones, US arrests Huawei CFO</li><li>Apple's new sleep monitor</li><li>50th anniversary of the "Mother of All Demos"</li><li>Super Micro audit: no Chinese spy chips found</li></ul><p>Picks of the Week</p><ul><li>Lory's Pick: Instacart</li><li>Alex's Pick: TinType photo app</li><li>Andy's Pick: swap the SSD in your 2015 MacBook Pro</li><li>Leo's Pick: HyperDrive 2018 iPad Pro USB-C Hub</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Apple Watch ECG feature is live</li><li>iPhone XR's great camera</li><li>Global smartphone growth is down</li><li>Trade war heats up: China bans iPhones, US arrests Huawei CFO</li><li>Apple's new sleep monitor</li><li>50th anniversary of the "Mother of All Demos"</li><li>Super Micro audit: no Chinese spy chips found</li></ul><p>Picks of the Week</p><ul><li>Lory's Pick: Instacart</li><li>Alex's Pick: TinType photo app</li><li>Andy's Pick: swap the SSD in your 2015 MacBook Pro</li><li>Leo's Pick: HyperDrive 2018 iPad Pro USB-C Hub</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, and <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a></p> 
+<p><strong>Guest:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0640/mbw0640.mp3</guid>
+			<itunes:duration>2:07:45</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0640/mbw0640.mp3" length="61447315" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0640/mbw0640.mp3" fileSize="61447315" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 640: Fruit Company Adjacent</media:title>
+				<media:description type="plain">China Bans iPhones, No Spy Chips</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, Lory Gil, apple watch, ECG, China, iPhone, qualcomm, huawei, Beddit, Douglas Englebart, Mother of All Demos, super micro, Bloomberg, spy chip, instacart, TinType</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/709611/hero/mbw0640_b.jpg?itok=jE9x2t3o" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="reporter">Lory Gil</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 639: Multichannel Wiener Filter</title>
+			<itunes:title>Multichannel Wiener Filter</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 04 Dec 2018 15:25:15 PST</pubDate>
+			<itunes:episode>639</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/639</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/639</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Apple's Best of 2018</itunes:subtitle>
+			<itunes:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, Megan Morrone, iPhone, 5G, 2020, apple music, amazon, echo, alexa, siri, HomePod, AirPods, AirPower, Best of 2018, app store, iPhone Xr, battery replacement</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Unsurprisingly, Apple's 2019 iPhones will NOT have 5G.</li><li>Apple Music is coming to an Alexa device near you.</li><li>Apple explains exactly how Siri works on the HomePod.</li><li>Wireless charging AirPods are coming, but where is AirPower?</li><li>Apple App Store's Best of 2018 list</li><li>The iPhone XR is the top-selling iPhone, but is it selling well enough?</li><li>Apple's iPhone battery replacement program is ending soon!</li><li>Santa and elf hats for your Memoji</li><li>Tim Cook takes a stand against hate.</li></ul><p>Picks of the week:</p><ul><li>Alex's Pick: "Brainchild" on Netflix</li><li>Andy's Picks: "The Christmas Chronicles" on Netflix, and the BBEdit Merch Store</li><li>Rene's Pick: Pokemon Go trainer battles</li><li>Megan's Picks: Joytech Music Tesla Coil Arc Plasma Loudspeaker and Apple Music Lyrics</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a>, and <a href="https://twit.tv/people/megan-morrone">Megan Morrone</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Unsurprisingly, Apple's 2019 iPhones will NOT have 5G.</li><li>Apple Music is coming to an Alexa device near you.</li><li>Apple explains exactly how Siri works on the HomePod.</li><li>Wireless charging AirPods are coming, but where is AirPower?</li><li>Apple App Store's Best of 2018 list</li><li>The iPhone XR is the top-selling iPhone, but is it selling well enough?</li><li>Apple's iPhone battery replacement program is ending soon!</li><li>Santa and elf hats for your Memoji</li><li>Tim Cook takes a stand against hate.</li></ul><p>Picks of the week:</p><ul><li>Alex's Pick: "Brainchild" on Netflix</li><li>Andy's Picks: "The Christmas Chronicles" on Netflix, and the BBEdit Merch Store</li><li>Rene's Pick: Pokemon Go trainer battles</li><li>Megan's Picks: Joytech Music Tesla Coil Arc Plasma Loudspeaker and Apple Music Lyrics</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a>, and <a href="https://twit.tv/people/megan-morrone">Megan Morrone</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Unsurprisingly, Apple's 2019 iPhones will NOT have 5G.</li><li>Apple Music is coming to an Alexa device near you.</li><li>Apple explains exactly how Siri works on the HomePod.</li><li>Wireless charging AirPods are coming, but where is AirPower?</li><li>Apple App Store's Best of 2018 list</li><li>The iPhone XR is the top-selling iPhone, but is it selling well enough?</li><li>Apple's iPhone battery replacement program is ending soon!</li><li>Santa and elf hats for your Memoji</li><li>Tim Cook takes a stand against hate.</li></ul><p>Picks of the week:</p><ul><li>Alex's Pick: "Brainchild" on Netflix</li><li>Andy's Picks: "The Christmas Chronicles" on Netflix, and the BBEdit Merch Store</li><li>Rene's Pick: Pokemon Go trainer battles</li><li>Megan's Picks: Joytech Music Tesla Coil Arc Plasma Loudspeaker and Apple Music Lyrics</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a>, and <a href="https://twit.tv/people/megan-morrone">Megan Morrone</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0639/mbw0639.mp3</guid>
+			<itunes:duration>1:43:16</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0639/mbw0639.mp3" length="49690333" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0639/mbw0639.mp3" fileSize="49690333" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 639: Multichannel Wiener Filter</media:title>
+				<media:description type="plain">Apple's Best of 2018</media:description>
+				<media:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, Megan Morrone, iPhone, 5G, 2020, apple music, amazon, echo, alexa, siri, HomePod, AirPods, AirPower, Best of 2018, app store, iPhone Xr, battery replacement</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/706941/hero/mbw0639_h264.01_05_00_07.still001.jpg?itok=Fn3kzMxi" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+		<media:credit role="anchor person">Megan Morrone</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 638: Scamclub</title>
+			<itunes:title>Scamclub</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 27 Nov 2018 16:01:55 PST</pubDate>
+			<itunes:episode>638</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/638</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/638</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Apple Back at the Supreme Court</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, SCOTUS, supreme court, app store, iOS, standing, hour of code, Swift Coding Club, sleep monitoring, Entrepreneur Camp, ai, malvertising, scamclub, Apple TV</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Apple is at the US Supreme Court once again, this time to determine whether they can be sued for the iOS App Store monopoly.</li><li>Free Hour of Code sessions at Apple stores next week</li><li>Apple's Entrepreneur Camp for women-owned businesses</li><li>Scamclub and the latest iOS malvertising campaign</li><li>The Apple TV dongle that wasn't</li></ul><p>Picks of the Week</p><ul><li>Alex's Pick: Tabata Pro</li><li>Rene's Pick: Pokeball Plus</li><li>Andy's Pick: Bookly for iOS</li><li>Leo's Pick: Input font for coding</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Apple is at the US Supreme Court once again, this time to determine whether they can be sued for the iOS App Store monopoly.</li><li>Free Hour of Code sessions at Apple stores next week</li><li>Apple's Entrepreneur Camp for women-owned businesses</li><li>Scamclub and the latest iOS malvertising campaign</li><li>The Apple TV dongle that wasn't</li></ul><p>Picks of the Week</p><ul><li>Alex's Pick: Tabata Pro</li><li>Rene's Pick: Pokeball Plus</li><li>Andy's Pick: Bookly for iOS</li><li>Leo's Pick: Input font for coding</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Apple is at the US Supreme Court once again, this time to determine whether they can be sued for the iOS App Store monopoly.</li><li>Free Hour of Code sessions at Apple stores next week</li><li>Apple's Entrepreneur Camp for women-owned businesses</li><li>Scamclub and the latest iOS malvertising campaign</li><li>The Apple TV dongle that wasn't</li></ul><p>Picks of the Week</p><ul><li>Alex's Pick: Tabata Pro</li><li>Rene's Pick: Pokeball Plus</li><li>Andy's Pick: Bookly for iOS</li><li>Leo's Pick: Input font for coding</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0638/mbw0638.mp3</guid>
+			<itunes:duration>1:54:32</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0638/mbw0638.mp3" length="55096217" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0638/mbw0638.mp3" fileSize="55096217" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 638: Scamclub</media:title>
+				<media:description type="plain">Apple Back at the Supreme Court</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, SCOTUS, supreme court, app store, iOS, standing, hour of code, Swift Coding Club, sleep monitoring, Entrepreneur Camp, ai, malvertising, scamclub, Apple TV</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/704031/hero/mbw0638.jpg?itok=_b0Rf5Vv" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 637: An Attractive Nuisance</title>
+			<itunes:title>An Attractive Nuisance</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 20 Nov 2018 16:21:29 PST</pubDate>
+			<itunes:episode>637</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/637</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/637</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Our Re-review of the iPad Pro</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, ipad pro, tim cook, iPhone, bro culture, down detector, FAANG, Krisp, Shortcut Roulette, Thanksgiving Cooking Tips, Philips Hue Play, NPR App</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Apple slashes component orders: should we panic?</li><li>Yes, the iPad Pro can be bent.</li><li>Re-reviewing the iPad Pro: Is it a "real" computer?</li><li>Apple CEO Tim Cook laments bro culture in Silicon Valley, calls federal regulation "inevitable."</li><li>Apple's Black Friday deals</li></ul><p>Tips and Picks</p><ul><li>Rene's Pick: Philips Hue Play</li><li>Andy's Tip: How to cook a perfect holiday meal</li><li>Alex's Pick: NPR App</li><li>Leo's Picks: Krisp noise canceling software, Shortcut Roulette</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://FreshBooks.com/macbreak">FreshBooks.com/macbreak</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Apple slashes component orders: should we panic?</li><li>Yes, the iPad Pro can be bent.</li><li>Re-reviewing the iPad Pro: Is it a "real" computer?</li><li>Apple CEO Tim Cook laments bro culture in Silicon Valley, calls federal regulation "inevitable."</li><li>Apple's Black Friday deals</li></ul><p>Tips and Picks</p><ul><li>Rene's Pick: Philips Hue Play</li><li>Andy's Tip: How to cook a perfect holiday meal</li><li>Alex's Pick: NPR App</li><li>Leo's Picks: Krisp noise canceling software, Shortcut Roulette</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://FreshBooks.com/macbreak">FreshBooks.com/macbreak</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Apple slashes component orders: should we panic?</li><li>Yes, the iPad Pro can be bent.</li><li>Re-reviewing the iPad Pro: Is it a "real" computer?</li><li>Apple CEO Tim Cook laments bro culture in Silicon Valley, calls federal regulation "inevitable."</li><li>Apple's Black Friday deals</li></ul><p>Tips and Picks</p><ul><li>Rene's Pick: Philips Hue Play</li><li>Andy's Tip: How to cook a perfect holiday meal</li><li>Alex's Pick: NPR App</li><li>Leo's Picks: Krisp noise canceling software, Shortcut Roulette</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://gazelle.com">gazelle.com</a></li>
+<li><a href="http://FreshBooks.com/macbreak">FreshBooks.com/macbreak</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0637/mbw0637.mp3</guid>
+			<itunes:duration>1:46:02</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0637/mbw0637.mp3" length="51019652" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0637/mbw0637.mp3" fileSize="51019652" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 637: An Attractive Nuisance</media:title>
+				<media:description type="plain">Our Re-review of the iPad Pro</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, ipad pro, tim cook, iPhone, bro culture, down detector, FAANG, Krisp, Shortcut Roulette, Thanksgiving Cooking Tips, Philips Hue Play, NPR App</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/702301/hero/mbw0637.jpg?itok=qCBR6JdV" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 636: Like a Porsche in Canada</title>
+			<itunes:title>Like a Porsche in Canada</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 13 Nov 2018 16:44:12 PST</pubDate>
+			<itunes:episode>636</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/636</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/636</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Who is the 2018 iPad Pro For?</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, ipad pro, macbook air, iPhone X, T2, apple pencil, ifixit, Apple ID, Singles Day, iPhone, Stan Lee, app store, Jony Ive, diamond ring, Tools and Toys, RPM App</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>iPad Pro: is all this power good for anyone?</li><li>T2 security chip: designed to keep you from repairing your Mac?</li><li>Apple Pencil 2.0 Review</li><li>Apple ID accounts reset</li><li>iPhone X "touch disease"</li><li>iPhone is tops on Singles Day</li><li>Stan Lee tribute on the App Store</li><li>Jony Ive designs a solid diamond ring</li></ul><p>Picks of the Week</p><ul><li>Andy's Pick: RPM App</li><li>Rene's Pick: Thrifter.com Black Friday coverage</li><li>Alex's Pick: McDonald's App</li><li>Leo's Pick: Tools and Toys 2018 Christmas Catalog</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>iPad Pro: is all this power good for anyone?</li><li>T2 security chip: designed to keep you from repairing your Mac?</li><li>Apple Pencil 2.0 Review</li><li>Apple ID accounts reset</li><li>iPhone X "touch disease"</li><li>iPhone is tops on Singles Day</li><li>Stan Lee tribute on the App Store</li><li>Jony Ive designs a solid diamond ring</li></ul><p>Picks of the Week</p><ul><li>Andy's Pick: RPM App</li><li>Rene's Pick: Thrifter.com Black Friday coverage</li><li>Alex's Pick: McDonald's App</li><li>Leo's Pick: Tools and Toys 2018 Christmas Catalog</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>iPad Pro: is all this power good for anyone?</li><li>T2 security chip: designed to keep you from repairing your Mac?</li><li>Apple Pencil 2.0 Review</li><li>Apple ID accounts reset</li><li>iPhone X "touch disease"</li><li>iPhone is tops on Singles Day</li><li>Stan Lee tribute on the App Store</li><li>Jony Ive designs a solid diamond ring</li></ul><p>Picks of the Week</p><ul><li>Andy's Pick: RPM App</li><li>Rene's Pick: Thrifter.com Black Friday coverage</li><li>Alex's Pick: McDonald's App</li><li>Leo's Pick: Tools and Toys 2018 Christmas Catalog</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://LastPass.com/twit">LastPass.com/twit</a></li>
+<li><a href="http://privacy.com/macbreak">privacy.com/macbreak</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0636/mbw0636.mp3</guid>
+			<itunes:duration>1:39:05</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0636/mbw0636.mp3" length="47679949" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0636/mbw0636.mp3" fileSize="47679949" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 636: Like a Porsche in Canada</media:title>
+				<media:description type="plain">Who is the 2018 iPad Pro For?</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, ipad pro, macbook air, iPhone X, T2, apple pencil, ifixit, Apple ID, Singles Day, iPhone, Stan Lee, app store, Jony Ive, diamond ring, Tools and Toys, RPM App</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/699511/hero/mbw0636.jpg?itok=hOxG7IT_" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 635: Pizza to the Polls</title>
+			<itunes:title>Pizza to the Polls</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 06 Nov 2018 15:41:53 PST</pubDate>
+			<itunes:episode>635</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/635</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/635</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>Mac Mini, MacBook Air, iPad Pro</itunes:subtitle>
+			<itunes:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, ipad pro, macbook air, Mac Mini, T2, Re Hydrogen One, Pizza to the Polls, ssd, backup, Birkin, Brining Home the Birkin, SquadCast, Procreate</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>Mac Mini 2018: look at all those ports!</li><li>MacBook Air 2018: a thoroughly ok laptop.</li><li>iPad Pro 2018: yeah, forget all about those two. This is where the real action is.</li><li>Apple's T2 security chip makes installing Linux harder.</li></ul><p>Tips and Picks:</p><ul><li>Leo's Pick: Send free pizza to people waiting in line to vote.</li><li>Alex's Picks: Red Hydrogen One and SquadCast.</li><li>Andy's Tip: Back up your SSD!</li><li>Andy's Pick: Bringing Home The Birkin.</li><li>Rene's Pick: Procreate for iPad.</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://trespontas.com/macbreak">trespontas.com/macbreak promo code MACBREAK</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>Mac Mini 2018: look at all those ports!</li><li>MacBook Air 2018: a thoroughly ok laptop.</li><li>iPad Pro 2018: yeah, forget all about those two. This is where the real action is.</li><li>Apple's T2 security chip makes installing Linux harder.</li></ul><p>Tips and Picks:</p><ul><li>Leo's Pick: Send free pizza to people waiting in line to vote.</li><li>Alex's Picks: Red Hydrogen One and SquadCast.</li><li>Andy's Tip: Back up your SSD!</li><li>Andy's Pick: Bringing Home The Birkin.</li><li>Rene's Pick: Procreate for iPad.</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://trespontas.com/macbreak">trespontas.com/macbreak promo code MACBREAK</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>Mac Mini 2018: look at all those ports!</li><li>MacBook Air 2018: a thoroughly ok laptop.</li><li>iPad Pro 2018: yeah, forget all about those two. This is where the real action is.</li><li>Apple's T2 security chip makes installing Linux harder.</li></ul><p>Tips and Picks:</p><ul><li>Leo's Pick: Send free pizza to people waiting in line to vote.</li><li>Alex's Picks: Red Hydrogen One and SquadCast.</li><li>Andy's Tip: Back up your SSD!</li><li>Andy's Pick: Bringing Home The Birkin.</li><li>Rene's Pick: Procreate for iPad.</li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a>, <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a>, <a href="https://twit.tv/people/alex-lindsay">Alex Lindsay</a>, and <a href="https://twit.tv/people/rene-ritchie">Rene Ritchie</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://RocketMortgage.com/Macbreak">RocketMortgage.com/Macbreak</a></li>
+<li><a href="http://trespontas.com/macbreak">trespontas.com/macbreak promo code MACBREAK</a></li>
+<li><a href="HTTP://WAYFAIR.COM/MACBREAK">WAYFAIR.COM/MACBREAK promo code MACBREAK</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0635/mbw0635.mp3</guid>
+			<itunes:duration>2:06:02</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0635/mbw0635.mp3" length="60622264" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0635/mbw0635.mp3" fileSize="60622264" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 635: Pizza to the Polls</media:title>
+				<media:description type="plain">Mac Mini, MacBook Air, iPad Pro</media:description>
+				<media:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, ipad pro, macbook air, Mac Mini, T2, Re Hydrogen One, Pizza to the Polls, ssd, backup, Birkin, Brining Home the Birkin, SquadCast, Procreate</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/696421/hero/twitbit-mbw0635_h264.00_00_40_59.still001.jpg?itok=qd8aSaG-" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="anchor person">Alex Lindsay</media:credit>
+		<media:credit role="anchor person">Rene Ritchie</media:credit>
+			</media:content>
+		</item>
+		<item>
+			<title>MBW 634: The New iPads Are Here!</title>
+			<itunes:title>The New iPads Are Here!</itunes:title>
+			<itunes:episodeType>full</itunes:episodeType>
+			<pubDate>Tue, 30 Oct 2018 15:11:34 PST</pubDate>
+			<itunes:episode>634</itunes:episode>
+			<link>https://twit.tv/shows/macbreak-weekly/episodes/634</link>
+			<comments>https://twit.tv/shows/macbreak-weekly/episodes/634</comments>
+			<itunes:author>TWiT</itunes:author>
+			<category>Technology</category>
+			<category>Apple</category>
+			<category>Mac</category>
+			<itunes:explicit>clean</itunes:explicit>
+			<itunes:subtitle>MacBook Air, iPad Pro and a new Mac Mini</itunes:subtitle>
+			<itunes:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, Lory Gill, Adam Engst, Retina Display, usb-c, Apple Announcement, macbook air, ipad pro, 2k games, adobe, apple pencil, Folio keyboard, 2018</itunes:keywords>
+			<description>
+<![CDATA[
+<p><img src="https://elroycdn.twit.tv/sites/default/files/styles/twit_album_art_144x144/public/images/shows/macbreak_weekly/album_art/audio/mbw1400audio.jpg?itok=iQC91eyR" align="right" hspace="20" vspace="20" border="0" title="MacBreak Weekly (Audio)" alt="MacBreak Weekly (Audio)"/></p><ul><li>The MacBook Air has been updated and has a retina display powered by 4 million pixels, and has touch ID.</li><li>The new iPad Pro features Face ID as well as a USB-C port.</li><li>The Mac Mini is back and has been upgraded and features Apple's T2 security chip.</li><li>It seems Bloomberg's invitation to the event was lost in the mail.</li><li>iFixit fought for and won our right to repair.</li><li>Did the Apple Watch's fall detection feature really save a man?</li><li>And finally, iOS 12.1 is now available. </li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a> and <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a></p> 
+<p><strong>Guests:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a> and <a href="http://twitter.com/adamengst" target="_blank">Adam Engst</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+</ul></p>
+]]>
+			</description>
+			<itunes:summary><![CDATA[
+<ul><li>The MacBook Air has been updated and has a retina display powered by 4 million pixels, and has touch ID.</li><li>The new iPad Pro features Face ID as well as a USB-C port.</li><li>The Mac Mini is back and has been upgraded and features Apple's T2 security chip.</li><li>It seems Bloomberg's invitation to the event was lost in the mail.</li><li>iFixit fought for and won our right to repair.</li><li>Did the Apple Watch's fall detection feature really save a man?</li><li>And finally, iOS 12.1 is now available. </li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a> and <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a></p> 
+<p><strong>Guests:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a> and <a href="http://twitter.com/adamengst" target="_blank">Adam Engst</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+</ul></p>
+]]></itunes:summary>
+			<content:encoded><![CDATA[
+<ul><li>The MacBook Air has been updated and has a retina display powered by 4 million pixels, and has touch ID.</li><li>The new iPad Pro features Face ID as well as a USB-C port.</li><li>The Mac Mini is back and has been upgraded and features Apple's T2 security chip.</li><li>It seems Bloomberg's invitation to the event was lost in the mail.</li><li>iFixit fought for and won our right to repair.</li><li>Did the Apple Watch's fall detection feature really save a man?</li><li>And finally, iOS 12.1 is now available. </li></ul> 
+<p><strong>Hosts:</strong> <a href="https://twit.tv/people/leo-laporte">Leo Laporte</a> and <a href="https://twit.tv/people/andy-ihnatko">Andy Ihnatko</a></p> 
+<p><strong>Guests:</strong> <a href="https://imore.com" target="_blank">Lory Gil</a> and <a href="http://twitter.com/adamengst" target="_blank">Adam Engst</a></p> 
+<p>Download or subscribe to this show at <a href="https://twit.tv/shows/macbreak-weekly">https://twit.tv/shows/macbreak-weekly</a>.</p>
+<p><strong>Sponsors:</strong><ul>
+<li><a href="http://PayPal.com/growth">PayPal.com/growth</a></li>
+<li><a href="http://SlideBelts.com/TWIT">SlideBelts.com/TWIT code: TWIT</a></li>
+<li><a href="http://WordPress.com/macbreak">WordPress.com/macbreak</a></li>
+</ul></p>
+]]></content:encoded>
+			<guid isPermaLink="false">http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0634/mbw0634.mp3</guid>
+			<itunes:duration>2:09:45</itunes:duration>
+			<enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0634/mbw0634.mp3" length="62406532" type="audio/mpeg"/>
+			<media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0634/mbw0634.mp3" fileSize="62406532" type="audio/mpeg" medium="audio">
+				<media:title type="plain">MBW 634: The New iPads Are Here!</media:title>
+				<media:description type="plain">MacBook Air, iPad Pro and a new Mac Mini</media:description>
+				<media:keywords>TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, Apple, MBW, Lory Gill, Adam Engst, Retina Display, usb-c, Apple Announcement, macbook air, ipad pro, 2k games, adobe, apple pencil, Folio keyboard, 2018</media:keywords>
+				<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/693921/hero/mbw0634.jpg?itok=xW7PmpXd" width="400" height="225" />
+				<media:rating scheme="urn:simple">nonadult</media:rating>
+				<media:rating scheme="urn:v-chip">tv-g</media:rating>
+				<media:category scheme="urn:iab:categories" label="Technology &amp; Computing">IAB19</media:category>		<media:credit role="anchor person">Leo Laporte</media:credit>
+		<media:credit role="anchor person">Andy Ihnatko</media:credit>
+		<media:credit role="reporter">Lory Gil</media:credit>
+		<media:credit role="reporter">Adam Engst</media:credit>
+			</media:content>
+		</item>
+	</channel>
+</rss>
