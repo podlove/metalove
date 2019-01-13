@@ -81,6 +81,42 @@ defmodule Metalove.PodcastFeedParser do
     |> remove_empty()
   end
 
+  # atom contributors
+  #   <atom:contributor>
+  #   <atom:name>Tim Pritlove</atom:name>
+  #   <atom:uri>http://tim.pritlove.org/</atom:uri>
+  # </atom:contributor>
+  # <atom:contributor>
+  #   <atom:name>Clemens Schrimpe</atom:name>
+  # </atom:contributor>
+  # <atom:contributor>
+  #   <atom:name>hukl</atom:name>
+  # </atom:contributor>
+  # <atom:contributor>
+  #   <atom:name>Denis Ahrens</atom:name>
+  # </atom:contributor>
+  # <atom:contributor>
+  #   <atom:name>roddi</atom:name>
+  # </atom:contributor>
+  # <atom:contributor>
+  #   <atom:name>Letty</atom:name>
+  # </atom:contributor>
+
+  # optionally parse the media: metadata, e.g. with http://feeds.twit.tv/mbw.xml
+  #   <enclosure url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0643/mbw0643.mp3" length="52742271" type="audio/mpeg"/>
+  # <media:content url="http://www.podtrac.com/pts/redirect.mp3/cdn.twit.tv/audio/mbw/mbw0643/mbw0643.mp3" fileSize="52742271" type="audio/mpeg" medium="audio">
+  # 	<media:title type="plain">MBW 643: An Apple Branded Faraday Cage</media:title>
+  # 	<media:description type="plain">Apple Hits Peak Smartphone</media:description>
+  # 	<media:keywords>Apple, TWiT, MacBreak Weekly, leo laporte, Rene Ritchie, Andy Ihnatko, Alex Lindsay, MBW, tim cook, earnings, China, Steve Balmer, Steve Jobs, iot, Homekit, CES, privacy, iPhone, services, qualcomm, itunes, samsung, netflix, fortnite, brydge, iPad</media:keywords>
+  # 	<media:thumbnail url="https://elroycdn.twit.tv/sites/default/files/styles/twit_slideshow_400x300/public/images/episodes/718441/hero/mbw0643_h264.00_40_52_38.still001.jpg?itok=L7Ap2PIo" width="400" height="225"/><media:rating scheme="urn:simple">nonadult</media:rating>
+  # 	<media:rating scheme="urn:v-chip">tv-g</media:rating>
+  # 	<media:category scheme="urn:iab:categories" label="Technology & Computing">IAB19</media:category>
+  # 	<media:credit role="anchor person">Leo Laporte</media:credit>
+  # 	<media:credit role="anchor person">Andy Ihnatko</media:credit>
+  # 	<media:credit role="anchor person">Alex Lindsay</media:credit>
+  # 	<media:credit role="reporter">Mikah Sargent</media:credit>
+  # </media:content>
+
   def contributors(nil), do: []
 
   def contributors(xml) do
@@ -90,6 +126,18 @@ defmodule Metalove.PodcastFeedParser do
       xmap(e, name: ~x"atom:name/text()"s, uri: ~x"atom:uri/text()"os)
       |> remove_empty()
     end)
+    |> case do
+      [] ->
+        xml
+        |> xpath(~x"media:content/media:credit"l)
+        |> Enum.map(fn e ->
+          xmap(e, name: ~x"./text()"s, role: ~x"@role"os)
+          |> remove_empty()
+        end)
+
+      result ->
+        result
+    end
   end
 
   def categories(nil), do: []
