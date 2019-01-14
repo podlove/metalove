@@ -94,7 +94,7 @@ defmodule Metalove.MediaParser.ID3 do
   def parse_frames(_, remaining_size, acc) when remaining_size <= 10, do: Enum.reverse(acc)
 
   # Text information frames
-  def parse_frame(<<"T", _::bytes-3>> = frame_id, _parsed_flags, content) do
+  def parse_frame(<<"T", _::bytes-3>> = frame_id, parsed_flags, content) do
     {String.to_atom(frame_id), parse_text_frame_content(content)}
   end
 
@@ -107,12 +107,29 @@ defmodule Metalove.MediaParser.ID3 do
     {:WXXX, %{link: link, title: title}}
   end
 
+  defp debug_write(bytes, mime_type) do
+    extension =
+      case mime_type do
+        "image/jpeg" -> ".jpeg"
+        _ -> ".png"
+      end
+
+    name =
+      "#{Time.utc_now()}"
+      |> String.replace(":", "-")
+      |> String.replace(".", "_")
+
+    File.write!(Path.join(["/tmp", "Temp_#{name}" <> extension]), bytes)
+  end
+
   # Attached Picture
   def parse_frame("APIC", _parsed_flags, content) do
     {format, content} = take_text_format(content)
     {mime_type, content} = take_zero_terminated_text(content, format)
     <<picture_type::8, content::binary>> = content
     {description, image_data} = take_zero_terminated_text(content, format)
+
+    # debug_write(image_data, mime_type)
 
     {:APIC,
      %{
@@ -188,10 +205,15 @@ defmodule Metalove.MediaParser.ID3 do
 
   @spec text_to_utf8(binary(), non_neg_integer()) :: String.t()
   def text_to_utf8(text, format)
-  # Encoding 1 == utf8
-  def text_to_utf8(text, 0), do: text
+  # Encoding 1 == utf16
+  def text_to_utf8(<<0xFF, 0xFE, utf16_text::binary>>, 1),
+    do: :unicode.characters_to_binary(utf16_text, {:utf16, :little})
+
+  def text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, 1),
+    do: :unicode.characters_to_binary(utf16_text, {:utf16, :big})
+
   # Encoding 0 == ISO-8859-1
-  def text_to_utf8(text, 1) do
+  def text_to_utf8(text, 0) do
     text
     |> :unicode.characters_to_binary(:latin1)
   end
