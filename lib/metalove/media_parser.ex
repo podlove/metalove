@@ -12,7 +12,9 @@ defmodule Metalove.MediaParser do
 end
 
 defmodule Metalove.MediaParser.ID3 do
-  def parse(
+  def parse_header(binary)
+
+  def parse_header(
         <<"ID3", version::size(8), revision::size(8), a::size(1), b::size(1), c::size(1),
           d::size(1), _ignore::size(4), rest::binary>>
       ) do
@@ -28,20 +30,34 @@ defmodule Metalove.MediaParser.ID3 do
             _, acc -> acc
           end)
 
+        case byte_size(rest) do
+          size when size >= tag_size ->
+            {:ok, tag_size, version, revision, flags, rest}
+
+          _ ->
+            {:content_to_short, tag_size + 10}
+        end
+
+      _ ->
+        :not_id3
+    end
+  end
+
+  def parse_header(_), do: :not_id3
+
+  def parse(content) when is_binary(content) do
+    case parse_header(content) do
+      {:ok, tag_size, version, revision, flags, content} ->
         %{
           version: "#{version}.#{revision}",
           flags: flags,
           tag_size: tag_size,
-          tags: parse_frames(rest, tag_size)
+          tags: parse_frames(content, tag_size)
         }
 
-      _ ->
-        :non_id3
+      result ->
+        result
     end
-  end
-
-  def parse(_) do
-    :not_id3
   end
 
   def parse_frames(content) when is_binary(content), do: parse_frames(content, byte_size(content))
@@ -94,7 +110,7 @@ defmodule Metalove.MediaParser.ID3 do
   def parse_frames(_, remaining_size, acc) when remaining_size <= 10, do: Enum.reverse(acc)
 
   # Text information frames
-  def parse_frame(<<"T", _::bytes-3>> = frame_id, parsed_flags, content) do
+  def parse_frame(<<"T", _::bytes-3>> = frame_id, _parsed_flags, content) do
     {String.to_atom(frame_id), parse_text_frame_content(content)}
   end
 
@@ -105,21 +121,6 @@ defmodule Metalove.MediaParser.ID3 do
     link = text_to_utf8(link, 0)
 
     {:WXXX, %{link: link, title: title}}
-  end
-
-  defp debug_write(bytes, mime_type) do
-    extension =
-      case mime_type do
-        "image/jpeg" -> ".jpeg"
-        _ -> ".png"
-      end
-
-    name =
-      "#{Time.utc_now()}"
-      |> String.replace(":", "-")
-      |> String.replace(".", "_")
-
-    File.write!(Path.join(["/tmp", "Temp_#{name}" <> extension]), bytes)
   end
 
   # Attached Picture
@@ -158,7 +159,7 @@ defmodule Metalove.MediaParser.ID3 do
 
   def parse_frame("CTOC", _parsed_flags, content) do
     {element_id, content} = take_zero_terminated(content)
-    <<flags, count, _::binary>> = content
+    # <<flags, count, _::binary>> = content
     <<_::6, top_level::1, ordered::1, content::binary>> = content
     <<entry_count::8, content::binary>> = content
 
@@ -255,5 +256,21 @@ defmodule Metalove.MediaParser.ID3 do
 
   def take_text_format(<<text_format::8, rest::binary>>) do
     {text_format, rest}
+  end
+
+  # Internal debugging helpers
+  def debug_write(bytes, mime_type) do
+    extension =
+      case mime_type do
+        "image/jpeg" -> ".jpeg"
+        _ -> ".png"
+      end
+
+    name =
+      "#{Time.utc_now()}"
+      |> String.replace(":", "-")
+      |> String.replace(".", "_")
+
+    File.write!(Path.join(["/tmp", "Temp_#{name}" <> extension]), bytes)
   end
 end
