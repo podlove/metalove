@@ -77,12 +77,32 @@ defmodule Metalove.PodcastFeed do
         {feed, episodes} = feed_and_episodes_with_parsed_maps(cast, episodes, feed_url)
 
         episodes
-        |> Enum.each(&Metalove.Repository.put_episode/1)
+        |> Enum.each(&Metalove.Episode.store/1)
 
-        Metalove.Repository.put_feed(feed)
+        store(feed)
 
         episodes
     end
+  end
+
+  def store(feed) do
+    Metalove.Repository.put_feed(feed)
+    # use this to update metadata in enclosures if necessary
+    spawn(__MODULE__, :scrape_episode_metadata, [feed.episodes])
+  end
+
+  def scrape_episode_metadata(episode_ids) do
+    episode_ids
+    |> Enum.each(fn id ->
+      case Metalove.Episode.get_by_episode_id(id) do
+        %Metalove.Episode{} = episode ->
+          enclosure = Metalove.Enclosure.fetch_metadata(episode.enclosure)
+          Metalove.Episode.store(%Metalove.Episode{episode | enclosure: enclosure})
+
+        _ ->
+          :nothing
+      end
+    end)
   end
 end
 

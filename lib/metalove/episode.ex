@@ -40,6 +40,10 @@ defmodule Metalove.Episode do
     end
   end
 
+  def store(%__MODULE__{} = episode) do
+    Metalove.Repository.put_episode(episode)
+  end
+
   def new(map, feed_url) when is_map(map) do
     %__MODULE__{
       feed_url: feed_url,
@@ -54,7 +58,7 @@ defmodule Metalove.Episode do
       subtitle: map[:itunes_subtitle],
       enclosure: %Enclosure{
         url: map[:enclosure_url],
-        type: map[:enclosure_type],
+        type: map[:enclosure_type] || Enclosure.infer_mime_type(map[:enclosure_url]),
         size: map[:enclosure_length]
       },
       pub_date: map[:publication_date],

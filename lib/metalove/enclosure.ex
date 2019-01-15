@@ -11,13 +11,11 @@ defmodule Metalove.Enclosure do
             fetched_metadata_at: nil,
             metadata: nil
 
-  def mime_type(enclosure) do
-    extension =
-      URI.parse(enclosure.url).path
-      |> Path.extname()
-
-    case extension do
-      ".mp3" -> "audio/mp3"
+  def infer_mime_type(url) do
+    URI.parse(url).path
+    |> Path.extname()
+    |> case do
+      ".mp3" -> "audio/mpeg"
       ".mp4" -> "audio/mp4"
       ".m4a" -> "audio/mp4"
       _ -> "audio"
@@ -73,7 +71,8 @@ defmodule Metalove.Enclosure do
           |> Enum.map(&transform_chapter_tag/1)
           |> Enum.reverse()
     }
-    |> IO.inspect()
+
+    #    |> IO.inspect()
   end
 
   # |> IO.inspect(label: "Parsed tags:")

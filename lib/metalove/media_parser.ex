@@ -80,7 +80,7 @@ defmodule Metalove.MediaParser.ID3 do
     <<frame_size::32, rest::binary>> = rest
     <<frame_flags::binary-size(2), rest::binary>> = rest
 
-    IO.puts("#{frame_id} - remaining: #{remaining_size} - frame: #{frame_size}")
+    # IO.puts("#{frame_id} - remaining: #{remaining_size} - frame: #{frame_size}")
 
     <<_::1, a::1, b::1, c::1, _::1, _::1, _::1, _::1, _::1, h::1, _::1, _::1, k::1, m::1, n::1,
       p::1>> = frame_flags
@@ -212,6 +212,9 @@ defmodule Metalove.MediaParser.ID3 do
 
   def text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, 1),
     do: :unicode.characters_to_binary(utf16_text, {:utf16, :big})
+
+  # This is not supposed to be done this way, but appears so lets be lenient
+  def text_to_utf8("", 1), do: ""
 
   # Encoding 0 == ISO-8859-1
   def text_to_utf8(text, 0) do

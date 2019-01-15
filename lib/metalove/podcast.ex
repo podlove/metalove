@@ -15,9 +15,9 @@ defmodule Metalove.Podcast do
       PodcastFeed.fetch_and_parse(main_feed_url)
 
     main_feed_episodes
-    |> Enum.each(&Metalove.Repository.put_episode/1)
+    |> Enum.each(&Metalove.Episode.store/1)
 
-    Metalove.Repository.put_feed(main_feed)
+    Metalove.PodcastFeed.store(main_feed)
 
     add_feed_urls(
       %__MODULE__{
