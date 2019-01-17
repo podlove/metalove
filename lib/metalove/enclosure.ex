@@ -12,14 +12,7 @@ defmodule Metalove.Enclosure do
             metadata: nil
 
   def infer_mime_type(url) do
-    URI.parse(url).path
-    |> Path.extname()
-    |> case do
-      ".mp3" -> "audio/mpeg"
-      ".mp4" -> "audio/mp4"
-      ".m4a" -> "audio/mp4"
-      _ -> "audio"
-    end
+    :mimerl.filename(URI.parse(url).path)
   end
 
   def fetch_metadata(enclosure) do

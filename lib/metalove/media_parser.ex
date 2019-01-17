@@ -264,9 +264,9 @@ defmodule Metalove.MediaParser.ID3 do
   # Internal debugging helpers
   def debug_write(bytes, mime_type) do
     extension =
-      case mime_type do
-        "image/jpeg" -> ".jpeg"
-        _ -> ".png"
+      case :mimerl.mime_to_exts(mime_type) do
+        [first_ext | _] -> first_ext
+        _ -> "png"
       end
 
     name =
@@ -274,6 +274,6 @@ defmodule Metalove.MediaParser.ID3 do
       |> String.replace(":", "-")
       |> String.replace(".", "_")
 
-    File.write!(Path.join(["/tmp", "Temp_#{name}" <> extension]), bytes)
+    File.write!(Path.join(["/tmp", "Temp_#{name}.#{extension}"]), bytes)
   end
 end

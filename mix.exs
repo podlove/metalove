@@ -22,14 +22,17 @@ defmodule Metalove.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.5.0"},
+      {:httpoison, "~> 1.5"},
       # html parsing
-      {:floki, "~> 0.20.4"},
+      {:floki, "~> 0.20"},
       # rss feed parsing
-      {:sweet_xml, "~> 0.6.5"},
+      {:sweet_xml, "~> 0.6"},
       {:timex, "~> 3.4"},
-      {:cachex, "~> 3.1.1"},
-      {:jason, "~> 1.1.2"}
+      {:cachex, "~> 3.1"},
+      {:jason, "~> 1.1"},
+      # Needs to be this commit for correct supply of m4a
+      {:mimerl,
+       github: "milmazz/mimerl", ref: "19e7c84b3eff87c6f1010810dbd83ba78a32ca0f", override: true}
 
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
