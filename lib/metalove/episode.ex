@@ -84,4 +84,17 @@ defmodule Metalove.Episode do
     end)
     |> Enum.reverse()
   end
+
+  def episode_image(%__MODULE__{} = episode) do
+    case episode.enclosure.metadata[:cover_art] do
+      image when is_map(image) ->
+        {:image, image}
+
+      _ ->
+        case episode.image_url || Metalove.PodcastFeed.get_by_feed_url(episode.feed_url).image_url do
+          nil -> :not_found
+          url -> {:image_url, url}
+        end
+    end
+  end
 end
