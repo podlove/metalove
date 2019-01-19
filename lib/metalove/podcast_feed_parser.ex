@@ -4,6 +4,10 @@ defmodule Metalove.PodcastFeedParser do
   def parse(xml) do
     # IO.inspect(xml, label: "xml to parse")
 
+    # workaround for issue with entities in attributes in xmerl
+    # https://bugs.erlang.org/browse/ERL-837
+    xml = replace_hex_entities(xml)
+
     try do
       with channel <- xpath(xml, ~x"//channel"e),
            items <- xpath(channel, ~x"item"el),
@@ -180,5 +184,12 @@ defmodule Metalove.PodcastFeedParser do
           _ -> nil
         end
     end
+  end
+
+  # utility helper
+  def replace_hex_entities(xml_string) do
+    Regex.replace(~r/&#x([0-9a-fA-F]+);/, xml_string, fn _, hex ->
+      [elem(Integer.parse(hex, 16), 0)] |> to_string
+    end)
   end
 end
