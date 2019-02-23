@@ -31,8 +31,7 @@ defmodule Metalove.MixProject do
       {:cachex, "~> 3.1"},
       {:jason, "~> 1.1"},
       # Needs to be this commit for correct supply of m4a
-      {:mimerl,
-       github: "milmazz/mimerl", ref: "19e7c84b3eff87c6f1010810dbd83ba78a32ca0f", override: true}
+      {:mimerl, "~> 1.2", override: true}
 
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
