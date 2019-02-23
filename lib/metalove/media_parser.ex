@@ -45,15 +45,33 @@ defmodule Metalove.MediaParser.ID3 do
 
   def parse_header(_), do: :not_id3
 
+  require Logger
+
   def parse(content) when is_binary(content) do
     case parse_header(content) do
       {:ok, tag_size, version, revision, flags, content} ->
-        %{
+        result_map = %{
           version: "#{version}.#{revision}",
           flags: flags,
           tag_size: tag_size,
-          tags: parse_frames(content, tag_size)
+          tags: []
         }
+
+        Logger.debug("ID3 Header – size:#{tag_size} v:#{result_map.version} flags:#{flags}")
+
+        case version do
+          # https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.3.html
+          3 ->
+            %{result_map | tags: parse_frames(content, tag_size)}
+
+          # https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.2.html
+          2 ->
+            %{result_map | tags: parse_v220_frames(content, tag_size)}
+
+          _ ->
+            Logger.debug("ID3v2.#{result_map.version} not supported (yet)")
+            result_map
+        end
 
       result ->
         result
@@ -70,7 +88,7 @@ defmodule Metalove.MediaParser.ID3 do
   def parse_frames(<<0::size(8), _rest::binary>>, _remaining_size, acc),
     do: parse_frames(<<>>, 0, acc)
 
-  def parse_frames(<<frame_id::binary-size(4), rest::binary>> = _begin, remaining_size, acc)
+  def parse_frames(<<frame_id::bytes-4, rest::binary>> = _begin, remaining_size, acc)
       when remaining_size > 10 and frame_id != <<0, 0, 0, 0>> do
     #    IO.inspect(binary_part(begin, 0, 10), label: "Frame Header:")
     #    IO.inspect("#{frame_id}", binaries: :as_strings)
@@ -78,7 +96,7 @@ defmodule Metalove.MediaParser.ID3 do
     # This would be for ID3v2.4.0
     # {:ok, frame_size, rest} = parse_syncsafe_integer(rest)
     <<frame_size::32, rest::binary>> = rest
-    <<frame_flags::binary-size(2), rest::binary>> = rest
+    <<frame_flags::bytes-2, rest::binary>> = rest
 
     # IO.puts("#{frame_id} - remaining: #{remaining_size} - frame: #{frame_size}")
 
@@ -203,6 +221,69 @@ defmodule Metalove.MediaParser.ID3 do
     {element_id, rest} = take_zero_terminated(binary)
     parse_ctoc_entries(rest, [element_id | acc])
   end
+
+  def parse_v220_frames(content, remaining_size),
+    do: parse_v220_frames_p(content, remaining_size, [])
+
+  def parse_v220_frames_p(<<>>, 0, acc), do: Enum.reverse(acc)
+
+  # Allow for 0 padding
+  def parse_v220_frames_p(<<0, 0, 0, _::binary>>, _, acc), do: parse_v220_frames_p(<<>>, 0, acc)
+
+  def parse_v220_frames_p(
+        <<frame_id::bytes-3, frame_size::24, rest::binary>>,
+        remaining_size,
+        acc
+      ) do
+    case remaining_size - 6 - frame_size do
+      too_small when too_small <= 6 ->
+        parse_v220_frames_p(<<>>, 0, acc)
+
+      new_remaining_size ->
+        <<frame_content::bytes-size(frame_size), new_content::binary>> = rest
+
+        parse_v220_frames_p(new_content, new_remaining_size, [
+          parse_v220_frame(frame_id, frame_content) | acc
+        ])
+    end
+  end
+
+  # Text frames
+  def parse_v220_frame(<<"T", _::binary>> = frame_id, frame_content) do
+    {String.to_atom(frame_id), parse_text_frame_content(frame_content)}
+  end
+
+  def parse_v220_frame("COM", <<format, language::bytes-3, twostrings::binary>>) do
+    {description, text} = take_zero_terminated(twostrings)
+
+    {:COM,
+     %{
+       description: description |> text_to_utf8(format),
+       text: text |> text_to_utf8(format) |> String.trim_trailing(<<0>>),
+       language: language
+     }}
+  end
+
+  def parse_v220_frame("PIC", content) do
+    {format, content} = take_text_format(content)
+    <<extension::bytes-3, content::binary>> = content
+    mime_type = :mimerl.extension(String.downcase(extension))
+    <<picture_type::8, content::binary>> = content
+    {description, image_data} = take_zero_terminated_text(content, format)
+
+    # debug_write(image_data, mime_type)
+
+    {:PIC,
+     %{
+       extension: extension,
+       mime_type: mime_type,
+       picture_type: picture_type,
+       image_data: image_data,
+       description: description
+     }}
+  end
+
+  def parse_v220_frame(frame_id, content), do: {frame_id, content}
 
   @spec text_to_utf8(binary(), non_neg_integer()) :: String.t()
   def text_to_utf8(text, format)
