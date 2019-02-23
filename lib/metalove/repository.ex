@@ -33,26 +33,28 @@ defmodule Metalove.Repository do
   require Logger
 
   def set(key, value) do
-    GenServer.call(@repo, {:set, key, value})
+    GenServer.cast(@repo, {:set, key, value})
+    value
   end
 
+  def purge() do
+    GenServer.cast(@repo, :purge)
+  end
+
+  # internal conveninence
+
   def put_podcast(%Metalove.Podcast{id: id, main_feed_url: feed_url} = value) do
-    GenServer.call(@repo, {:set, {:podcast, id}, value})
-    GenServer.call(@repo, {:set, {:url, id}, feed_url})
+    set({:podcast, id}, value)
+    set({:url, id}, feed_url)
     value
   end
 
   def put_feed(%Metalove.PodcastFeed{feed_url: feed_url} = value) do
-    GenServer.call(@repo, {:set, {:feed, feed_url}, value})
-    value
+    set({:feed, feed_url}, value)
   end
 
   def put_episode(%Metalove.Episode{feed_url: feed_url, guid: guid} = value) do
-    GenServer.call(@repo, {:set, {:episode, feed_url, guid}, value})
-  end
-
-  def purge() do
-    GenServer.call(@repo, :purge)
+    set({:episode, feed_url, guid}, value)
   end
 
   # GenServer callbacks
