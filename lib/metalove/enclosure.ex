@@ -30,7 +30,7 @@ defmodule Metalove.Enclosure do
   end
 
   def fetch_and_parse_metadata_p(url, type) do
-    with "audio/mpeg" = type,
+    with "audio/mpeg" <- type,
          {:ok, body, _headers} <- Fetcher.get_range(url, 0..(1024 * 128)) do
       {Metalove.MediaParser.ID3.parse_header(body), body}
     end
@@ -42,6 +42,9 @@ defmodule Metalove.Enclosure do
 
       {{:ok, _tag_size, _version, _revision, _flags, _rest}, body} ->
         Metalove.MediaParser.ID3.parse(body)
+
+      mime_type when is_binary(mime_type) ->
+        {:error, "unhandled mimetype", mime_type}
     end
     |> case do
       %{tags: tags} ->
