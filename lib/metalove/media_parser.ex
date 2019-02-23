@@ -183,7 +183,7 @@ defmodule Metalove.MediaParser.ID3 do
 
     {children, content} =
       case entry_count do
-        # This is not supposed to be allowed, however, hindenburg at least seems to produce it this way
+        # This is not supposed to be allowed, however, hindenburg produced these for a while until Version 1.81 Build 2256, so lets be gracious for now (especially because we do have an upper bound based on the frame content anyways)
         0 ->
           parse_ctoc_entries(content)
 
