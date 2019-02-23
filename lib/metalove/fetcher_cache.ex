@@ -1,5 +1,6 @@
 defmodule Metalove.FetcherCache do
   use GenServer
+  @moduledoc false
 
   defstruct table_name: :metalove_fetcher_cache,
             log_limit: 1_000_000

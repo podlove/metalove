@@ -1,5 +1,6 @@
 defmodule Metalove.PodcastFeedParser do
   import SweetXml, except: [parse: 1, parse: 2]
+  @moduledoc false
 
   def parse(xml) do
     # IO.inspect(xml, label: "xml to parse")

@@ -1,4 +1,5 @@
 defmodule Metalove.Fetcher do
+  @moduledoc false
   @cache Metalove.FetcherCache
 
   def fetch_and_follow(url),

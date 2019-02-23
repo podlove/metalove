@@ -10,7 +10,7 @@ defmodule Metalove.MixProject do
       name: "Metalove",
       version: @version,
       description:
-        "Scrape podcast RSS feeds and extract and provide as much of the metadata available as possible. Includes ID3 parsing of mp3 podcast relevant metadata (chapter marks including urls and images)",
+        "Scrape podcast RSS feeds and extract and provide as much of the metadata available as possible. Includes ID3.2.x parsing of mp3 podcast relevant metadata (chapter marks including URLs and images)",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -18,7 +18,9 @@ defmodule Metalove.MixProject do
       # Docs
       docs: [
         source_url: @url_github,
-        source_ref: "v#{@version}"
+        source_ref: "v#{@version}",
+        main: "ReadMe",
+        extras: ["README.md"]
       ],
       package: package()
     ]

@@ -1,5 +1,6 @@
 defmodule Metalove.MediaParser do
   alias Metalove.MediaParser.ID3
+  @moduledoc false
 
   def extract_metadata(filename) do
     bytes = File.read!(filename)
@@ -12,6 +13,13 @@ defmodule Metalove.MediaParser do
 end
 
 defmodule Metalove.MediaParser.ID3 do
+  @moduledoc """
+    ID3 parser for podcast relevant metadata.
+  """
+
+  @doc """
+  Parse the ID3 header of the binary provided if any. E.g. useful for deciding how much of the URL/File to read to parse the complete one if needed.
+  """
   def parse_header(binary)
 
   def parse_header(
@@ -47,6 +55,9 @@ defmodule Metalove.MediaParser.ID3 do
 
   require Logger
 
+  @doc """
+    Parse the complete ID3 metadata from the binary provided.
+  """
   def parse(content) when is_binary(content) do
     case parse_header(content) do
       {:ok, tag_size, version, revision, flags, content} ->
@@ -78,18 +89,19 @@ defmodule Metalove.MediaParser.ID3 do
     end
   end
 
-  def parse_frames(content) when is_binary(content), do: parse_frames(content, byte_size(content))
+  defp parse_frames(content) when is_binary(content),
+    do: parse_frames(content, byte_size(content))
 
-  def parse_frames(content, remaining_size) do
+  defp parse_frames(content, remaining_size) do
     parse_frames(content, remaining_size, [])
   end
 
   # Allow for padding
-  def parse_frames(<<0::size(8), _rest::binary>>, _remaining_size, acc),
+  defp parse_frames(<<0::size(8), _rest::binary>>, _remaining_size, acc),
     do: parse_frames(<<>>, 0, acc)
 
-  def parse_frames(<<frame_id::bytes-4, rest::binary>> = _begin, remaining_size, acc)
-      when remaining_size > 10 and frame_id != <<0, 0, 0, 0>> do
+  defp parse_frames(<<frame_id::bytes-4, rest::binary>> = _begin, remaining_size, acc)
+       when remaining_size > 10 and frame_id != <<0, 0, 0, 0>> do
     #    IO.inspect(binary_part(begin, 0, 10), label: "Frame Header:")
     #    IO.inspect("#{frame_id}", binaries: :as_strings)
 
@@ -125,15 +137,15 @@ defmodule Metalove.MediaParser.ID3 do
     parse_frames(rest, remaining_size, acc)
   end
 
-  def parse_frames(_, remaining_size, acc) when remaining_size <= 10, do: Enum.reverse(acc)
+  defp parse_frames(_, remaining_size, acc) when remaining_size <= 10, do: Enum.reverse(acc)
 
   # Text information frames
-  def parse_frame(<<"T", _::bytes-3>> = frame_id, _parsed_flags, content) do
+  defp parse_frame(<<"T", _::bytes-3>> = frame_id, _parsed_flags, content) do
     {String.to_atom(frame_id), parse_text_frame_content(content)}
   end
 
   # User definde URL link frame
-  def parse_frame("WXXX", _parsed_flags, content) do
+  defp parse_frame("WXXX", _parsed_flags, content) do
     {format, content} = take_text_format(content)
     {title, link} = take_zero_terminated_text(content, format)
     link = text_to_utf8(link, 0)
@@ -142,7 +154,7 @@ defmodule Metalove.MediaParser.ID3 do
   end
 
   # Attached Picture
-  def parse_frame("APIC", _parsed_flags, content) do
+  defp parse_frame("APIC", _parsed_flags, content) do
     {format, content} = take_text_format(content)
     {mime_type, content} = take_zero_terminated_text(content, format)
     <<picture_type::8, content::binary>> = content
@@ -160,7 +172,7 @@ defmodule Metalove.MediaParser.ID3 do
   end
 
   # Chapters: http://id3.org/id3v2-chapters-1.0
-  def parse_frame("CHAP", _parsed_flags, content) do
+  defp parse_frame("CHAP", _parsed_flags, content) do
     {element_id, content} = take_zero_terminated(content)
     <<start_time::32, end_time::32, start_offset::32, end_offset::32, rest::binary>> = content
 
@@ -175,7 +187,7 @@ defmodule Metalove.MediaParser.ID3 do
      }}
   end
 
-  def parse_frame("CTOC", _parsed_flags, content) do
+  defp parse_frame("CTOC", _parsed_flags, content) do
     {element_id, content} = take_zero_terminated(content)
     # <<flags, count, _::binary>> = content
     <<_::6, top_level::1, ordered::1, content::binary>> = content
@@ -207,34 +219,34 @@ defmodule Metalove.MediaParser.ID3 do
      }}
   end
 
-  def parse_frame(frame_id, parsed_flags, _content), do: {frame_id, parsed_flags}
+  defp parse_frame(frame_id, parsed_flags, _content), do: {frame_id, parsed_flags}
 
-  def parse_ctoc_entries(binary) do
+  defp parse_ctoc_entries(binary) do
     parse_ctoc_entries(binary, [])
   end
 
-  def parse_ctoc_entries(<<>>, acc), do: {acc, <<>>}
+  defp parse_ctoc_entries(<<>>, acc), do: {acc, <<>>}
 
-  def parse_ctoc_entries(<<"TIT2", rest::binary>>, acc), do: {acc, rest}
+  defp parse_ctoc_entries(<<"TIT2", rest::binary>>, acc), do: {acc, rest}
 
-  def parse_ctoc_entries(binary, acc) do
+  defp parse_ctoc_entries(binary, acc) do
     {element_id, rest} = take_zero_terminated(binary)
     parse_ctoc_entries(rest, [element_id | acc])
   end
 
-  def parse_v220_frames(content, remaining_size),
+  defp parse_v220_frames(content, remaining_size),
     do: parse_v220_frames_p(content, remaining_size, [])
 
-  def parse_v220_frames_p(<<>>, 0, acc), do: Enum.reverse(acc)
+  defp parse_v220_frames_p(<<>>, 0, acc), do: Enum.reverse(acc)
 
   # Allow for 0 padding
-  def parse_v220_frames_p(<<0, 0, 0, _::binary>>, _, acc), do: parse_v220_frames_p(<<>>, 0, acc)
+  defp parse_v220_frames_p(<<0, 0, 0, _::binary>>, _, acc), do: parse_v220_frames_p(<<>>, 0, acc)
 
-  def parse_v220_frames_p(
-        <<frame_id::bytes-3, frame_size::24, rest::binary>>,
-        remaining_size,
-        acc
-      ) do
+  defp parse_v220_frames_p(
+         <<frame_id::bytes-3, frame_size::24, rest::binary>>,
+         remaining_size,
+         acc
+       ) do
     case remaining_size - 6 - frame_size do
       too_small when too_small <= 6 ->
         parse_v220_frames_p(<<>>, 0, acc)
@@ -249,11 +261,11 @@ defmodule Metalove.MediaParser.ID3 do
   end
 
   # Text frames
-  def parse_v220_frame(<<"T", _::binary>> = frame_id, frame_content) do
+  defp parse_v220_frame(<<"T", _::binary>> = frame_id, frame_content) do
     {String.to_atom(frame_id), parse_text_frame_content(frame_content)}
   end
 
-  def parse_v220_frame("COM", <<format, language::bytes-3, twostrings::binary>>) do
+  defp parse_v220_frame("COM", <<format, language::bytes-3, twostrings::binary>>) do
     {description, text} = take_zero_terminated(twostrings)
 
     {:COM,
@@ -264,7 +276,7 @@ defmodule Metalove.MediaParser.ID3 do
      }}
   end
 
-  def parse_v220_frame("PIC", content) do
+  defp parse_v220_frame("PIC", content) do
     {format, content} = take_text_format(content)
     <<extension::bytes-3, content::binary>> = content
     mime_type = :mimerl.extension(String.downcase(extension))
@@ -283,30 +295,30 @@ defmodule Metalove.MediaParser.ID3 do
      }}
   end
 
-  def parse_v220_frame(frame_id, content), do: {frame_id, content}
+  defp parse_v220_frame(frame_id, content), do: {frame_id, content}
 
   @spec text_to_utf8(binary(), non_neg_integer()) :: String.t()
-  def text_to_utf8(text, format)
+  defp text_to_utf8(text, format)
   # Encoding 1 == utf16
-  def text_to_utf8(<<0xFF, 0xFE, utf16_text::binary>>, 1),
+  defp text_to_utf8(<<0xFF, 0xFE, utf16_text::binary>>, 1),
     do: :unicode.characters_to_binary(utf16_text, {:utf16, :little})
 
-  def text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, 1),
+  defp text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, 1),
     do: :unicode.characters_to_binary(utf16_text, {:utf16, :big})
 
   # This is not supposed to be done this way, but appears so lets be lenient
-  def text_to_utf8("", 1), do: ""
+  defp text_to_utf8("", 1), do: ""
 
   # Encoding 0 == ISO-8859-1
-  def text_to_utf8(text, 0) do
+  defp text_to_utf8(text, 0) do
     text
     |> :unicode.characters_to_binary(:latin1)
   end
 
-  def parse_syncsafe_integer(
-        <<0::1, size_1::unsigned-7, 0::1, size_2::unsigned-7, 0::size(1), size_3::size(7),
-          0::size(1), size_4::size(7), rest::binary>>
-      ) do
+  defp parse_syncsafe_integer(
+         <<0::1, size_1::unsigned-7, 0::1, size_2::unsigned-7, 0::size(1), size_3::size(7),
+           0::size(1), size_4::size(7), rest::binary>>
+       ) do
     value =
       [size_1, size_2, size_3, size_4]
       |> Enum.reduce(fn e, acc ->
@@ -316,16 +328,16 @@ defmodule Metalove.MediaParser.ID3 do
     {:ok, value, rest}
   end
 
-  def parse_syncsafe_integer(rest), do: {:error, binary_part(rest, 0, 4)}
+  defp parse_syncsafe_integer(rest), do: {:error, binary_part(rest, 0, 4)}
 
   # Encoding 1 == utf8
-  def parse_text_frame_content(<<text_format::8, content::binary>>) do
+  defp parse_text_frame_content(<<text_format::8, content::binary>>) do
     content
     |> text_to_utf8(text_format)
     |> String.trim_trailing(<<0>>)
   end
 
-  def take_zero_terminated(binary) when is_binary(binary) do
+  defp take_zero_terminated(binary) when is_binary(binary) do
     case :binary.split(binary, <<0>>) do
       [a, b] -> {a, b}
       [b] -> {b, ""}
@@ -333,15 +345,16 @@ defmodule Metalove.MediaParser.ID3 do
   end
 
   @spec take_zero_terminated_text(binary(), non_neg_integer()) :: {String.t(), binary()}
-  def take_zero_terminated_text(binary, format) do
+  defp take_zero_terminated_text(binary, format) do
     {a, b} = take_zero_terminated(binary)
     {text_to_utf8(a, format), b}
   end
 
-  def take_text_format(<<text_format::8, rest::binary>>) do
+  defp take_text_format(<<text_format::8, rest::binary>>) do
     {text_format, rest}
   end
 
+  @doc false
   # Internal debugging helpers
   def debug_write(bytes, mime_type) do
     extension =
