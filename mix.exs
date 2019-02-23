@@ -1,13 +1,26 @@
 defmodule Metalove.MixProject do
   use Mix.Project
 
+  @version "0.2.0"
+  @url_github "https://github.com/podlove/metalove"
+
   def project do
     [
       app: :metalove,
-      version: "0.1.0",
-      elixir: "~> 1.7",
+      name: "Metalove",
+      version: @version,
+      description:
+        "Scrape podcast RSS feeds and extract and provide as much of the metadata available as possible. Includes ID3 parsing of mp3 podcast relevant metadata (chapter marks including urls and images)",
+      elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # Docs
+      docs: [
+        source_url: @url_github,
+        source_ref: "v#{@version}"
+      ],
+      package: package()
     ]
   end
 
@@ -28,13 +41,18 @@ defmodule Metalove.MixProject do
       # rss feed parsing
       {:sweet_xml, "~> 0.6"},
       {:timex, "~> 3.4"},
-      {:cachex, "~> 3.1"},
       {:jason, "~> 1.1"},
-      # Needs to be this commit for correct supply of m4a
-      {:mimerl, "~> 1.2", override: true}
+      {:mimerl, "~> 1.2", override: true},
+      # documentation
+      {:ex_doc, "~> 0.19", optional: true, runtime: false, only: :dev}
+    ]
+  end
 
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+  defp package do
+    [
+      maintainers: ["Dominik Wagner"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => @url_github}
     ]
   end
 end
