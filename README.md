@@ -23,7 +23,9 @@ be found at [https://hexdocs.pm/metalove](https://hexdocs.pm/metalove).
 
 ## Basic Usage
 
-Defines a hierarchy of structs. A `Metalove.Podcast` can reference many `Metalove.PodcastFeed`s which in turn have `Metalove.Episode`s with `Metalove.Enclosure`s. Once scraped, `PodcastFeed`s and their `Episode`s can be fetched using their corresponding `get_…` functions.
+Use the main Metalove module to trigger scraping of the urls you like. The use the hierarchy of structs/modules to access them. 
+
+A `Metalove.Podcast` can reference many `Metalove.PodcastFeed`s which in turn have `Metalove.Episode`s with `Metalove.Enclosure`s. Once scraped, `PodcastFeed`s and their `Episode`s can be fetched using their corresponding `get_…` functions.
 
 ```elixir
 iex> feed_or_website_url = "forschergeist.de"

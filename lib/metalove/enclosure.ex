@@ -47,7 +47,7 @@ defmodule Metalove.Enclosure do
     end
   end
 
-  def fetch_and_parse_metadata_p(url, type) do
+  defp fetch_and_parse_metadata_p(url, type) do
     with "audio/mpeg" <- type,
          {:ok, body, _headers} <- Fetcher.get_range(url, 0..(1024 * 128)) do
       {Metalove.MediaParser.ID3.parse_header(body), body}
@@ -73,6 +73,7 @@ defmodule Metalove.Enclosure do
     end
   end
 
+  @doc false
   def transform_id3_tags(tags) do
     transform_id3_tags(tags, %{})
   end
@@ -96,6 +97,10 @@ defmodule Metalove.Enclosure do
     acc =
       case h do
         {:APIC, %{image_data: data, mime_type: type}} ->
+          Map.put(acc, :cover_art, %{data: data, type: type})
+
+        # ID3v2.2.0
+        {:PIC, %{image_data: data, mime_type: type}} ->
           Map.put(acc, :cover_art, %{data: data, type: type})
 
         {:CHAP, _} = tuple ->
