@@ -1,7 +1,8 @@
 defmodule Metalove.Application do
+  @moduledoc false
+
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
-
   use Application
 
   def start(_type, _args) do

@@ -23,10 +23,11 @@ be found at [https://hexdocs.pm/metalove](https://hexdocs.pm/metalove).
 
 ## Basic Usage
 
-```elixir
+Defines a hierarchy of structs. A `Metalove.Podcast` can reference many `Metalove.PodcastFeed`s which in turn have `Metalove.Episode`s with `Metalove.Enclosure`s. Once scraped, `PodcastFeed`s and their `Episode`s can be fetched using their corresponding `get_…` functions.
 
+```elixir
 iex> feed_or_website_url = "forschergeist.de"
-iex> podcast = Metalove.get_podcast()
+iex> podcast = Metalove.get_podcast(feed_or_website_url)
 %Metalove.Podcast{
 	created_at: #DateTime<2019-02-23 13:09:48.632101Z>,
 	feed_urls: ["http://forschergeist.de/feed/opus/",

@@ -1,4 +1,8 @@
 defmodule Metalove.PodcastFeed do
+  @moduledoc """
+  Defines a `Metalove.PodcastFeed` struct to represent a scraped and parsed feed. Belongs to an `Metalove.Podcast` and has `Metalove.Episodes`
+  """
+
   alias Metalove.Fetcher
   alias Metalove.PodcastFeedParser
   alias Metalove.Episode
@@ -19,6 +23,41 @@ defmodule Metalove.PodcastFeed do
             created_at: DateTime.utc_now(),
             updated_at: DateTime.utc_now()
 
+  @typedoc """
+  Represents a podcast feed.
+
+  Fields:
+  * `:feed_url` URL of that feed
+  * `:title` Title
+  * `:language`
+  * `:author`
+  * `:contributors`
+  * `:summary`
+  * `:description`
+  * `:image_url`
+  * `:categories`
+  * `:copyright`
+  * `:episodes` list of episode id tuples, for a paged feed that eventually contains all
+  """
+  @type t :: %__MODULE__{
+          feed_url: String.t(),
+          title: String.t() | nil,
+          language: String.t() | nil,
+          author: String.t() | nil,
+          contributors: list() | nil,
+          summary: String.t() | nil,
+          description: String.t() | nil,
+          image_url: String.t() | nil,
+          categories: list | nil,
+          copyright: String.t() | nil,
+          episodes: list,
+          created_at: DateTime.t(),
+          updated_at: DateTime.t()
+        }
+  @doc """
+  Existing `Metalove.PodcastFeed` for that url, otherwise nil
+  """
+  @spec get_by_feed_url(String.t()) :: Metalove.PodcastFeed.t() | nil
   def get_by_feed_url(url) do
     case Metalove.Repository.get({:feed, url}) do
       {:found, result} -> result
@@ -64,6 +103,7 @@ defmodule Metalove.PodcastFeed do
 
   require Logger
 
+  @doc false
   def collect_episodes(cast, episodes, feed_url) do
     Logger.debug("collect_episodes: #{inspect(cast[:next_page_url])}")
 
@@ -85,12 +125,16 @@ defmodule Metalove.PodcastFeed do
     end
   end
 
+  @doc false
   def store(feed) do
     Metalove.Repository.put_feed(feed)
     # use this to update metadata in enclosures if necessary
     spawn(__MODULE__, :scrape_episode_metadata, [feed.episodes])
   end
 
+  @doc """
+  Scrape metadata from the episode media files if possible.
+  """
   def scrape_episode_metadata(episode_ids) do
     episode_ids
     |> Enum.each(fn id ->

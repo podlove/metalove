@@ -1,4 +1,7 @@
 defmodule Metalove.Enclosure do
+  @moduledoc """
+  Defines a `Metalove.Enclosure` struct representing enclosures in `Metalove.Episode`s. Provides access to parsed metadata.
+  """
   # <enclosure length="8727310" type="audio/x-m4a" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode3.m4a"/>
 
   alias Metalove.Fetcher
@@ -10,6 +13,21 @@ defmodule Metalove.Enclosure do
             created_at: DateTime.utc_now(),
             fetched_metadata_at: nil,
             metadata: nil
+
+  @typedoc """
+  Representation of an Enclosure.
+
+  Interesting fields:
+  * `metadata` a map of found metadata, interesting keys are `chapters` and `cover_art`
+  """
+  @type t :: %__MODULE__{
+          url: String.t(),
+          type: String.t(),
+          size: nil | non_neg_integer(),
+          created_at: DateTime.t(),
+          fetched_metadata_at: DateTime.t(),
+          metadata: nil | map()
+        }
 
   def infer_mime_type(url) do
     :mimerl.filename(URI.parse(url).path)
