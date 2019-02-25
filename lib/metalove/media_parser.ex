@@ -53,6 +53,9 @@ defmodule Metalove.MediaParser.ID3 do
 
   def parse_header(_), do: :not_id3
 
+  @format_iso 0
+  @format_utf16 1
+
   require Logger
 
   @doc """
@@ -147,8 +150,8 @@ defmodule Metalove.MediaParser.ID3 do
   # User definde URL link frame
   defp parse_frame("WXXX", _parsed_flags, content) do
     {format, content} = take_text_format(content)
-    {title, link} = take_zero_terminated_text(content, format)
-    link = text_to_utf8(link, 0)
+    {title, content} = take_zero_terminated_text(content, format)
+    {link, _} = take_zero_terminated_text(content, @format_iso)
 
     {:WXXX, %{link: link, title: title}}
   end
@@ -300,17 +303,17 @@ defmodule Metalove.MediaParser.ID3 do
   @spec text_to_utf8(binary(), non_neg_integer()) :: String.t()
   defp text_to_utf8(text, format)
   # Encoding 1 == utf16
-  defp text_to_utf8(<<0xFF, 0xFE, utf16_text::binary>>, 1),
+  defp text_to_utf8(<<0xFF, 0xFE, utf16_text::binary>>, @format_utf16),
     do: :unicode.characters_to_binary(utf16_text, {:utf16, :little})
 
-  defp text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, 1),
+  defp text_to_utf8(<<0xFE, 0xFF, utf16_text::binary>>, @format_utf16),
     do: :unicode.characters_to_binary(utf16_text, {:utf16, :big})
 
-  # This is not supposed to be done this way, but appears so lets be lenient
-  defp text_to_utf8("", 1), do: ""
+  # This is not supposed to be done this way, but it happens so lets be permissive
+  defp text_to_utf8("", @format_utf16), do: ""
 
   # Encoding 0 == ISO-8859-1
-  defp text_to_utf8(text, 0) do
+  defp text_to_utf8(text, @format_iso) do
     text
     |> :unicode.characters_to_binary(:latin1)
   end
@@ -330,15 +333,34 @@ defmodule Metalove.MediaParser.ID3 do
 
   defp parse_syncsafe_integer(rest), do: {:error, binary_part(rest, 0, 4)}
 
-  # Encoding 1 == utf8
+  # Encoding 1 == utf16
   defp parse_text_frame_content(<<text_format::8, content::binary>>) do
     content
+    |> truncate_zero_termination(text_format)
     |> text_to_utf8(text_format)
-    |> String.trim_trailing(<<0>>)
   end
 
-  defp take_zero_terminated(binary) when is_binary(binary) do
-    case :binary.split(binary, <<0>>) do
+  defp truncate_zero_termination(binary, format) do
+    :binary.split(
+      binary,
+      if format == @format_iso do
+        <<0>>
+      else
+        <<0, 0>>
+      end
+    )
+    |> hd()
+  end
+
+  defp take_zero_terminated(binary, format \\ @format_iso) when is_binary(binary) do
+    case :binary.split(
+           binary,
+           if format == @format_iso do
+             <<0>>
+           else
+             <<0, 0>>
+           end
+         ) do
       [a, b] -> {a, b}
       [b] -> {b, ""}
     end
@@ -346,7 +368,7 @@ defmodule Metalove.MediaParser.ID3 do
 
   @spec take_zero_terminated_text(binary(), non_neg_integer()) :: {String.t(), binary()}
   defp take_zero_terminated_text(binary, format) do
-    {a, b} = take_zero_terminated(binary)
+    {a, b} = take_zero_terminated(binary, format)
     {text_to_utf8(a, format), b}
   end
 
