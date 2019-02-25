@@ -20,6 +20,7 @@ defmodule Metalove.PodcastFeed do
             categories: nil,
             copyright: nil,
             episodes: nil,
+            waiting_for_pages: false,
             created_at: DateTime.utc_now(),
             updated_at: DateTime.utc_now()
 
@@ -51,6 +52,7 @@ defmodule Metalove.PodcastFeed do
           categories: list | nil,
           copyright: String.t() | nil,
           episodes: list,
+          waiting_for_pages: boolean(),
           created_at: DateTime.t(),
           updated_at: DateTime.t()
         }
@@ -65,6 +67,38 @@ defmodule Metalove.PodcastFeed do
     end
   end
 
+  @doc """
+  Existing `Metalove.PodcastFeed` for that url after all metadata is fetched, otherwise nil
+  """
+  def get_by_feed_url_await_all_metdata(url, timeout \\ 30_000) do
+    # should not be a busy wait
+    cond do
+      timeout <= 0 ->
+        nil
+
+      true ->
+        case get_by_feed_url(url) do
+          nil ->
+            nil
+
+          feed ->
+            (feed.waiting_for_pages ||
+               feed.episodes
+               |> Enum.map(&Metalove.Episode.get_by_episode_id/1)
+               |> Enum.map(& &1.enclosure.fetched_metadata_at)
+               |> Enum.any?(&(&1 == nil)))
+            |> case do
+              false ->
+                feed
+
+              true ->
+                :timer.sleep(1000)
+                get_by_feed_url_await_all_metdata(url, timeout - 1_000)
+            end
+        end
+    end
+  end
+
   require Logger
 
   def fetch_and_parse(feed_url) do
@@ -74,9 +108,13 @@ defmodule Metalove.PodcastFeed do
 
     alternate_feed_urls = cast[:alternate_urls] || []
 
-    if cast[:next_page_url] != nil do
-      spawn(__MODULE__, :collect_episodes, [cast, episodes, feed_url])
-    end
+    cast =
+      if cast[:next_page_url] != nil do
+        spawn(__MODULE__, :collect_episodes, [cast, episodes, feed_url])
+        Map.put(cast, :waiting_for_pages, true)
+      else
+        cast
+      end
 
     {feed, episodes} = feed_and_episodes_with_parsed_maps(cast, episodes, feed_url)
 
@@ -97,6 +135,7 @@ defmodule Metalove.PodcastFeed do
        subtitle: cast[:itunes_subtitle],
        image_url: cast[:image],
        contributors: cast[:contributors],
+       waiting_for_pages: cast[:waiting_for_pages] || false,
        episodes: Enum.map(episodes, fn episode -> {:episode, feed_url, episode[:guid]} end)
      }, Enum.map(episodes, fn episode -> Episode.new(episode, feed_url) end)}
   end
@@ -128,8 +167,36 @@ defmodule Metalove.PodcastFeed do
   @doc false
   def store(feed) do
     Metalove.Repository.put_feed(feed)
-    # use this to update metadata in enclosures if necessary
-    spawn(__MODULE__, :scrape_episode_metadata, [feed.episodes])
+
+    feed.episodes
+    |> spread_list(6)
+    |> Enum.each(fn sublist ->
+      Task.async(fn -> scrape_episode_metadata(sublist) end)
+    end)
+
+    feed
+  end
+
+  # conditionally export all for testing purposes
+  @compile if Mix.env() == :test, do: :export_all
+
+  defp spread_list(list, count) do
+    list
+    |> Enum.reduce({[], Stream.cycle([[]]) |> Enum.take(count)}, fn
+      e, {left, [head | right]} ->
+        {[[e | head] | left], right}
+
+      e, {left, []} ->
+        [head | right] = Enum.reverse(left)
+        {[[e | head]], right}
+    end)
+    |> case do
+      {left, right} ->
+        Enum.reverse(right) ++ left
+    end
+    |> Enum.drop_while(&(&1 == []))
+    |> Enum.map(&Enum.reverse/1)
+    |> Enum.reverse()
   end
 
   @doc """
