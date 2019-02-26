@@ -44,7 +44,7 @@ defmodule Metalove.MixProject do
       {:sweet_xml, "~> 0.6"},
       {:timex, "~> 3.4"},
       {:jason, "~> 1.1"},
-      {:mimerl, "~> 1.2", override: true},
+      {:mimerl, "~> 1.2"},
       {:xml_builder, "~> 2.0"},
       {:sizeable, "~>1.0"},
       # documentation
@@ -56,7 +56,8 @@ defmodule Metalove.MixProject do
     [
       maintainers: ["Dominik Wagner"],
       licenses: ["MIT"],
-      links: %{"GitHub" => @url_github}
+      links: %{"GitHub" => @url_github},
+      exclude_patterns: [".DS_Store"]
     ]
   end
 end
