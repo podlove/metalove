@@ -108,16 +108,19 @@ defmodule Mix.Tasks.Ml.Chapter do
               Map.delete(chapter, :image)
 
             path ->
-              basename =
+              filepath =
                 write_image(
                   image_map,
                   path,
                   "Chapter#{String.pad_leading(to_string(index), 3, "000")}"
                 )
-                |> IO.inspect(label: "Extracted")
-                |> Path.basename()
 
-              URI.merge(opts[:base_url], Path.join(opts[:image_url_path], basename))
+              Mix.Shell.IO.error([:green, "Extracted:", :reset, " ", filepath])
+
+              URI.merge(
+                opts[:base_url],
+                Path.join(opts[:image_url_path], Path.basename(filepath))
+              )
               |> to_string
               |> (&Map.put(chapter, :image, &1)).()
           end
