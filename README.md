@@ -45,6 +45,66 @@ iex> feed = Metalove.PodcastFeed.get_by_feed_url(podcast.main_feed_url)
 iex> most_recent_episode = Metalove.Episode.get_by_episode_id(hd(feed.episodes))
 ```
 
+## Mix Tasks
+
+### `ml.chapter`
+
+Parses the ID3 tag of an mp3 url or file, writes out the images and the podlove simple chapter tags. E.g.
+
+```bash
+$ mix ml.chapter --base-url http://atp.fm/img/chapter/atp312/ -o /tmp http://traffic.libsyn.com/atpfm/atp312.mp3
+
+Extracted: /tmp/Chapter01.png
+Extracted: /tmp/Chapter03.jpeg
+Extracted: /tmp/Chapter05.jpeg
+Extracted: /tmp/Chapter06.jpeg
+Extracted: /tmp/Chapter07.jpeg
+<psc:chapters version="1.2" xmlns:psc="http://podlove.org/simple-chapters">
+  <psc:chapter start="00:00:00.000" title="ATP_progrm_chptr()" image="http://atp.fm/img/chapter/atp312/Chapter01.png"/>
+  <psc:chapter start="00:09:12.500" title="Follow-up: Apple-Facebook" href="https://techcrunch.com/2019/01/31/mess-with-the-cook/"/>
+  <psc:chapter start="00:12:12.000" title="Follow-up: FaceTime bug" href="http://www.loopinsight.com/2019/02/05/high-level-apple-exec-flies-to-tucson-to-meet-with-14-year-old-who-discovered-facetime-flaw/" image="http://atp.fm/img/chapter/atp312/Chapter03.jpeg"/>
+  <psc:chapter start="00:14:54.979" title="Sponsor: Eero (code ATP)" href="https://eero.com/"/>
+  <psc:chapter start="00:16:44.107" title='USB-C "MagSafe"' href="https://amzn.to/2t6fibm" image="http://atp.fm/img/chapter/atp312/Chapter05.jpeg"/>
+  <psc:chapter start="00:20:43.000" title="USB-C LED charging cable" href="http://www.amazon.com/dp/B07CHJYPCC/?tag=marcoorg-20" image="http://atp.fm/img/chapter/atp312/Chapter06.jpeg"/>
+  <psc:chapter start="00:22:01.500" title="Screen-protector update" href="https://paperlike.com/" image="http://atp.fm/img/chapter/atp312/Chapter07.jpeg"/>
+  <psc:chapter start="00:27:20.500" title="Sponsor: Molekule (code ATP)" href="https://molekule.com/"/>
+  <psc:chapter start="00:29:02.500" title="Ahrendts leaving Apple" href="https://www.apple.com/newsroom/2019/02/apple-names-deirdre-obrien-senior-vice-president-of-retail-and-people/"/>
+  <psc:chapter start="01:12:09.331" title="Sponsor: Squarespace (code ATP)" href="https://squarespace.com/atp"/>
+  <psc:chapter start="01:13:31.500" title="#askatp: Hard-drive brands" href="https://www.backblaze.com/blog/2018-hard-drive-failure-rates/"/>
+  <psc:chapter start="01:21:13.500" title="#askatp: Reopening windows"/>
+  <psc:chapter start="01:26:41.500" title="#askatp: Gimlet-Spotify" href="https://newsroom.spotify.com/2019-02-06/audio-first/"/>
+  <psc:chapter start="01:46:40.500" title="Ending theme" href="http://jonathanmann.net/"/>
+  <psc:chapter start="01:47:43.500" title="Gas station update"/>
+</psc:chapters>
+```
+
+### `ml.podcast`
+
+Output a human friendly summary for the podcast found at the url given.
+
+```bash
+$ mix ml.podcast http://wtfpod.libsyn.com/rss
+
+       ID: wtfpod.com
+Main Feed: http://wtfpod.libsyn.com/rss
+
+          Subtitle: Get all your WTF needs at wtfpod.com
+           Summary: Comedian Marc Maron is tackling the most complex philosophical question of our day - WTF? He'll get to the bottom of it with help from comedian friends, celebrity guests and the voices in his own head.
+       Description: Comedian Marc Maron is tackling the most complex philosophical question of our day - WTF? He'll get to the bottom of it with help from comedian friends, celebrity guests and the voices in his own head.
+             Cover: http://static.libsyn.com/p/assets/6/c/a/3/6ca38c2fefa1e989/WTF_-_new_larger_cover.jpg
+Episodes available: 60
+
+S01E997: Episode 997 - Andrea Savage (01:24:17|2019-02-25)
+   Andrea Savage visits the garage to talk about her show I'm Sorry, life with agents, Jason Mantzoukas, and being cut from The Groundlings. http://wtfpod.libsyn.com/episode-997-andrea-savage
+ .mp3: http://traffic.libsyn.com/wtfpod/WTF_-_EPISODE_997_ANDREA_SAVAGE.mp3?dest-id=14434 (24.42 MB)
+
+S01E996: Episode 996 - Jon Bernthal (01:40:59|2019-02-21)
+   Jon Bernthal talks about The Punisher, The Walking Dead, Martin Scorsese, and how he went from heading down a bad path in life to salvation by way of acting. http://wtfpod.libsyn.com/episode-996-jon-bernthal
+ .mp3: http://traffic.libsyn.com/wtfpod/WTF_-_EPISODE_996_JON_BERNTHAL.mp3?dest-id=14434 (29.2 MB)
+…
+```
+
+
 ## License
 
 Metalove is released under the MIT license - see the [LICENSE.txt](LICENSE.txt) file.

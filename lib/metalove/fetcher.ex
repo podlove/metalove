@@ -38,27 +38,28 @@ defmodule Metalove.Fetcher do
   end
 
   def get_range(url, byterange) do
-    try do
-      HTTPoison.get(
-        url,
-        [{"range", "bytes=#{byterange.first}-#{byterange.last}"} | headers()],
-        [{:follow_redirect, true} | options()]
-      )
-      #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
-      |> case do
-        {:ok, %HTTPoison.Response{status_code: 206, body: body, headers: headers}} ->
-          @cache.set({:url, :partial, url}, {body, headers})
-          {:ok, body, headers}
+    #  try do
+    HTTPoison.get(
+      url,
+      [{"range", "bytes=#{byterange.first}-#{byterange.last}"} | headers()],
+      [{:follow_redirect, true} | options()]
+    )
+    #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
+    |> case do
+      {:ok, %HTTPoison.Response{status_code: 206, body: body, headers: headers}} ->
+        @cache.set({:url, :partial, url}, {body, headers})
+        {:ok, body, headers}
 
-        {:ok, %HTTPoison.Response{status_code: 404}} ->
-          {:error, 404}
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        {:error, 404}
 
-        {:error, %HTTPoison.Error{reason: reason}} ->
-          {:error, reason}
-      end
-    rescue
-      ArgumentError -> {:error, :ArgumentError}
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        {:error, reason}
     end
+
+    # rescue
+    #   ArgumentError -> {:error, :ArgumentError}
+    # end
   end
 
   defp get_header(headers, key) do

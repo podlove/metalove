@@ -68,9 +68,9 @@ defmodule Metalove.PodcastFeed do
   end
 
   @doc """
-  Existing `Metalove.PodcastFeed` for that url after all metadata is fetched, otherwise nil
+  Existing `Metalove.PodcastFeed` for that url after all pages are fetched, otherwise nil
   """
-  def get_by_feed_url_await_all_metdata(url, timeout \\ 30_000) do
+  def get_by_feed_url_await_all_pages(url, timeout \\ 30_000) do
     # should not be a busy wait
     cond do
       timeout <= 0 ->
@@ -82,21 +82,51 @@ defmodule Metalove.PodcastFeed do
             nil
 
           feed ->
-            (feed.waiting_for_pages ||
-               (feed.episodes
-                |> Enum.map(&Metalove.Episode.get_by_episode_id/1)
-                |> Enum.map(& &1.enclosure.fetched_metadata_at)
-                |> Enum.any?(&(&1 == nil)) && false))
+            feed.waiting_for_pages
             |> case do
               false ->
                 feed
 
               true ->
                 :timer.sleep(1000)
+                get_by_feed_url_await_all_pages(url, timeout - 1_000)
+            end
+        end
+    end
+  end
+
+  @doc """
+  Existing `Metalove.PodcastFeed` for that url after all metadata is fetched, otherwise nil. Make sure to trigger the metadata media fetch first by calling `Metalove.PodcastFeed.trigger_episode_metadata_scrape(feed)` with all episodes present.
+  """
+  def get_by_feed_url_await_all_metdata(url, timeout \\ 30_000) do
+    # should not be a busy wait
+    cond do
+      timeout <= 0 ->
+        nil
+
+      true ->
+        case get_by_feed_url_await_all_pages(url) do
+          nil ->
+            nil
+
+          feed ->
+            case did_all_episodes_fetch_metadata?(feed) do
+              true ->
+                feed
+
+              false ->
+                :timer.sleep(1000)
                 get_by_feed_url_await_all_metdata(url, timeout - 1_000)
             end
         end
     end
+  end
+
+  defp did_all_episodes_fetch_metadata?(%__MODULE__{} = feed) do
+    feed.episodes
+    |> Enum.map(&Metalove.Episode.get_by_episode_id/1)
+    |> Enum.map(& &1.enclosure.fetched_metadata_at)
+    |> Enum.all?(&(&1 != nil))
   end
 
   require Logger
@@ -175,7 +205,8 @@ defmodule Metalove.PodcastFeed do
     feed.episodes
     |> spread_list(6)
     |> Enum.each(fn sublist ->
-      Task.async(fn -> scrape_episode_metadata(sublist) end)
+      spawn(__MODULE__, :scrape_episode_metadata, [sublist])
+      # Task.async(fn -> scrape_episode_metadata(sublist) end)
     end)
   end
 

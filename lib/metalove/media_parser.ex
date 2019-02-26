@@ -2,13 +2,10 @@ defmodule Metalove.MediaParser do
   alias Metalove.MediaParser.ID3
   @moduledoc false
 
-  def extract_metadata(filename) do
+  def extract_id3_metadata(filename) do
     bytes = File.read!(filename)
 
-    %{
-      size: byte_size(bytes),
-      id3: ID3.parse(bytes)
-    }
+    ID3.parse(bytes)
   end
 end
 
@@ -381,8 +378,8 @@ defmodule Metalove.MediaParser.ID3 do
   def debug_write(bytes, mime_type) do
     extension =
       case :mimerl.mime_to_exts(mime_type) do
+        [""] -> "png"
         [first_ext | _] -> first_ext
-        _ -> "png"
       end
 
     name =

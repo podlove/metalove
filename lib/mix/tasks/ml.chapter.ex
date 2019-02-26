@@ -6,13 +6,13 @@ defmodule Mix.Tasks.Ml.Chapter do
   @moduledoc """
   Extract chapter information from an ID3 tagged mp3 file.
 
-      mix ml.chapter --base-url BASE_URL MP3_FILEPATH
+      mix ml.chapter --base-url BASE_URL MP3_FILEPATH_OR_URL
 
   If the chapters contain images, they will be written to the path of the source file appended by the path of the URL. They will be referenced in the generated simple chapter XML with the BASE_URL. The path of the BASE_URL will be appended to the base path of the mp3 file. E.g.
 
       mix ml.chapter --base-url https://fanboys.fm/images/FAN356 ~/Documents/Podcasts/Fanboys/FAN356.mp3
 
-  Will output the XML for simple chapters, and will store all found images into ~/Documents/Podcasts/Fanboys/images/FAN356/ChapterXXX.jpeg
+  Will output the XML for simple chapters, and will store all found images into ~/Documents/Podcasts/Fanboys/images/FAN356/ChapterXX.jpeg
 
   ## Options
 
@@ -26,14 +26,20 @@ defmodule Mix.Tasks.Ml.Chapter do
   @switches [base_url: :string, debug: :boolean, output: :string]
   @aliases [d: :debug, o: :output]
 
-  def prepare_opts(opts, path) do
+  def prepare_opts(opts, path_or_url) do
     image_url_path =
       case opts[:base_url] do
-        nil -> nil
+        nil -> "/"
         url -> URI.parse(url).path
       end
 
-    base_output_path = Path.dirname(path)
+    media_url =
+      case path_or_url do
+        <<"http", _::binary>> = media_url -> media_url
+        _ -> nil
+      end
+
+    base_output_path = Path.dirname(path_or_url)
 
     chapter_images_output_path =
       case image_url_path do
@@ -44,7 +50,7 @@ defmodule Mix.Tasks.Ml.Chapter do
     Map.merge(opts, %{
       image_url_path: image_url_path,
       output: opts[:output] || chapter_images_output_path,
-      base_output_path: base_output_path
+      media_url: media_url
     })
   end
 
@@ -53,11 +59,23 @@ defmodule Mix.Tasks.Ml.Chapter do
       {opts, [path]} ->
         opts = prepare_opts(Map.new(opts), path)
 
-        metadata = Metalove.MediaParser.extract_metadata(path)
+        metadata =
+          case opts[:media_url] do
+            nil ->
+              Metalove.MediaParser.extract_id3_metadata(path)
+
+            url ->
+              # Bring up Metalove
+              Mix.Project.get!()
+              Mix.Task.run("loadpaths")
+              Mix.Task.run("run")
+
+              Metalove.Enclosure.fetch_id3_metadata(url)
+          end
 
         if opts[:debug], do: IO.puts("#{Path.basename(path)}: #{inspect(metadata, pretty: true)}")
 
-        metadata_map = Metalove.Enclosure.transform_id3_tags(metadata[:id3][:tags])
+        metadata_map = Metalove.Enclosure.transform_id3_tags(metadata[:tags])
 
         #          IO.puts("#{Path.basename(path)}: #{inspect(transformed_tags, pretty: true)}")
 
@@ -112,13 +130,13 @@ defmodule Mix.Tasks.Ml.Chapter do
                 write_image(
                   image_map,
                   path,
-                  "Chapter#{String.pad_leading(to_string(index), 3, "000")}"
+                  "Chapter#{String.pad_leading(to_string(index), 2, "00")}"
                 )
 
               Mix.Shell.IO.error([:green, "Extracted:", :reset, " ", filepath])
 
               URI.merge(
-                opts[:base_url],
+                opts[:base_url] || "//use_base_url_option",
                 Path.join(opts[:image_url_path], Path.basename(filepath))
               )
               |> to_string

@@ -73,6 +73,24 @@ defmodule Metalove.Enclosure do
     end
   end
 
+  @doc """
+  Fetch enough of the URL to parse the ID3 metadata if present.
+  """
+  def fetch_id3_metadata(url) do
+    with {:ok, body, _headers} <- Fetcher.get_range(url, 0..(1024 * 128)) do
+      {Metalove.MediaParser.ID3.parse_header(body), body}
+    end
+    |> case do
+      {{:content_to_short, required_length}, _body} ->
+        with {:ok, body, _headers} <- Fetcher.get_range(url, 0..required_length) do
+          Metalove.MediaParser.ID3.parse(body)
+        end
+
+      {{:ok, _tag_size, _version, _revision, _flags, _rest}, body} ->
+        Metalove.MediaParser.ID3.parse(body)
+    end
+  end
+
   @doc false
   def transform_id3_tags(tags) do
     transform_id3_tags(tags, %{})

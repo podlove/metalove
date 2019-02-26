@@ -8,7 +8,7 @@ defmodule Metalove.MP3ParseTests do
     @tag MP3: true
     test(Path.basename(filepath)) do
       path = unquote(filepath)
-      metadata = MediaParser.extract_metadata(path)
+      metadata = MediaParser.extract_id3_metadata(path)
 
       IO.puts("#{Path.basename(path)}: #{inspect(metadata, pretty: true)}")
     end

@@ -6,7 +6,9 @@ defmodule Mix.Tasks.Ml.Podcast do
   @moduledoc """
   Output a human friendly summary for the podcast found at the url.
 
-      mix ml.podcast fanboys.fm
+      mix ml.podcast atp.fm
+
+  * `--debug` - output the raw parsed ID3 information for debugging.
 
   """
 
@@ -24,7 +26,7 @@ defmodule Mix.Tasks.Ml.Podcast do
         podcast = Metalove.get_podcast(url)
 
         feed =
-          Metalove.PodcastFeed.get_by_feed_url_await_all_metdata(podcast.main_feed_url, 120_000)
+          Metalove.PodcastFeed.get_by_feed_url_await_all_pages(podcast.main_feed_url, 120_000)
 
         opts = Map.new(opts)
         pretty_print(podcast, opts)
@@ -58,6 +60,8 @@ defmodule Mix.Tasks.Ml.Podcast do
   end
 
   defp pretty_print(%Metalove.PodcastFeed{} = feed, opts) do
+    if opts[:debug], do: IO.inspect(feed, pretty: true)
+
     pretty_print_keylist([
       {"Subtitle", feed.subtitle},
       {"Summary", feed.summary},
@@ -65,8 +69,6 @@ defmodule Mix.Tasks.Ml.Podcast do
       {"Cover", feed.image_url},
       {"Episodes available", length(feed.episodes) |> to_string}
     ])
-
-    if opts[:debug], do: IO.inspect(feed, pretty: true)
 
     feed.episodes
     |> Enum.each(fn episode_id ->
@@ -138,7 +140,8 @@ defmodule Mix.Tasks.Ml.Podcast do
 
     Metalove.Episode.all_enclosures(episode)
     |> Enum.map(fn enclosure ->
-      {Path.extname(enclosure.url), enclosure.url <> " (#{Sizeable.filesize(enclosure.size)})"}
+      {Path.extname(URI.parse(enclosure.url).path),
+       enclosure.url <> " (#{Sizeable.filesize(enclosure.size)})"}
     end)
     |> pretty_print_keylist(7)
 
@@ -159,13 +162,15 @@ defmodule Mix.Tasks.Ml.Podcast do
   end
 
   defp pretty_print_keylist([{key, value} | rest], left_indent) do
-    Mix.Shell.IO.info([
-      :bright,
-      :blue,
-      "#{key}: " |> String.pad_leading(left_indent),
-      :reset,
-      value
-    ])
+    if value do
+      Mix.Shell.IO.info([
+        :bright,
+        :blue,
+        "#{key}: " |> String.pad_leading(left_indent),
+        :reset,
+        value
+      ])
+    end
 
     pretty_print_keylist(rest, left_indent)
   end
