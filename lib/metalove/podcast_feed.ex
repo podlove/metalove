@@ -83,10 +83,10 @@ defmodule Metalove.PodcastFeed do
 
           feed ->
             (feed.waiting_for_pages ||
-               feed.episodes
-               |> Enum.map(&Metalove.Episode.get_by_episode_id/1)
-               |> Enum.map(& &1.enclosure.fetched_metadata_at)
-               |> Enum.any?(&(&1 == nil)))
+               (feed.episodes
+                |> Enum.map(&Metalove.Episode.get_by_episode_id/1)
+                |> Enum.map(& &1.enclosure.fetched_metadata_at)
+                |> Enum.any?(&(&1 == nil)) && false))
             |> case do
               false ->
                 feed
@@ -167,14 +167,16 @@ defmodule Metalove.PodcastFeed do
   @doc false
   def store(feed) do
     Metalove.Repository.put_feed(feed)
+    feed
+  end
 
+  @doc false
+  def trigger_episode_metadata_scrape(feed) do
     feed.episodes
     |> spread_list(6)
     |> Enum.each(fn sublist ->
       Task.async(fn -> scrape_episode_metadata(sublist) end)
     end)
-
-    feed
   end
 
   # conditionally export all for testing purposes

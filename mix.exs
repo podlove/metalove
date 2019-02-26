@@ -46,6 +46,7 @@ defmodule Metalove.MixProject do
       {:jason, "~> 1.1"},
       {:mimerl, "~> 1.2", override: true},
       {:xml_builder, "~> 2.0"},
+      {:sizeable, "~>1.0"},
       # documentation
       {:ex_doc, "~> 0.19", optional: true, runtime: false, only: :dev}
     ]
