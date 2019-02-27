@@ -12,7 +12,7 @@ by adding `metalove` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:metalove, "~> 0.2.0"}
+    {:metalove, "~> 0.2"}
   ]
 end
 ```
