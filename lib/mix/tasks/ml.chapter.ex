@@ -26,7 +26,7 @@ defmodule Mix.Tasks.Ml.Chapter do
   @switches [base_url: :string, debug: :boolean, output: :string]
   @aliases [d: :debug, o: :output]
 
-  def prepare_opts(opts, path_or_url) do
+  defp prepare_opts(opts, path_or_url) do
     image_url_path =
       case opts[:base_url] do
         nil -> "/"
@@ -54,6 +54,8 @@ defmodule Mix.Tasks.Ml.Chapter do
     })
   end
 
+  @impl true
+  @doc false
   def run(argv) do
     case parse_opts(argv) do
       {opts, [path]} ->

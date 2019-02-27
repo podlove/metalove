@@ -16,12 +16,11 @@ defmodule Mix.Tasks.Ml.Podcast do
   @aliases [d: :debug]
 
   @impl true
+  @doc false
   def run(args) do
     case parse_opts(args) do
       {opts, [url]} ->
-        Mix.Project.get!()
-        Mix.Task.run("loadpaths")
-        Mix.Task.run("run")
+        {:ok, _started} = Application.ensure_all_started(:metalove)
 
         podcast = Metalove.get_podcast(url)
 
