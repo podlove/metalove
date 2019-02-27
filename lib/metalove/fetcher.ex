@@ -74,8 +74,7 @@ defmodule Metalove.Fetcher do
   end
 
   defp headers do
-    project = Metalove.MixProject.project()
-    [{"user-agent", "#{project[:app]}/#{project[:version]}"}]
+    [{"User-Agent", "metalove/#{Metalove.version()}"}]
   end
 
   defp options do

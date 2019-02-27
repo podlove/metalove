@@ -78,4 +78,11 @@ defmodule Metalove do
       _ -> {:error, :not_found}
     end
   end
+
+  @metalove_version Mix.Project.config()[:version]
+  @doc """
+  Returns the Metalove version.
+  """
+  @spec version :: String.t()
+  def version, do: @metalove_version
 end
