@@ -114,6 +114,9 @@ defmodule Metalove.Fetcher do
               candidates -> {:candidates, sort_feed_candidates(candidates)}
             end
 
+          "application/xml" <> _ ->
+            {:ok, headers, {candidate_url, url}}
+
           "text/xml" <> _ ->
             {:ok, headers, {candidate_url, url}}
 
@@ -121,7 +124,13 @@ defmodule Metalove.Fetcher do
             {:ok, headers, {candidate_url, url}}
 
           content_format ->
-            IO.inspect(headers, label: "found headers for content format (#{content_format})")
+            IO.inspect(headers,
+              label:
+                "found headers for content format (#{content_format}) at candidate url: #{
+                  candidate_url
+                }"
+            )
+
             {:error, :uknown_content_format, content_format, {candidate_url, url}}
         end
 
