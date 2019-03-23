@@ -13,7 +13,7 @@ defmodule Metalove.PodcastFeedParser do
       with channel <- xpath(xml, ~x"//channel"e),
            items <- xpath(channel, ~x"item"el),
            podcast_fields <- podcast_fields(channel),
-           item_fields <- Enum.map(items, &episode_fields/1) do
+           item_fields <- episode_enum(items) do
         {:ok, podcast_fields, item_fields}
       end
     catch
@@ -44,6 +44,11 @@ defmodule Metalove.PodcastFeedParser do
     |> remove_empty()
   end
 
+  def episode_enum(items) do
+    Enum.map(items, &episode_fields/1)
+    |> Enum.filter(&has_enclosure?/1)
+  end
+
   def episode_fields(item) do
     item
     |> xmap(
@@ -68,6 +73,8 @@ defmodule Metalove.PodcastFeedParser do
     |> Map.put(:chapters, chapters(item))
     |> remove_empty()
   end
+
+  defp has_enclosure?(item), do: item.enclosure_length !== nil
 
   defp remove_empty(map) do
     map
