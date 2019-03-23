@@ -14,4 +14,12 @@ defmodule Metalove.PodcastFeedParserTest do
       IO.inspect(cast[:title])
     end
   end)
+
+  test "Empty feeds have an empty enum" do
+    assert {:ok, cast, episodes} =
+             File.read!(unquote("test/files/feed/medienkuh_without_enclosure_tags.xml"))
+             |> PodcastFeedParser.parse()
+
+    assert length(episodes) == 0
+  end
 end
