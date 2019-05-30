@@ -123,6 +123,9 @@ defmodule Metalove.Fetcher do
           "application/rss+xml" <> _ ->
             {:ok, headers, {candidate_url, url}}
 
+          "application/x-rss+xml" <> _ ->
+            {:ok, headers, {candidate_url, url}}
+
           content_format ->
             IO.inspect(headers,
               label:

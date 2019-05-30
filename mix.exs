@@ -1,7 +1,7 @@
 defmodule Metalove.MixProject do
   use Mix.Project
 
-  @version "0.2.1"
+  @version "0.2.2"
   @url_github "https://github.com/podlove/metalove"
 
   def project do
