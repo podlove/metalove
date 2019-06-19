@@ -338,26 +338,35 @@ defmodule Metalove.MediaParser.ID3 do
   end
 
   defp truncate_zero_termination(binary, format) do
-    :binary.split(
-      binary,
-      if format == @format_iso do
-        <<0>>
-      else
-        <<0, 0>>
-      end
-    )
+    binary
+    |> zero_split(format)
     |> hd()
   end
 
+  defp do_utf16_zero_split(<<>>, acc), do: [acc]
+  defp do_utf16_zero_split(<<0::16, rest::binary>>, acc), do: [acc, rest]
+
+  defp do_utf16_zero_split(<<utf16_point::16, rest::binary>>, acc) do
+    do_utf16_zero_split(rest, <<acc::binary, utf16_point::16>>)
+  end
+
+  defp zero_split(binary, format) do
+    case format do
+      @format_iso ->
+        :binary.split(
+          binary,
+          <<0>>
+        )
+
+      _ ->
+        do_utf16_zero_split(binary, <<>>)
+    end
+  end
+
   defp take_zero_terminated(binary, format \\ @format_iso) when is_binary(binary) do
-    case :binary.split(
-           binary,
-           if format == @format_iso do
-             <<0>>
-           else
-             <<0, 0>>
-           end
-         ) do
+    binary
+    |> zero_split(format)
+    |> case do
       [a, b] -> {a, b}
       [b] -> {b, ""}
     end
