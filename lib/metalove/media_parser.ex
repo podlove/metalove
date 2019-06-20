@@ -68,7 +68,16 @@ defmodule Metalove.MediaParser.ID3 do
           tags: []
         }
 
-        Logger.debug("ID3 Header – size:#{tag_size} v:#{result_map.version} flags:#{flags}")
+        content =
+          if Enum.member?(flags, :unsync) do
+            remove_unsync(content)
+          else
+            content
+          end
+
+        Logger.debug(
+          "ID3 Header – size:#{tag_size} v:#{result_map.version} flags:#{inspect(flags)}"
+        )
 
         case version do
           # https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.3.html
@@ -89,8 +98,15 @@ defmodule Metalove.MediaParser.ID3 do
     end
   end
 
-  defp parse_frames(content) when is_binary(content),
-    do: parse_frames(content, byte_size(content))
+  # see specs, unsync means every <<0xff,0>> was replaced with a <<0xff,0,0>>, so we need to do the inverse
+  defp remove_unsync(binary) do
+    binary
+    |> :binary.replace(<<0xFF, 0, 0>>, <<0xFF, 0>>, [:global])
+  end
+
+  defp parse_frames(content) when is_binary(content) do
+    parse_frames(content, byte_size(content))
+  end
 
   defp parse_frames(content, remaining_size) do
     parse_frames(content, remaining_size, [])
@@ -164,7 +180,7 @@ defmodule Metalove.MediaParser.ID3 do
 
     {:APIC,
      %{
-       mime_type: mime_type,
+       mime_type: sanitized_image_type(mime_type),
        picture_type: picture_type,
        image_data: image_data,
        description: description
@@ -398,4 +414,8 @@ defmodule Metalove.MediaParser.ID3 do
 
     File.write!(Path.join(["/tmp", "Temp_#{name}.#{extension}"]), bytes)
   end
+
+  defp sanitized_image_type("image/jpg"), do: "image/jpeg"
+  defp sanitized_image_type(""), do: "image/png"
+  defp sanitized_image_type(type), do: type
 end

@@ -118,7 +118,7 @@ defmodule Mix.Tasks.Ml.Chapter do
   end
 
   defp extract_chapter_attributes(metadata_map, opts) do
-    metadata_map[:chapters]
+    (metadata_map[:chapters] || [])
     |> Enum.with_index(1)
     |> Enum.map(fn {chapter, index} ->
       case chapter[:image] do
