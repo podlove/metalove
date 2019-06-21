@@ -79,7 +79,15 @@ defmodule Mix.Tasks.Ml.Chapter do
 
         metadata_map = Metalove.Enclosure.transform_id3_tags(metadata[:tags])
 
+        if opts[:debug],
+          do: IO.puts("#{Path.basename(path)}: #{inspect(metadata_map, pretty: true)}")
+
         #          IO.puts("#{Path.basename(path)}: #{inspect(transformed_tags, pretty: true)}")
+
+        with image_map <- metadata_map[:cover_art],
+             path <- opts[:output] do
+          write_image(image_map, path, "Cover")
+        end
 
         chapter_attributes = extract_chapter_attributes(metadata_map, opts)
 

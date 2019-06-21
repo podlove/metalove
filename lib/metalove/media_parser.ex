@@ -68,16 +68,20 @@ defmodule Metalove.MediaParser.ID3 do
           tags: []
         }
 
-        content =
-          if Enum.member?(flags, :unsync) do
-            remove_unsync(content)
-          else
-            content
-          end
-
         Logger.debug(
           "ID3 Header – size:#{tag_size} v:#{result_map.version} flags:#{inspect(flags)}"
         )
+
+        # truncate to payload
+        <<content::bytes-size(tag_size), _rest::binary>> = content
+
+        # remove unsync if necessary
+        {content, tag_size} =
+          if Enum.member?(flags, :unsync) do
+            remove_unsync(content, tag_size)
+          else
+            {content, tag_size}
+          end
 
         case version do
           # https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.3.html
@@ -98,10 +102,25 @@ defmodule Metalove.MediaParser.ID3 do
     end
   end
 
-  # see specs, unsync means every <<0xff,0>> was replaced with a <<0xff,0,0>>, so we need to do the inverse
-  defp remove_unsync(binary) do
-    binary
-    |> :binary.replace(<<0xFF, 0, 0>>, <<0xFF, 0>>, [:global])
+  # according to the spec, the unsynchronization scheme tries to generally avoid sequences of
+  # 0b1111_1111 0b_111x_xxxx because decoders try to sync around those, and with the metadata that would be wrong.
+
+  # this is done by injecting a zero byte in all those sequences. Deocding is just replacing all sequences of <<0xff,0x00>> back to just <<0xff>>.
+
+  # For Decoding to yield the right results this also means that when encoding all occurences of <<0xff,0x00>> need to add the extra zero byte too.
+
+  # see specs http://id3.org/id3v2.3.0#The_unsynchronisation_scheme
+
+  defp remove_unsync(binary, length) do
+    bytesize = byte_size(binary)
+
+    adjusted_binary =
+      binary
+      |> :binary.replace(<<0xFF, 0>>, <<0xFF>>, [:global])
+
+    new_bytesize = byte_size(adjusted_binary)
+
+    {adjusted_binary, length - (bytesize - new_bytesize)}
   end
 
   defp parse_frames(content) when is_binary(content) do
