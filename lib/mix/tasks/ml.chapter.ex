@@ -14,19 +14,64 @@ defmodule Mix.Tasks.Ml.Chapter do
 
   Will output the XML for simple chapters, and will store all found images into ~/Documents/Podcasts/Fanboys/images/FAN356/ChapterXX.jpeg
 
+  Will also write the chapters as PSCChaptersFragment.psc and PodloveWebPlayerChaptersFragment.json
+
   ## Options
 
 
     * `--base-url URL` - if given will add image_url hrefs to the chapters with images and save the images found in the ID3 tag chapters as well as the cover art to the directory of the source file appended by the path of the url.
     * `--output PATH` - if given will save encountered images into that path instead.
     * `--debug` - output the raw parsed ID3 information for debugging.
+    * `--formats FORMATS` - psc, json or mp4chaps. Defaults to psc only. Allows multiple comma separated.
+    * `--stdout-formats FORMATS` - formats to write to stdout. Defaults to value of --fmt
 
   """
 
-  @switches [base_url: :string, debug: :boolean, output: :string]
+  @switches [
+    base_url: :string,
+    debug: :boolean,
+    output: :string,
+    formats: :string,
+    stdout_formast: :string
+  ]
   @aliases [d: :debug, o: :output]
 
+  defp split_format(format_string, default) when is_binary(format_string) do
+    format_string
+    |> String.split(",")
+    |> Enum.reduce([], fn
+      "mp4chaps", acc ->
+        [:mp4chaps | acc]
+
+      "json", acc ->
+        [:json | acc]
+
+      "psc", acc ->
+        [:psc | acc]
+
+      format, acc ->
+        Mix.Shell.IO.error([
+          :yellow,
+          "Warning: ",
+          :reset,
+          "Format #{format} not recognized."
+        ])
+
+        acc
+    end)
+    |> Enum.reverse()
+    |> case do
+      [] -> default
+      other -> other
+    end
+  end
+
+  defp split_format(_, default), do: default
+
   defp prepare_opts(opts, path_or_url) do
+    formats = split_format(opts[:formats], [:psc])
+    stdout_formats = split_format(opts[:stdoout_formats], formats)
+
     image_url_path =
       case opts[:base_url] do
         nil -> "/"
@@ -50,9 +95,13 @@ defmodule Mix.Tasks.Ml.Chapter do
     Map.merge(opts, %{
       image_url_path: image_url_path,
       output: opts[:output] || chapter_images_output_path,
-      media_url: media_url
+      media_url: media_url,
+      formats: formats,
+      stdout_formats: stdout_formats
     })
   end
+
+  alias Chapters.Chapter
 
   @impl true
   @doc false
@@ -64,7 +113,18 @@ defmodule Mix.Tasks.Ml.Chapter do
         metadata =
           case opts[:media_url] do
             nil ->
-              Metalove.MediaParser.extract_id3_metadata(path)
+              try do
+                Metalove.MediaParser.extract_id3_metadata(path)
+              rescue
+                e in File.Error ->
+                  Mix.Shell.IO.error([
+                    "error: ",
+                    :reset,
+                    "Error reading file #{e.path} reason: #{e.reason}."
+                  ])
+
+                  System.halt(1)
+              end
 
             url ->
               # Bring up Metalove
@@ -89,29 +149,63 @@ defmodule Mix.Tasks.Ml.Chapter do
           write_image(image_map, path, "Cover")
         end
 
-        chapter_attributes = extract_chapter_attributes(metadata_map, opts)
-
         # https://podlove.org/simple-chapters/
 
-        chapter_tags =
-          chapter_attributes
-          |> Enum.map(fn chapter_attribute_keylist ->
-            XmlBuilder.element(
-              "psc:chapter",
-              chapter_attribute_keylist,
-              nil
-            )
-          end)
+        case extract_chapters(metadata_map, opts) do
+          [] ->
+            Mix.Shell.IO.error([
+              "error: ",
+              :reset,
+              "Could not extract chapters from #{Path.basename(path)}."
+            ])
 
-        # IO.puts("XML source: #{inspect(chapter_tags, pretty: true)}")
+          chapters ->
+            Mix.Shell.IO.error([
+              :green,
+              "Found:",
+              :reset,
+              " #{length(chapters)} Chapters, #{Enum.count(chapters, & &1.href)} URLs and #{
+                Enum.count(chapters, & &1.image)
+              } Chapter Images"
+            ])
 
-        XmlBuilder.element(
-          "psc:chapters",
-          %{:version => "1.2", :"xmlns:psc" => "http://podlove.org/simple-chapters"},
-          chapter_tags
-        )
-        |> XmlBuilder.generate()
-        |> IO.puts()
+            with path <- opts[:output],
+                 formats <- opts[:formats],
+                 stdout_formats <- opts[:stdout_formats] do
+              formats
+              |> Enum.each(fn format ->
+                filename =
+                  case format do
+                    :psc -> "Chapters.psc.xml"
+                    :mp4chaps -> "Chapters.mp3chaps.txt"
+                    :json -> "ChaptersFragment.json"
+                  end
+
+                data = Chapters.encode(chapters, format)
+
+                filepath = Path.join(path, filename)
+
+                File.write!(filepath, data)
+
+                Mix.Shell.IO.error([
+                  :green,
+                  "Wrote:",
+                  :reset,
+                  " #{format} to #{filepath}"
+                ])
+              end)
+
+              stdout_formats
+              |> Enum.each(fn format ->
+                Mix.Shell.IO.error([
+                  :green,
+                  "#{format}:"
+                ])
+
+                Chapters.encode(chapters, format) |> IO.puts()
+              end)
+            end
+        end
 
       _ ->
         Mix.Tasks.Help.run(["ml.chapter"])
@@ -125,10 +219,12 @@ defmodule Mix.Tasks.Ml.Chapter do
     path
   end
 
-  defp extract_chapter_attributes(metadata_map, opts) do
+  defp extract_chapters(metadata_map, opts) do
     (metadata_map[:chapters] || [])
     |> Enum.with_index(1)
     |> Enum.map(fn {chapter, index} ->
+      chapter = Map.put(chapter, :index, index)
+
       case chapter[:image] do
         image_map when is_map(image_map) ->
           case opts[:output] do
@@ -156,24 +252,21 @@ defmodule Mix.Tasks.Ml.Chapter do
         _ ->
           chapter
       end
-      |> attributes_from_chapter_map()
+    end)
+    |> Enum.map(fn chapter ->
+      %Chapter{
+        start: normal_playtime_to_ms(chapter[:start]),
+        title: chapter[:title] || "#{chapter[:index]}",
+        href: chapter[:href],
+        image: chapter[:image]
+      }
     end)
   end
 
-  defp attributes_from_chapter_map(chapter) do
-    [:start, :title, :href, :image]
-    |> Enum.reduce([], fn key, acc ->
-      case chapter[key] do
-        nil ->
-          acc
+  alias Chapters.Parsers.Normalplaytime.Parser, as: NPT
 
-        value ->
-          case String.trim(value) do
-            "" -> acc
-            value -> List.keystore(acc, key, 0, {key, value})
-          end
-      end
-    end)
+  defp normal_playtime_to_ms(playtime) when is_binary(playtime) do
+    NPT.parse_total_ms(playtime) || 0
   end
 
   defp parse_opts(argv) do
