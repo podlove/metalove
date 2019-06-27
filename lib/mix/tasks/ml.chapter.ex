@@ -10,9 +10,9 @@ defmodule Mix.Tasks.Ml.Chapter do
 
   If the chapters contain images, they will be written to the path of the source file appended by the path of the URL. They will be referenced in the generated simple chapter XML with the BASE_URL. The path of the BASE_URL will be appended to the base path of the mp3 file. E.g.
 
-      mix ml.chapter --base-url https://fanboys.fm/images/FAN356 ~/Documents/Podcasts/Fanboys/FAN356.mp3
+      mix ml.chapter --base-url https://fanboys.fm/chapters/fan356 --formats psc,json ~/Documents/Podcasts/Fanboys/FAN356.mp3
 
-  Will output the XML for simple chapters, and will store all found images into ~/Documents/Podcasts/Fanboys/images/FAN356/ChapterXX.jpeg
+  Will output the XML for simple chapters, and will store all found images into `~/Documents/Podcasts/Fanboys/images/FAN356/ChapterXX.jpeg`. In addition to outputting the psc and json format to stdout they will be written to `Chapters.psc.xml` and `ChaptersFragment.json` accordingly.
 
   Will also write the chapters as PSCChaptersFragment.psc and PodloveWebPlayerChaptersFragment.json
 
@@ -23,7 +23,7 @@ defmodule Mix.Tasks.Ml.Chapter do
     * `--output PATH` - if given will save encountered images into that path instead.
     * `--debug` - output the raw parsed ID3 information for debugging.
     * `--formats FORMATS` - psc, json or mp4chaps. Defaults to psc only. Allows multiple comma separated.
-    * `--stdout-formats FORMATS` - formats to write to stdout. Defaults to value of --fmt
+    * `--stdout-formats FORMATS` - formats to write to stdout. Defaults to value of `--formats`
 
   """
 
@@ -84,7 +84,15 @@ defmodule Mix.Tasks.Ml.Chapter do
         _ -> nil
       end
 
-    base_output_path = Path.dirname(path_or_url)
+    base_output_path =
+      if media_url do
+        Path.dirname(URI.parse(media_url).path)
+      else
+        Path.dirname(path_or_url)
+      end
+      |> List.wrap()
+      |> List.insert_at(0, System.tmp_dir!())
+      |> Path.join()
 
     chapter_images_output_path =
       case image_url_path do
@@ -160,6 +168,11 @@ defmodule Mix.Tasks.Ml.Chapter do
             ])
 
           chapters ->
+            if opts[:debug] do
+              IO.puts("#{inspect(chapters, pretty: true)}")
+              pseudo_flush_stdout()
+            end
+
             Mix.Shell.IO.error([
               :green,
               "Found:",
@@ -191,18 +204,28 @@ defmodule Mix.Tasks.Ml.Chapter do
                   :green,
                   "Wrote:",
                   :reset,
-                  " #{format} to #{filepath}"
+                  " ",
+                  :bright,
+                  "#{format}",
+                  :reset,
+                  " to ",
+                  :bright,
+                  "#{filepath}"
                 ])
               end)
 
               stdout_formats
               |> Enum.each(fn format ->
                 Mix.Shell.IO.error([
+                  :bright,
                   :green,
-                  "#{format}:"
+                  "\n#{format}:"
                 ])
 
                 Chapters.encode(chapters, format) |> IO.puts()
+
+                # Without the additional small delay, the error output sometimes interleaves with the other output
+                pseudo_flush_stdout()
               end)
             end
         end
@@ -223,13 +246,12 @@ defmodule Mix.Tasks.Ml.Chapter do
     (metadata_map[:chapters] || [])
     |> Enum.with_index(1)
     |> Enum.map(fn {chapter, index} ->
-      chapter = Map.put(chapter, :index, index)
-
-      case chapter[:image] do
-        image_map when is_map(image_map) ->
+      chapter
+      |> Enum.map(fn
+        {:image = key, image_map} when is_map(image_map) ->
           case opts[:output] do
             nil ->
-              Map.delete(chapter, :image)
+              {key, nil}
 
             path ->
               filepath =
@@ -246,12 +268,17 @@ defmodule Mix.Tasks.Ml.Chapter do
                 Path.join(opts[:image_url_path], Path.basename(filepath))
               )
               |> to_string
-              |> (&Map.put(chapter, :image, &1)).()
+              |> (&{key, &1}).()
           end
 
-        _ ->
-          chapter
-      end
+        {key, ""} ->
+          {key, nil}
+
+        {key, value} ->
+          {key, value}
+      end)
+      |> Map.new()
+      |> Map.put(:index, index)
     end)
     |> Enum.map(fn chapter ->
       %Chapter{
@@ -281,4 +308,8 @@ defmodule Mix.Tasks.Ml.Chapter do
 
   defp switch_to_string({name, nil}), do: name
   defp switch_to_string({name, val}), do: name <> "=" <> val
+
+  defp pseudo_flush_stdout() do
+    :timer.sleep(50)
+  end
 end
