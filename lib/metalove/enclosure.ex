@@ -142,7 +142,10 @@ defmodule Metalove.Enclosure do
           Map.put(acc, :title, title)
 
         {:WXXX, %{link: link}}, acc ->
-          Map.put(acc, :href, link)
+          case String.trim(link) do
+            "" -> acc
+            link -> Map.put(acc, :href, link)
+          end
 
         {:APIC, %{image_data: data, mime_type: type}}, acc ->
           Map.put(acc, :image, %{data: data, type: type})
