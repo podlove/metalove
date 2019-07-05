@@ -152,7 +152,7 @@ defmodule Mix.Tasks.Ml.Chapter do
 
         #          IO.puts("#{Path.basename(path)}: #{inspect(transformed_tags, pretty: true)}")
 
-        with image_map <- metadata_map[:cover_art],
+        with image_map when is_map(image_map) <- metadata_map[:cover_art],
              path <- opts[:output] do
           write_image(image_map, path, "Cover")
         end
