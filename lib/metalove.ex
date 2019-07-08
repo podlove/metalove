@@ -5,6 +5,7 @@ defmodule Metalove do
 
   @doc ~S"""
   Convenience entry point.
+
   Args:
     * `url` - URL of a podcast feed or webpage (e.g. "atp.fm" or "https://freakshow.fm/feed/m4a/")
 

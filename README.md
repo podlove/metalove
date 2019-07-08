@@ -7,7 +7,7 @@ Metalove is an Elixir Application to scrape podcast RSS feeds to extract and pro
 
 Metalove is intended to be a stateful live repository caching the scraped data. A one shot mode to just get one specific feed/metadata is also provided.
 
-[Changelog](changelog.html)
+[Changelog](changelog.html).
 
 ## Basic Usage
 
