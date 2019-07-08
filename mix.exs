@@ -20,7 +20,7 @@ defmodule Metalove.MixProject do
         source_url: @url_github,
         source_ref: "v#{@version}",
         main: "readme",
-        extras: ["README.md"]
+        extras: ["README.md", "CHANGELOG.md"]
       ],
       package: package()
     ]

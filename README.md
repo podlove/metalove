@@ -1,10 +1,13 @@
 # Metalove
 
 [Online Documentation](https://hexdocs.pm/metalove).
+[Github Changelog](https://github.com/podlove/metalove/blob/master/CHANGELOG.md).
 
 Metalove is an Elixir Application to scrape podcast RSS feeds to extract and provide as much of the available metadata as possible. This includes relevant ID3 tag parsing to extract chapter, link and image metadata.
 
 Metalove is intended to be a stateful live repository caching the scraped data. A one shot mode to just get one specific feed/metadata is also provided.
+
+[Changelog](changelog.html)
 
 ## Basic Usage
 
