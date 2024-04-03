@@ -1,0 +1,3 @@
+[tools]
+erlang = "26"
+elixir = "1.16"

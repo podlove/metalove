@@ -11,13 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * ID3 tag parsing is best effort and just based on the specs and a few sample files. Needs hardening.
 
 ## [Unreleased]
-### Added
-- This CHANGELOG file as a standardised open source project CHANGELOG.
+
+- update dependencies
 
 ## [0.3.0] - 2019-07-05
 
 ### Added
-- improved `ml.chapters`: safe cover image, add option to output `mp4chaps` and `json` as well.  
+- improved `ml.chapters`: safe cover image, add option to output `mp4chaps` and `json` as well.
 
 ### Changed
 - depending on `chapters ~> 1.0` for chapter generation.
@@ -60,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0] - 2019-02-26
 
 ### Added
-- Core functionality, find, parse and ingest podcasts from website URLs 
+- Core functionality, find, parse and ingest podcasts from website URLs
   and feed URLs
 - `ml.chapter` mix task to parse ID3 headers from mp3 files, extract the chapter information and images.
 - `ml.podcast` mix task to discover and parse a feed to display a nice human readable terminal version.
