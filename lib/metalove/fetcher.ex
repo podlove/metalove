@@ -79,7 +79,6 @@ defmodule Metalove.Fetcher do
 
   defp options do
     [
-      ssl: [{:versions, [:"tlsv1.2"]}],
       timeout: 10_000,
       recv_timeout: 10_000
     ]
