@@ -55,7 +55,7 @@ defmodule Metalove.MixProject do
 
   defp package do
     [
-      maintainers: ["Dominik Wagner"],
+      maintainers: ["Dominik Wagner", "Eric Teubert"],
       licenses: ["MIT"],
       links: %{"GitHub" => @url_github},
       exclude_patterns: [".DS_Store"]
