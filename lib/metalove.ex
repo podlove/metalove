@@ -1,7 +1,8 @@
 defmodule Metalove do
-  @moduledoc """
-  The main application interface.
-  """
+  @moduledoc "README.md"
+             |> File.read!()
+             |> String.split("<!-- MDOC !-->")
+             |> Enum.fetch!(1)
 
   @doc ~S"""
   Convenience entry point.
