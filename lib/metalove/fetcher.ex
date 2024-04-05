@@ -79,7 +79,6 @@ defmodule Metalove.Fetcher do
 
   defp options do
     [
-      ssl: [{:versions, [:"tlsv1.2"]}],
       timeout: 10_000,
       recv_timeout: 10_000
     ]
@@ -106,7 +105,7 @@ defmodule Metalove.Fetcher do
               fetch_and_follow_p(url, {url, remaining_redirects})
 
             body
-            |> Floki.parse()
+            |> Floki.parse_document()
             |> feed_urls_from_contenttree()
             |> case do
               [] -> {:error, :not_found, {candidate_url, url}}
@@ -129,9 +128,7 @@ defmodule Metalove.Fetcher do
           content_format ->
             IO.inspect(headers,
               label:
-                "found headers for content format (#{content_format}) at candidate url: #{
-                  candidate_url
-                }"
+                "found headers for content format (#{content_format}) at candidate url: #{candidate_url}"
             )
 
             {:error, :uknown_content_format, content_format, {candidate_url, url}}

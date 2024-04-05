@@ -7,7 +7,7 @@ defmodule Metalove.PodcastFeedParserTest do
   Path.wildcard("test/files/feed/*")
   |> Enum.each(fn filepath ->
     test(Path.basename(filepath)) do
-      assert {:ok, cast, episodes} =
+      assert {:ok, cast, _episodes} =
                File.read!(unquote(filepath))
                |> PodcastFeedParser.parse()
 

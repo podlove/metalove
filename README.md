@@ -3,6 +3,8 @@
 [Online Documentation](https://hexdocs.pm/metalove).
 [Github Changelog](https://github.com/podlove/metalove/blob/master/CHANGELOG.md).
 
+<!-- MDOC !-->
+
 Metalove is an Elixir Application to scrape podcast RSS feeds to extract and provide as much of the available metadata as possible. This includes relevant ID3 tag parsing to extract chapter, link and image metadata.
 
 Metalove is intended to be a stateful live repository caching the scraped data. A one shot mode to just get one specific feed/metadata is also provided.
@@ -11,7 +13,7 @@ Metalove is intended to be a stateful live repository caching the scraped data. 
 
 ## Basic Usage
 
-Use the main Metalove module to trigger scraping of the urls you like. Then use the hierarchy of structs/modules to access them. 
+Use the main Metalove module to trigger scraping of the urls you like. Then use the hierarchy of structs/modules to access them.
 
 A `Metalove.Podcast` can reference many `Metalove.PodcastFeed`s which in turn have `Metalove.Episode`s with `Metalove.Enclosure`s. Once scraped, `PodcastFeed`s and their `Episode`s can be fetched using their corresponding `get_…` functions.
 
@@ -21,14 +23,14 @@ iex> podcast = Metalove.get_podcast(feed_or_website_url)
 %Metalove.Podcast{
 	created_at: #DateTime<2019-02-23 13:09:48.632101Z>,
 	feed_urls: ["http://forschergeist.de/feed/opus/",
-		"http://forschergeist.de/feed/oga/", 
+		"http://forschergeist.de/feed/oga/",
 		"http://forschergeist.de/feed/m4a/",
 		"http://forschergeist.de/feed/mp3/"],
 	id: "forschergeist.de",
 	main_feed_url: "http://forschergeist.de/feed/mp3/",
 	updated_at: #DateTime<2019-02-23 13:23:10.917299Z>
 }
-	
+
 iex> feed = Metalove.PodcastFeed.get_by_feed_url(podcast.main_feed_url)
 iex> most_recent_episode = Metalove.Episode.get_by_episode_id(hd(feed.episodes))
 ```
@@ -122,6 +124,8 @@ S01E996: Episode 996 - Jon Bernthal (01:40:59|2019-02-21)
 
 * Metalove currently caches all http requests and state quite ridiculously, and does not reevaluate them their own. As workaround until that is done correctly the `Metalove.purge/0` exists.
 * Metalove currently logs a lot.
+
+<!-- MDOC !-->
 
 ## License
 

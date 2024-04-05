@@ -213,7 +213,7 @@ defmodule Metalove.PodcastFeed do
   # conditionally export all for testing purposes
   @compile if Mix.env() == :test, do: :export_all
 
-  defp spread_list(list, count) do
+  def spread_list(list, count) do
     list
     |> Enum.reduce({[], Stream.cycle([[]]) |> Enum.take(count)}, fn
       e, {left, [head | right]} ->

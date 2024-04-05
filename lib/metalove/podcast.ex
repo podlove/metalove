@@ -80,8 +80,6 @@ defmodule Metalove.Podcast do
     get_by_id(id_from_link(link))
   end
 
-  require Logger
-
   @doc """
   Add a feed url to a podcast if it isn't listed yet.
   """
