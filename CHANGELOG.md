@@ -10,9 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * API is preliminary and missing any sort of meaningful error handling.
 * ID3 tag parsing is best effort and just based on the specs and a few sample files. Needs hardening.
 
-## [Unreleased]
+## [0.4.0] - 2024-04-05
 
 - update dependencies
+- code cleanup (adjustments to modern Elixir/Erlang)
 
 ## [0.3.0] - 2019-07-05
 
