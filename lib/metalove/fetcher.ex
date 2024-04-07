@@ -82,6 +82,7 @@ defmodule Metalove.Fetcher do
     [
       headers: headers()
     ]
+    |> Keyword.merge(Application.get_env(:metalove, :req_options, []))
   end
 
   def get_feed_url(url) do
