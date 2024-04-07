@@ -37,7 +37,7 @@ defmodule Metalove.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 2.2"},
+      {:req, "~> 0.4.14"},
       # html parsing
       {:floki, "~> 0.36"},
       # rss feed parsing

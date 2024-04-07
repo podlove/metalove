@@ -9,14 +9,14 @@ defmodule Metalove.Fetcher do
 
   defp fetch_and_follow_p(url, {candidate_url, remaining_redirects}) do
     try do
-      HTTPoison.get(url, headers(), options())
+      Req.get(url, options())
       #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
       |> case do
-        {:ok, %HTTPoison.Response{status_code: 200, body: body, headers: headers}} ->
+        {:ok, %Req.Response{status: 200, body: body, headers: headers}} ->
           @cache.set({:url, url}, {body, headers})
           {:ok, body, headers, {candidate_url, url}}
 
-        {:ok, %HTTPoison.Response{status_code: status_code, headers: headers}}
+        {:ok, %Req.Response{status: status_code, headers: headers}}
         when status_code in [301, 302, 307, 308] ->
           if remaining_redirects > 0 do
             next_url = URI.merge(url, get_header(headers, "location")) |> to_string
@@ -26,10 +26,10 @@ defmodule Metalove.Fetcher do
             {:error, "Too many redirects"}
           end
 
-        {:ok, %HTTPoison.Response{status_code: 404}} ->
+        {:ok, %Req.Response{status: 404}} ->
           {:error, 404, {candidate_url, url}}
 
-        {:error, %HTTPoison.Error{reason: reason}} ->
+        {:error, %{reason: reason}} ->
           {:error, reason, {candidate_url, url}}
       end
     rescue
@@ -39,21 +39,22 @@ defmodule Metalove.Fetcher do
 
   def get_range(url, byterange) do
     #  try do
-    HTTPoison.get(
+    Req.get(
       url,
-      [{"range", "bytes=#{byterange.first}-#{byterange.last}"} | headers()],
-      [{:follow_redirect, true} | options()]
+      [
+        headers: [{"range", "bytes=0-10"}]
+      ]
     )
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
-      {:ok, %HTTPoison.Response{status_code: 206, body: body, headers: headers}} ->
+      {:ok, %Req.Response{status: 206, body: body, headers: headers}} ->
         @cache.set({:url, :partial, url}, {body, headers})
         {:ok, body, headers}
 
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
+      {:ok, %Req.Response{status: 404}} ->
         {:error, 404}
 
-      {:error, %HTTPoison.Error{reason: reason}} ->
+      {:error, %{reason: reason}} ->
         {:error, reason}
     end
 
@@ -79,8 +80,7 @@ defmodule Metalove.Fetcher do
 
   defp options do
     [
-      timeout: 10_000,
-      recv_timeout: 10_000
+      headers: headers()
     ]
   end
 
@@ -92,10 +92,10 @@ defmodule Metalove.Fetcher do
   defp get_feed_url_p(url, {candidate_url, remaining_redirects}) do
     # IO.inspect(binding())
     #  try do
-    HTTPoison.head(url, headers(), options())
+    Req.head(url, options())
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
-      {:ok, %HTTPoison.Response{status_code: 200, body: _body, headers: headers}} ->
+      {:ok, %Req.Response{status: 200, body: _body, headers: headers}} ->
         headers
         |> get_header("content-type")
         |> String.downcase()
@@ -134,7 +134,7 @@ defmodule Metalove.Fetcher do
             {:error, :uknown_content_format, content_format, {candidate_url, url}}
         end
 
-      {:ok, %HTTPoison.Response{status_code: status_code, headers: headers}}
+      {:ok, %Req.Response{status: status_code, headers: headers}}
       when status_code in [301, 302, 307, 308] ->
         if remaining_redirects > 0 do
           next_url = URI.merge(url, get_header(headers, "location")) |> to_string
@@ -144,10 +144,10 @@ defmodule Metalove.Fetcher do
           {:error, "Too many redirects"}
         end
 
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
+      {:ok, %Req.Response{status: 404}} ->
         {:error, 404, {candidate_url, url}}
 
-      {:error, %HTTPoison.Error{reason: reason}} ->
+      {:error, %{reason: reason}} ->
         {:error, reason, {candidate_url, url}}
     end
 
