@@ -63,6 +63,7 @@ defmodule Metalove.Fetcher do
     # end
   end
 
+  # TODO: replace all uses of this with Req.Response.get_header/2
   defp get_header(headers, key) do
     key = key |> String.downcase()
 
@@ -97,10 +98,9 @@ defmodule Metalove.Fetcher do
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
       {:ok, %Req.Response{status: 200, body: _body, headers: headers}} ->
-        headers
-        |> get_header("content-type")
-        |> String.downcase()
-        |> case do
+        [content_type | _] = Req.Response.get_header(response, "content-type")
+
+        case content_type do
           "text/html" <> _ ->
             {:ok, body, _headers, {candidate_url, url}} =
               fetch_and_follow_p(url, {url, remaining_redirects})
