@@ -13,6 +13,7 @@ defmodule Metalove.PodcastFeed do
             language: nil,
             subtitle: nil,
             author: nil,
+            owner: nil,
             contributors: [],
             summary: nil,
             description: nil,
@@ -32,6 +33,7 @@ defmodule Metalove.PodcastFeed do
   * `:title` Title
   * `:language`
   * `:author`
+  * `:owner`
   * `:contributors`
   * `:summary`
   * `:description`
@@ -45,6 +47,7 @@ defmodule Metalove.PodcastFeed do
           title: String.t() | nil,
           language: String.t() | nil,
           author: String.t() | nil,
+          owner: Map.t() | nil,
           contributors: list() | nil,
           summary: String.t() | nil,
           description: String.t() | nil,
@@ -160,6 +163,7 @@ defmodule Metalove.PodcastFeed do
        categories: cast[:categories],
        copyright: cast[:copyright],
        author: cast[:itunes_author],
+       owner: cast[:itunes_owner],
        description: cast[:description],
        summary: cast[:itunes_summary],
        subtitle: cast[:itunes_subtitle],
