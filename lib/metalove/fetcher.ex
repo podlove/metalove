@@ -41,9 +41,7 @@ defmodule Metalove.Fetcher do
     #  try do
     Req.get(
       url,
-      [
-        headers: [{"range", "bytes=0-10"}]
-      ]
+      headers: [{"range", "bytes=0-10"}]
     )
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
@@ -97,7 +95,7 @@ defmodule Metalove.Fetcher do
     Req.head(url, options())
     #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
-      {:ok, %Req.Response{status: 200, body: _body, headers: headers}} ->
+      {:ok, %Req.Response{status: 200, body: _body, headers: headers} = response} ->
         [content_type | _] = Req.Response.get_header(response, "content-type")
 
         case content_type do
