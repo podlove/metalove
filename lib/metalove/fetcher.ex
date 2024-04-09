@@ -41,9 +41,8 @@ defmodule Metalove.Fetcher do
     #  try do
     Req.get(
       url,
-      headers: [{"range", "bytes=0-10"}]
+      headers: [{"range", "bytes=#{byterange.first}-#{byterange.last}"}]
     )
-    #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
     |> case do
       {:ok, %Req.Response{status: 206, body: body, headers: headers}} ->
         @cache.set({:url, :partial, url}, {body, headers})
