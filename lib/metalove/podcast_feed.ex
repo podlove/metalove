@@ -20,6 +20,7 @@ defmodule Metalove.PodcastFeed do
             image_url: nil,
             categories: nil,
             copyright: nil,
+            explicit: false,
             episodes: nil,
             waiting_for_pages: false,
             created_at: DateTime.utc_now(),
@@ -40,6 +41,7 @@ defmodule Metalove.PodcastFeed do
   * `:image_url`
   * `:categories`
   * `:copyright`
+  * `:explicit`
   * `:episodes` list of episode id tuples, for a paged feed that eventually contains all
   """
   @type t :: %__MODULE__{
@@ -54,6 +56,7 @@ defmodule Metalove.PodcastFeed do
           image_url: String.t() | nil,
           categories: list | nil,
           copyright: String.t() | nil,
+          explicit: boolean(),
           episodes: list,
           waiting_for_pages: boolean(),
           created_at: DateTime.t(),
@@ -161,6 +164,7 @@ defmodule Metalove.PodcastFeed do
        link: cast[:link],
        language: cast[:language],
        categories: cast[:categories],
+       explicit: cast[:explicit],
        copyright: cast[:copyright],
        author: cast[:itunes_author],
        owner: cast[:itunes_owner],

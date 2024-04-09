@@ -41,6 +41,7 @@ defmodule Metalove.PodcastFeedParser do
     |> Map.put(:categories, categories(channel))
     |> Map.put(:contributors, contributors(channel))
     |> Map.put(:itunes_owner, owner(channel))
+    |> Map.put(:explicit, explicit(channel))
     |> remove_empty()
   end
 
@@ -84,6 +85,14 @@ defmodule Metalove.PodcastFeedParser do
       email: ~x"itunes:owner/itunes:email/text()"os
     )
     |> remove_empty()
+  end
+
+  def explicit(nil), do: false
+
+  def explicit(xml) do
+    value = xpath(xml, ~x"itunes:explicit/text()"s)
+
+    String.downcase(value) in ["yes", "true"]
   end
 
   # atom contributors
