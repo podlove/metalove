@@ -8,6 +8,7 @@ defmodule Metalove.PodcastFeed do
   alias Metalove.Episode
 
   defstruct feed_url: nil,
+            guid: nil,
             title: nil,
             link: nil,
             language: nil,
@@ -31,6 +32,7 @@ defmodule Metalove.PodcastFeed do
 
   Fields:
   * `:feed_url` URL of that feed
+  * `:guid`
   * `:title` Title
   * `:language`
   * `:author`
@@ -45,6 +47,7 @@ defmodule Metalove.PodcastFeed do
   * `:episodes` list of episode id tuples, for a paged feed that eventually contains all
   """
   @type t :: %__MODULE__{
+          guid: String.t(),
           feed_url: String.t(),
           title: String.t() | nil,
           language: String.t() | nil,
@@ -160,6 +163,7 @@ defmodule Metalove.PodcastFeed do
   defp feed_and_episodes_with_parsed_maps(cast, episodes, feed_url) do
     {%__MODULE__{
        feed_url: feed_url,
+       guid: cast[:guid],
        title: cast[:title],
        link: cast[:link],
        language: cast[:language],

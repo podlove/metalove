@@ -26,6 +26,7 @@ defmodule Metalove.PodcastFeedParser do
     channel
     |> xmap(
       title: ~x"title/text()"s,
+      guid: ~x"podcast:guid/text()"s,
       link: ~x"link/text()"s,
       language: ~x"language/text()"s,
       copyright: ~x"copyright/text()"s,
