@@ -35,7 +35,8 @@ defmodule Metalove.Episode do
             chapters: [],
             pub_date: nil,
             season: nil,
-            episode: nil
+            episode: nil,
+            transcript_urls: []
 
   @typedoc """
   All information for an Episode.
@@ -130,7 +131,8 @@ defmodule Metalove.Episode do
     season: nil,
     subtitle: "Hopeful rumors for 2019 Macs, the state of Mojave, and a tale of Apple ID woe.",
     summary: nil,
-    title: "314: Kernel Panic in the Night"
+    title: "314: Kernel Panic in the Night",
+    transcript_urls: []
   }
   ```
   """
@@ -149,6 +151,7 @@ defmodule Metalove.Episode do
           link: nil | String.t(),
           contributors: list(map()),
           chapters: list(map()),
+          transcript_urls: list(map()),
           pub_date: nil | DateTime.t(),
           season: nil | String.t(),
           episode: nil | String.t()
@@ -192,6 +195,7 @@ defmodule Metalove.Episode do
       image_url: map[:image],
       contributors: map[:contributors],
       chapters: map[:chapters],
+      transcript_urls: map[:transcript_urls],
       season: map[:itunes_season],
       episode: map[:itunes_episode]
     }

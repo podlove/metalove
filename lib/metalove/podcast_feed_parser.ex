@@ -68,6 +68,7 @@ defmodule Metalove.PodcastFeedParser do
     |> Map.put(:contributors, contributors(item))
     |> Map.put(:publication_date, date_time(xpath(item, ~x"pubDate/text()"s)))
     |> Map.put(:chapters, chapters(item))
+    |> Map.put(:transcript_urls, transcript_urls(item))
     |> remove_empty()
   end
 
@@ -176,6 +177,21 @@ defmodule Metalove.PodcastFeedParser do
         image: ~x"@image"os
       )
       |> remove_empty()
+    end)
+  end
+
+  def transcript_urls(nil), do: ""
+
+  def transcript_urls(xml) do
+    xml
+    |> xpath(~x"podcast:transcript"el)
+    |> Enum.map(fn e ->
+      xmap(e,
+        url: ~x"@url"s,
+        type: ~x"@type"s,
+        language: ~x"@language"os,
+        rel: ~x"@rel"os
+      )
     end)
   end
 
