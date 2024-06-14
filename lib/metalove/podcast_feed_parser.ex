@@ -13,7 +13,7 @@ defmodule Metalove.PodcastFeedParser do
       with channel <- xpath(xml, ~x"//channel"e),
            items <- xpath(channel, ~x"item"el),
            podcast_fields <- podcast_fields(channel),
-           item_fields <- Enum.map(items, &episode_fields/1) do
+           item_fields <- episode_enum(items) do
         {:ok, podcast_fields, item_fields}
       end
     catch
@@ -46,6 +46,11 @@ defmodule Metalove.PodcastFeedParser do
     |> remove_empty()
   end
 
+  def episode_enum(items) do
+    Enum.map(items, &episode_fields/1)
+    |> Enum.filter(&has_enclosure?/1)
+  end
+
   def episode_fields(item) do
     item
     |> xmap(
@@ -53,15 +58,15 @@ defmodule Metalove.PodcastFeedParser do
       link: ~x"link/text()"s,
       guid: ~x"guid/text()"s,
       description: ~x"description/text()"s,
-      duration: ~x"itunes:duration/text()"s,
-      itunes_summary: ~x"itunes:summary/text()"s,
-      itunes_subtitle: ~x"itunes:subtitle/text()"s,
-      itunes_author: ~x"itunes:author/text()"s,
-      enclosure_url: ~x"enclosure/@url"s,
-      enclosure_type: ~x"enclosure/@type"s,
-      enclosure_length: ~x"enclosure/@length"i,
-      itunes_season: ~x"itunes:season/text()"s,
-      itunes_episode: ~x"itunes:episode/text()"s,
+      duration: ~x"itunes:duration/text()"so,
+      itunes_summary: ~x"itunes:summary/text()"so,
+      itunes_subtitle: ~x"itunes:subtitle/text()"so,
+      itunes_author: ~x"itunes:author/text()"so,
+      enclosure_url: ~x"enclosure/@url"so,
+      enclosure_type: ~x"enclosure/@type"so,
+      enclosure_length: ~x"enclosure/@length"io,
+      itunes_season: ~x"itunes:season/text()"so,
+      itunes_episode: ~x"itunes:episode/text()"so,
       image: ~x"itunes:image/@href"s,
       content_encoded: ~x"content:encoded/text()"s
     )
@@ -71,6 +76,8 @@ defmodule Metalove.PodcastFeedParser do
     |> Map.put(:transcript_urls, transcript_urls(item))
     |> remove_empty()
   end
+
+  defp has_enclosure?(item), do: item.enclosure_length !== nil
 
   defp remove_empty(map) do
     map
