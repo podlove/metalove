@@ -37,7 +37,6 @@ defmodule Metalove do
 
   def purge do
     Metalove.Repository.purge()
-    Metalove.FetcherCache.purge()
   end
 
   @doc ~S"""
