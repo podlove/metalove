@@ -1,7 +1,4 @@
 defmodule Metalove.Fetcher do
-  @moduledoc false
-  @cache Metalove.FetcherCache
-
   def fetch_and_follow(url),
     do: fetch_and_follow_p(url, {url, 10})
 
@@ -13,7 +10,6 @@ defmodule Metalove.Fetcher do
       #     |> IO.inspect(label: "Fetch (#{remaining_redirects})")
       |> case do
         {:ok, %Req.Response{status: 200, body: body, headers: headers}} ->
-          @cache.set({:url, url}, {body, headers})
           {:ok, body, headers, {candidate_url, url}}
 
         {:ok, %Req.Response{status: status_code, headers: headers}}
@@ -45,7 +41,6 @@ defmodule Metalove.Fetcher do
     )
     |> case do
       {:ok, %Req.Response{status: 206, body: body, headers: headers}} ->
-        @cache.set({:url, :partial, url}, {body, headers})
         {:ok, body, headers}
 
       {:ok, %Req.Response{status: 404}} ->

@@ -4,20 +4,36 @@ defmodule Metalove do
              |> String.split("<!-- MDOC !-->")
              |> Enum.fetch!(1)
 
-  @doc ~S"""
+  alias Metalove.Repository
+  alias Metalove.Podcast
+
+  @get_podcast_opts [
+    skip_cache: [
+      type: :boolean,
+      default: false,
+      doc:
+        "If `true`, does not try to fetch data from cache. But still writes results to the cache."
+    ]
+  ]
+
+  @doc """
   Convenience entry point.
 
   Args:
     * `url` - URL of a podcast feed or webpage (e.g. "atp.fm" or "https://freakshow.fm/feed/m4a/")
+
+  Options:
+  #{NimbleOptions.docs(@get_podcast_opts)}
 
   Return values:
     * `Metalove.Podcast.t()` if a podcast could be deduced and fetched from the given url. Metalove will return once one page of a feed has been parsed, but will start parsing all pages of the feed as well as gathering all ID3 metadata if available.
     * `nil` if no podcast could be found or be associated with the given url
 
   """
-  @spec get_podcast(binary()) ::
-          Metalove.Podcast.t() | nil
-  def get_podcast(url) do
+  @spec get_podcast(binary(), any()) :: Metalove.Podcast.t() | nil
+  def get_podcast(url, opts \\ []) do
+    {:ok, [skip_cache: skip_cache]} = NimbleOptions.validate(opts, @get_podcast_opts)
+
     feed_url_fn = fn ->
       case get_feed_url(url, follow_first: true) do
         {:ok, feed_url} -> feed_url
@@ -25,9 +41,18 @@ defmodule Metalove do
       end
     end
 
-    case Metalove.Repository.fetch({:url, url}, feed_url_fn) do
+    cache_key = {:url, url}
+
+    feed_url =
+      if skip_cache do
+        Repository.set(cache_key, feed_url_fn.())
+      else
+        Repository.fetch(cache_key, feed_url_fn)
+      end
+
+    case feed_url do
       nil -> nil
-      feed_url -> Metalove.Podcast.get_by_feed_url(feed_url)
+      feed_url -> Podcast.get_by_feed_url(feed_url, opts)
     end
   end
 
@@ -36,8 +61,7 @@ defmodule Metalove do
   """
 
   def purge do
-    Metalove.Repository.purge()
-    Metalove.FetcherCache.purge()
+    Repository.purge()
   end
 
   @doc ~S"""

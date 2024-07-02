@@ -38,6 +38,7 @@ defmodule Metalove.MixProject do
   defp deps do
     [
       {:req, "~> 0.4.14"},
+      {:nimble_options, "~> 1.1"},
       # html parsing
       {:floki, "~> 0.36"},
       # rss feed parsing
