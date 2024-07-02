@@ -16,6 +16,7 @@ defmodule Metalove.Repository do
     )
   end
 
+  # TODO: rename, because it fetches AND stores
   def fetch(key, default_value_function) do
     case get(key) do
       {:not_found} -> set(key, default_value_function.())

@@ -37,10 +37,9 @@ defmodule Metalove.Podcast do
     {:ok, main_feed, main_feed_episodes, alternate_feed_urls} =
       PodcastFeed.fetch_and_parse(main_feed_url)
 
-    main_feed_episodes
-    |> Enum.each(&Metalove.Episode.store/1)
+    Enum.each(main_feed_episodes, &Metalove.Episode.store/1)
 
-    Metalove.PodcastFeed.store(main_feed)
+    PodcastFeed.store(main_feed)
 
     add_feed_urls(
       %__MODULE__{
@@ -53,11 +52,27 @@ defmodule Metalove.Podcast do
     |> Metalove.Repository.put_podcast()
   end
 
+  @get_by_feed_url_opts [
+    skip_cache: [
+      type: :boolean,
+      default: false
+    ]
+  ]
+
   @doc """
   Either returns a already scraped podcast for this feed url, or fetches the url and creates a new one if possible
   """
-  def get_by_feed_url(feed_url) do
-    case Metalove.PodcastFeed.get_by_feed_url(feed_url) do
+  def get_by_feed_url(feed_url, opts \\ []) do
+    {:ok, [skip_cache: skip_cache]} = NimbleOptions.validate(opts, @get_by_feed_url_opts)
+
+    feed =
+      if skip_cache do
+        nil
+      else
+        PodcastFeed.get_by_feed_url(feed_url)
+      end
+
+    case feed do
       nil -> new_with_main_feed_url(feed_url)
       feed -> get_by_id(id_from_link(feed.link))
     end
