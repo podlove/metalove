@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:psc="http://podlove.org/simple-chapters"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:fh="http://purl.org/syndication/history/1.0"
+    xmlns:podcast="https://podcastindex.org/namespace/1.0">
+
+    <channel>
+        <title>Podlovers</title>
+        <link>https://podlovers.org/</link>
+        <description><![CDATA[Der Podlove Entwickler:innen Podcast]]></description>
+        <lastBuildDate>Sat, 29 Jun 2024 08:13:41 +0000</lastBuildDate>
+
+        <image>
+            <url>http://backend.podlovers.org/wp-content/uploads/2020/07/white-green_3000x3000.png</url>
+            <title>Podlovers</title>
+            <link>https://podlovers.org/</link>
+        </image>
+        <atom:link rel="self" type="application/rss+xml" title="Podlovers (MP3 Feed)" href="https://feeds.podlovers.org/mp3" />
+        <atom:link rel="first" href="https://feeds.podlovers.org/mp3" />
+        <language>de-DE</language>
+        <fyyd:verify xmlns:fyyd="https://fyyd.de/fyyd-ns/">pc5t8gep9v1vrvopkwjyhqghnp1k5l8ay73Kbw4</fyyd:verify>
+
+        <atom:contributor>
+            <atom:name>Eric Teubert</atom:name>
+            <atom:uri>https://ericteubert.de/</atom:uri>
+        </atom:contributor>
+
+        <atom:contributor>
+            <atom:name>Alexander Heimbuch</atom:name>
+            <atom:uri>https://alexander.heimbu.ch</atom:uri>
+        </atom:contributor>
+
+        <atom:contributor>
+            <atom:name>Dirk Schumann</atom:name>
+        </atom:contributor>
+
+        <atom:contributor>
+            <atom:name>Martin Fischer</atom:name>
+            <atom:uri>martin</atom:uri>
+        </atom:contributor>
+
+        <podcast:person img="http://backend.podlovers.org/wp-content/uploads/2020/07/eric_teubert.jpg" role="host">Eric Teubert</podcast:person>
+
+        <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2020/07/aheimbuch.jpg" role="host">Alexander Heimbuch</podcast:person>
+
+        <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2022/04/dirk.jpg" role="host">Dirk Schumann</podcast:person>
+
+        <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2022/06/nitramred-2019.jpg" role="host">Martin Fischer</podcast:person>
+        <generator>Podlove Podcast Publisher v4.1.11</generator>
+        <copyright>All rights reversed</copyright>
+        <itunes:author>Podlovers</itunes:author>
+        <itunes:type>episodic</itunes:type>
+        <itunes:summary><![CDATA[Podlove ist eine Initiative zur Verbesserung der Open Source Infrastruktur zum Podcasting. Podlove ist gleichzeitig auch ein Netzwerk an Entwickler:innen zur Diskussion von Features und Standardisierung.]]></itunes:summary>
+        <itunes:category text="Technology" />
+
+
+        <itunes:owner>
+            <itunes:name>Podlovers</itunes:name>
+            <itunes:email>feed@podlovers.org</itunes:email>
+        </itunes:owner>
+        <itunes:image href="http://backend.podlovers.org/wp-content/uploads/2020/07/white-green_3000x3000.png"/>
+        <itunes:subtitle>Der Podlove Entwickler:innen Podcast</itunes:subtitle>
+        <itunes:block>no</itunes:block>
+        <itunes:explicit>false</itunes:explicit>
+
+        <podcast:funding url="https://opencollective.com/podlove">Donate to Podlove</podcast:funding>
+        <podcast:license url="http://creativecommons.org/licenses/by-sa/4.0">cc-by-sa-4.0</podcast:license>
+
+
+        <item>
+            <title>PTF Sprint 8: Design der Import-Seite</title>
+            <link>https://podlovers.org/episode/ptf-sprint-8-design-der-import-seite/</link>
+            <pubDate>Sat, 29 Jun 2024 08:13:41 +0000</pubDate>
+            <guid isPermaLink="false">podlove-2024-06-29t08:07:45+00:00-607a3b0b93018f0</guid>
+            <description><![CDATA[Heute sprechen wir im Detail über die Seite zum Import bereits existierender Podcast-Episoden und welche verschiedenen Ansätze wir dabei verfolgen können.]]></description>
+            <atom:link rel="http://podlove.org/deep-link" href="https://backend.podlovers.org/ptf-sprint-8-design-der-import-seite/#" />
+
+            <enclosure url="https://backend.podlovers.org/podlove/file/53/s/feed/c/mp3/LOV34.mp3" length="25092513" type="audio/mpeg"/>
+
+            <itunes:duration>00:29:22</itunes:duration>
+            <itunes:author>Podlovers</itunes:author>
+            <itunes:subtitle>Übersichtlichkeit und Funktionalität – wie kriegen wir das hin?</itunes:subtitle>
+            <itunes:title>PTF Sprint 8: Design der Import-Seite</itunes:title>
+            <itunes:episode>34</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary><![CDATA[Heute sprechen wir im Detail über die Seite zum Import bereits existierender Podcast-Episoden und welche verschiedenen Ansätze wir dabei verfolgen können.]]></itunes:summary>
+            <itunes:image href="https://backend.podlovers.org/wp-content/uploads/2020/08/white-blue_3000x3000.png"/>
+            <content:encoded><![CDATA[]]></content:encoded>
+            <psc:chapters xmlns:psc="http://podlove.org/simple-chapters" version="1.2">
+                <psc:chapter start="00:00:00.000" title="Intro und Begr&#xFC;&#xDF;ung"/>
+                <psc:chapter start="00:01:00.591" title="Metadaten-Import aus dem RSS-Feed"/>
+                <psc:chapter start="00:03:29.843" title="Einrichtung End-to-end-Testing"/>
+                <psc:chapter start="00:06:24.521" title="Exkurs: The state of Wordpress"/>
+                <psc:chapter start="00:09:16.908" title="Import-Episoden-Seite"/>
+                <psc:chapter start="00:24:35.838" title="Beta-Test"/>
+                <psc:chapter start="00:26:56.553" title="Organisatorisches"/>
+            </psc:chapters>
+            <podcast:transcript url="https://files.podlovers.org/LOV34.vtt" type="text/vtt" />
+            <atom:contributor>
+                <atom:name>Alexander Heimbuch</atom:name>
+                <atom:uri>https://alexander.heimbu.ch</atom:uri>
+            </atom:contributor>
+
+            <atom:contributor>
+                <atom:name>Dirk Schumann</atom:name>
+            </atom:contributor>
+
+            <atom:contributor>
+                <atom:name>Martin Fischer</atom:name>
+                <atom:uri>martin</atom:uri>
+            </atom:contributor>
+
+            <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2020/07/aheimbuch.jpg" role="host">Alexander Heimbuch</podcast:person>
+
+            <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2022/04/dirk.jpg" role="host">Dirk Schumann</podcast:person>
+
+            <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2022/06/nitramred-2019.jpg" role="host">Martin Fischer</podcast:person>
+        </item>
+
+        <item>
+            <title>Wir. Müssen Reden</title>
+            <link>https://podlovers.org/episode/wir-mussen-reden/</link>
+            <pubDate>Wed, 15 Jul 2020 15:37:32 +0000</pubDate>
+            <guid isPermaLink="false">podlove-2020-07-13t19:33:45+00:00-2094546435a1a81</guid>
+            <description><![CDATA[Lange war es still im Podlove Projekt, das soll sich jetzt ändern! In dieser Episode versuchen wir uns zunächst an einer Definition von Podlove und stellen die drei Projekte Podlove Publisher, Podlove Web Player sowie Podlove Subscribe Button vor. Zentral geht es aber eigentlich um die Entwickler:innen: Wer wir sind, wie wir in das Projekt gekommen sind, was uns motiviert und wie wir mit Podlove weiter machen wollen.]]></description>
+            <atom:link rel="http://podlove.org/deep-link" href="https://backend.podlovers.org/wir-mussen-reden/#" />
+
+            <enclosure url="https://backend.podlovers.org/podlove/file/1/s/feed/c/mp3/LOV001.mp3" length="42338033" type="audio/mpeg"/>
+
+            <itunes:duration>00:50:03</itunes:duration>
+            <itunes:author>Podlovers</itunes:author>
+            <itunes:subtitle>Die Podlove Entwickler:innen stellen sich vor.</itunes:subtitle>
+            <itunes:title>Wir. Müssen Reden</itunes:title>
+            <itunes:episode>1</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary><![CDATA[Lange war es still im Podlove Projekt, das soll sich jetzt ändern! In dieser Episode versuchen wir uns zunächst an einer Definition von Podlove und stellen die drei Projekte Podlove Publisher, Podlove Web Player sowie Podlove Subscribe Button vor. Zentral geht es aber eigentlich um die Entwickler:innen: Wer wir sind, wie wir in das Projekt gekommen sind, was uns motiviert und wie wir mit Podlove weiter machen wollen.]]></itunes:summary>
+            <itunes:image href="https://backend.podlovers.org/wp-content/uploads/2020/07/episode-cover.png"/>
+            <content:encoded><![CDATA[
+<h3 class="wp-block-heading">Podlove Publisher</h3>
+
+
+
+<ul><li><a href="https://podlove.org/">Podlove</a></li><li><a href="https://github.com/podlove">Github Podlove</a></li><li><a href="https://de.wikipedia.org/wiki/Open_Source">Open Source</a></li><li><a href="https://auphonic.com/">Auphonic</a></li><li><a href="https://de.wikipedia.org/wiki/Tim_Pritlove">Tim Pritlove</a></li><li><a href="https://podlove.org/podlove-podcast-publisher/">Podlove Publisher</a></li><li><a href="https://podlove.org/simple-chapters/">Podlove Simple Chapters</a></li><li><a href="https://twitter.com/marcoarment/status/1258376419140349957">Don&#8217;t doubt the Germans!</a></li><li><a href="https://podlove.org/podlove-web-player/">Podlove Web Player</a></li><li><a href="https://de.wordpress.org/plugins/podlove-podcasting-plugin-for-wordpress/">Podlove Podcast Publisher</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Podlove Web Player</h3>
+
+
+
+<ul><li><a href="https://podlove.org/podlove-podcast-publisher/">Podlove Web Player</a></li><li><a href="https://docs.podlove.org/podlove-web-player/">Podlove Web Player für Entwickler</a></li><li><a href="https://podlove.org/podlove-web-player/">Podlove Web Player WordPress Plugin</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Podlove Subscribe Button</h3>
+
+
+
+<ul><li><a href="https://podlove.org/podlove-subscribe-button/">Podlove Subscribe Button</a></li><li><a href="https://subscribe-button.podlove.org/">Subscribe Button Features</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Vorstellung Eric</h3>
+
+
+
+<ul><li><a href="https://ericteubert.de/">Eric Teubert</a></li><li><a href="https://metaebene.me/podcasts/">Podcasts Metaebene</a></li><li><a href="https://de.wikipedia.org/wiki/Chaos_Communication_Congress">Chaos Communication Congress</a></li><li><a href="https://metaebene.me/timpritlove/">Metaebene</a></li><li><a href="https://github.com/WordPress/WordPress">WordPress</a></li><li><a href="https://de.wikipedia.org/wiki/PHP">PHP</a></li><li><a href="https://www.php.net/manual/de/language.namespaces.php">PHP Namespaces</a></li><li><a href="https://praegnanz.de/weblog/das-podlove-projekt-sammelt-geld-und-ihr-solltet-was-geben">Podlove Spenden Aufruf</a></li><li><a href="https://de.wikipedia.org/wiki/Gap_Year_(Lebensabschnitt)">Gap Year</a></li><li><a href="https://www.br.de/index.html">Bayrischer Rundfunk</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Vorstellung Michi</h3>
+
+
+
+<ul><li><a href="https://geildanke.com/en/about/">Michaela Lehr</a></li><li><a href="https://de.wikipedia.org/wiki/User_Experience">User Experience</a></li><li><a href="https://t3n.de/news/ux-design-leicht-verstaendlich-803138/">UX Design</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Vorstellung Alex</h3>
+
+
+
+<ul><li><a href="https://alexander.heimbu.ch/">Alexander Heimbuch</a></li><li><a href="https://de.wikipedia.org/wiki/Flattr">Flattr</a></li><li><a href="https://cre.fm/cre167-nodejs">CRE167 NodeJS</a></li><li><a href="https://de.wikipedia.org/wiki/JavaScript">JavaScript</a></li><li><a href="https://github.com/podlove/podlove-ui">Github Podlove UI</a></li><li><a href="https://www.youtube.com/watch?v=VXgaN8pSqvQ">Podlove Web Player auf der Subscribe 9</a></li></ul>
+
+
+
+<h3 class="wp-block-heading">Podlovers Podcast</h3>
+
+
+
+<ul><li><a href="https://community.podlove.org/">Podlove Community</a></li><li><a href="https://sendegate.de/">Sendegate</a></li></ul>
+
+
+
+<p></p>
+]]>            </content:encoded>
+            <psc:chapters xmlns:psc="http://podlove.org/simple-chapters" version="1.2">
+                <psc:chapter start="00:00:00.000" title="Intro"/>
+                <psc:chapter start="00:01:16.906" title="Podlove (Publisher) Projekt"/>
+                <psc:chapter start="00:06:57.922" title="Podlove Web Player"/>
+                <psc:chapter start="00:09:14.330" title="Podlove Subscribe Button"/>
+                <psc:chapter start="00:11:37.970" title="Vorstellung Eric"/>
+                <psc:chapter start="00:24:01.239" title="Vorstellung Michi"/>
+                <psc:chapter start="00:29:13.192" title="Vorstellung Alex"/>
+                <psc:chapter start="00:35:20.782" title="Entwicklung im Urlaub"/>
+                <psc:chapter start="00:37:48.406" title="Remote Arbeiten"/>
+                <psc:chapter start="00:40:19.537" title="Podlovers Podcast"/>
+                <psc:chapter start="00:47:07.858" title="Ausblick"/>
+            </psc:chapters>
+            <atom:contributor>
+                <atom:name>Alexander Heimbuch</atom:name>
+                <atom:uri>https://alexander.heimbu.ch</atom:uri>
+            </atom:contributor>
+
+            <atom:contributor>
+                <atom:name>Michaela Lehr</atom:name>
+                <atom:uri>https://geildanke.com</atom:uri>
+            </atom:contributor>
+
+            <atom:contributor>
+                <atom:name>Eric Teubert</atom:name>
+                <atom:uri>https://ericteubert.de/</atom:uri>
+            </atom:contributor>
+
+            <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2020/07/aheimbuch.jpg" role="host">Alexander Heimbuch</podcast:person>
+
+            <podcast:person img="https://backend.podlovers.org/wp-content/uploads/2020/07/michaela_lehr.jpeg" role="host">Michaela Lehr</podcast:person>
+
+            <podcast:person img="http://backend.podlovers.org/wp-content/uploads/2020/07/eric_teubert.jpg" role="host">Eric Teubert</podcast:person>
+        </item>
+    </channel>
+</rss>

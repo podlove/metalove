@@ -1,11 +1,22 @@
 defmodule MetaloveTest do
-  use ExUnit.Case
+  # async: false because of setting application env
+  use ExUnit.Case, async: false
 
   alias Metalove.Repository
 
-  # NOTE: integration test that requires internet
   describe "get_podcast/1" do
+    setup do
+      put_env(:metalove, :req_options, plug: {Req.Test, Metalove})
+      :ok
+    end
+
     test "gets feed url" do
+      Req.Test.stub(Metalove, fn conn ->
+        conn
+        |> Plug.Conn.put_resp_content_type("application/rss+xml")
+        |> Plug.Conn.send_resp(200, File.read!("test/files/feed/podlovers.xml"))
+      end)
+
       feed_url = "https://feeds.podlovers.org/mp3"
       first_episode_guid = "podlove-2020-07-13t19:33:45+00:00-2094546435a1a81"
 
@@ -37,5 +48,11 @@ defmodule MetaloveTest do
       assert first_episode.episode == "1"
       assert first_episode.title == "Wir. Müssen Reden"
     end
+  end
+
+  defp put_env(app, key, value) do
+    previous_value = Application.get_env(app, key)
+    Application.put_env(app, key, value)
+    on_exit(fn -> Application.put_env(app, key, previous_value) end)
   end
 end
