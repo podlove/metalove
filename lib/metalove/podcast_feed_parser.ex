@@ -23,11 +23,15 @@ defmodule Metalove.PodcastFeedParser do
   end
 
   def podcast_fields(channel) do
+    any_link = fn
+      ["", link] -> link
+      [link, _] -> link
+    end
+
     channel
     |> xmap(
       title: ~x"title/text()"s,
       guid: ~x"podcast:guid/text()"s,
-      link: ~x"link/text()"s,
       language: ~x"language/text()"s,
       copyright: ~x"copyright/text()"s,
       description: ~x"description/text()"s,
@@ -43,6 +47,13 @@ defmodule Metalove.PodcastFeedParser do
     |> Map.put(:contributors, contributors(channel))
     |> Map.put(:itunes_owner, owner(channel))
     |> Map.put(:explicit, explicit(channel))
+    |> Map.put(
+      :link,
+      any_link.([
+        xpath(channel, ~x"link/text()"s),
+        xpath(channel, ~x"atom:link[@rel='self']/@href"s)
+      ])
+    )
     |> remove_empty()
   end
 
