@@ -74,6 +74,7 @@ defmodule Metalove.PodcastFeedParser do
       itunes_season: ~x"itunes:season/text()"s,
       itunes_episode: ~x"itunes:episode/text()"s,
       itunes_episode_type: ~x"itunes:episodeType/text()"s,
+      itunes_explicit: ~x"itunes:explicit/text()"s,
       image: ~x"itunes:image/@href"s,
       content_encoded: ~x"content:encoded/text()"s
     )

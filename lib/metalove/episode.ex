@@ -37,6 +37,7 @@ defmodule Metalove.Episode do
             season: nil,
             episode: nil,
             type: nil,
+            explicit: nil,
             transcript_urls: []
 
   @typedoc """
@@ -157,7 +158,8 @@ defmodule Metalove.Episode do
           pub_date: nil | DateTime.t(),
           season: nil | String.t(),
           episode: nil | String.t(),
-          type: nil | String.t()
+          type: nil | String.t(),
+          explicit: nil | String.t()
         }
 
   @doc """
@@ -201,7 +203,8 @@ defmodule Metalove.Episode do
       transcript_urls: map[:transcript_urls],
       season: map[:itunes_season],
       episode: map[:itunes_episode],
-      type: map[:itunes_episode_type]
+      type: map[:itunes_episode_type],
+      explicit: map[:itunes_explicit]
     }
   end
 

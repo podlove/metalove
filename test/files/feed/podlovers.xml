@@ -136,6 +136,7 @@
             <itunes:title>Wir. Müssen Reden</itunes:title>
             <itunes:episode>1</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>true</itunes:explicit>
             <itunes:summary><![CDATA[Lange war es still im Podlove Projekt, das soll sich jetzt ändern! In dieser Episode versuchen wir uns zunächst an einer Definition von Podlove und stellen die drei Projekte Podlove Publisher, Podlove Web Player sowie Podlove Subscribe Button vor. Zentral geht es aber eigentlich um die Entwickler:innen: Wer wir sind, wie wir in das Projekt gekommen sind, was uns motiviert und wie wir mit Podlove weiter machen wollen.]]></itunes:summary>
             <itunes:image href="https://backend.podlovers.org/wp-content/uploads/2020/07/episode-cover.png"/>
             <content:encoded><![CDATA[
