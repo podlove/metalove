@@ -33,6 +33,9 @@ iex> podcast = Metalove.get_podcast(feed_or_website_url)
 
 iex> feed = Metalove.PodcastFeed.get_by_feed_url(podcast.main_feed_url)
 iex> most_recent_episode = Metalove.Episode.get_by_episode_id(hd(feed.episodes))
+
+# optionally scrape metadata from media files
+iex> Metalove.PodcastFeed.trigger_episode_metadata_scrape(feed)
 ```
 
 ## Mix Tasks
