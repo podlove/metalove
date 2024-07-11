@@ -47,6 +47,7 @@ defmodule MetaloveTest do
 
       assert first_episode.episode == "1"
       assert first_episode.title == "Wir. Müssen Reden"
+      assert first_episode.type == "full"
     end
   end
 

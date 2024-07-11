@@ -36,6 +36,7 @@ defmodule Metalove.Episode do
             pub_date: nil,
             season: nil,
             episode: nil,
+            type: nil,
             transcript_urls: []
 
   @typedoc """
@@ -123,6 +124,7 @@ defmodule Metalove.Episode do
       url: "http://traffic.libsyn.com/atpfm/atp314.mp3"
     },
     episode: nil,
+    type: "full",
     feed_url: "http://atp.fm/episodes?format=RSS",
     guid: "513abd71e4b0fe58c655c105:513abd71e4b0fe58c655c111:5c6e2706c830252a16aaa9ff",
     image_url: "http://static1.squarespace.com/static/513abd71e4b0fe58c655c105/t/52c45a37e4b0a77a5034aa84/1388599866232/1500w/Artwork.jpg",
@@ -154,7 +156,8 @@ defmodule Metalove.Episode do
           transcript_urls: list(map()),
           pub_date: nil | DateTime.t(),
           season: nil | String.t(),
-          episode: nil | String.t()
+          episode: nil | String.t(),
+          type: nil | String.t()
         }
 
   @doc """
@@ -197,7 +200,8 @@ defmodule Metalove.Episode do
       chapters: map[:chapters],
       transcript_urls: map[:transcript_urls],
       season: map[:itunes_season],
-      episode: map[:itunes_episode]
+      episode: map[:itunes_episode],
+      type: map[:itunes_episode_type]
     }
   end
 
