@@ -23,12 +23,12 @@ defmodule Metalove.Enclosure do
   * `metadata` a map of found metadata, interesting keys are `chapters` and `cover_art`
   """
   @type t :: %__MODULE__{
-          url: String.t(),
-          resolved_url: String.t(),
-          type: String.t(),
+          url: nil | String.t(),
+          resolved_url: nil | String.t(),
+          type: nil | String.t(),
           size: nil | non_neg_integer(),
           created_at: DateTime.t(),
-          fetched_metadata_at: DateTime.t(),
+          fetched_metadata_at: nil | DateTime.t(),
           metadata: nil | map()
         }
 
