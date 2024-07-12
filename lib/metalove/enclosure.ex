@@ -2,12 +2,14 @@ defmodule Metalove.Enclosure do
   @moduledoc """
   Defines a `Metalove.Enclosure` struct representing enclosures in `Metalove.Episode`s. Provides access to parsed metadata.
   """
+
   # <enclosure length="8727310" type="audio/x-m4a" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode3.m4a"/>
 
   alias Metalove.Fetcher
 
   @derive Jason.Encoder
   defstruct url: nil,
+            resolved_url: nil,
             type: nil,
             size: nil,
             created_at: DateTime.utc_now(),
@@ -22,6 +24,7 @@ defmodule Metalove.Enclosure do
   """
   @type t :: %__MODULE__{
           url: String.t(),
+          resolved_url: String.t(),
           type: String.t(),
           size: nil | non_neg_integer(),
           created_at: DateTime.t(),
@@ -34,12 +37,18 @@ defmodule Metalove.Enclosure do
   end
 
   def fetch_metadata(enclosure) do
+    resolved_url =
+      enclosure.url
+      |> Fetcher.follow_url_redirects()
+      |> Fetcher.cleanup_url_params()
+
     cond do
       enclosure.fetched_metadata_at == nil ->
         %__MODULE__{
           enclosure
           | fetched_metadata_at: DateTime.utc_now(),
-            metadata: fetch_and_parse_metadata_p(enclosure.url, enclosure.type)
+            resolved_url: resolved_url,
+            metadata: fetch_and_parse_metadata_p(resolved_url, enclosure.type)
         }
 
       true ->

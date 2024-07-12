@@ -2,7 +2,45 @@ defmodule Metalove.Fetcher do
   def fetch_and_follow(url),
     do: fetch_and_follow_p(url, {url, 10})
 
-  #     |> IO.inspect(label: "fetch_and_follow_result #{inspect(url)}")
+  def follow_url_redirects(url, max_redirects \\ 10) do
+    options = Keyword.merge(options(), redirect: false)
+
+    with {:ok, %Req.Response{} = response} <- Req.head(url, options),
+         true <- response.status in [301, 302, 303, 307, 308],
+         true <- max_redirects > 0,
+         [location | _] <- Req.Response.get_header(response, "location") do
+      follow_url_redirects(location, max_redirects - 1)
+    else
+      _ -> url
+    end
+  end
+
+  # remove some parameters that we know are irrelevant
+  def cleanup_url_params(url) do
+    uri = URI.parse(url)
+    query = URI.decode_query(uri.query)
+
+    banlist = [
+      "ptm_context",
+      "ptm_file",
+      "ptm_request",
+      "ptm_source"
+    ]
+
+    filtered_params =
+      query
+      |> Enum.reject(fn {key, _value} -> key in banlist end)
+      |> Enum.into(%{})
+
+    query =
+      case filtered_params do
+        map when map == %{} -> nil
+        nonempty_map -> URI.encode_query(nonempty_map)
+      end
+
+    %URI{uri | query: query}
+    |> URI.to_string()
+  end
 
   defp fetch_and_follow_p(url, {candidate_url, remaining_redirects}) do
     try do
@@ -12,6 +50,7 @@ defmodule Metalove.Fetcher do
         {:ok, %Req.Response{status: 200, body: body, headers: headers}} ->
           {:ok, body, headers, {candidate_url, url}}
 
+        # TODO: remove this, Req follows redirects automatically
         {:ok, %Req.Response{status: status_code, headers: headers}}
         when status_code in [301, 302, 307, 308] ->
           if remaining_redirects > 0 do
