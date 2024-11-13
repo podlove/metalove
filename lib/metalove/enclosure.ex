@@ -39,6 +39,7 @@ defmodule Metalove.Enclosure do
   def fetch_metadata(enclosure) do
     resolved_url =
       enclosure.url
+      |> URI.encode()
       |> Fetcher.follow_url_redirects()
       |> Fetcher.cleanup_url_params()
 

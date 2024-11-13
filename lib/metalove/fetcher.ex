@@ -18,28 +18,35 @@ defmodule Metalove.Fetcher do
   # remove some parameters that we know are irrelevant
   def cleanup_url_params(url) do
     uri = URI.parse(url)
-    query = URI.decode_query(uri.query)
 
-    banlist = [
-      "ptm_context",
-      "ptm_file",
-      "ptm_request",
-      "ptm_source"
-    ]
+    case uri.query do
+      nil ->
+        url
 
-    filtered_params =
-      query
-      |> Enum.reject(fn {key, _value} -> key in banlist end)
-      |> Enum.into(%{})
+      uri_query ->
+        query = URI.decode_query(uri_query)
 
-    query =
-      case filtered_params do
-        map when map == %{} -> nil
-        nonempty_map -> URI.encode_query(nonempty_map)
-      end
+        banlist = [
+          "ptm_context",
+          "ptm_file",
+          "ptm_request",
+          "ptm_source"
+        ]
 
-    %URI{uri | query: query}
-    |> URI.to_string()
+        filtered_params =
+          query
+          |> Enum.reject(fn {key, _value} -> key in banlist end)
+          |> Enum.into(%{})
+
+        query =
+          case filtered_params do
+            map when map == %{} -> nil
+            nonempty_map -> URI.encode_query(nonempty_map)
+          end
+
+        %URI{uri | query: query}
+        |> URI.to_string()
+    end
   end
 
   defp fetch_and_follow_p(url, {candidate_url, remaining_redirects}) do
