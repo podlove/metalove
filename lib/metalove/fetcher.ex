@@ -144,7 +144,7 @@ defmodule Metalove.Fetcher do
               fetch_and_follow_p(url, {url, remaining_redirects})
 
             body
-            |> Floki.parse_document()
+            |> Floki.parse_document!()
             |> feed_urls_from_contenttree()
             |> case do
               [] -> {:error, :not_found, {candidate_url, url}}
