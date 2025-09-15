@@ -37,17 +37,17 @@ defmodule Metalove.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:req, "~> 0.4.14"},
+      {:req, "~> 0.5.15"},
       {:plug, "~> 1.16", only: :test},
       {:nimble_options, "~> 1.1"},
       # html parsing
-      {:floki, "~> 0.36"},
+      {:floki, "~> 0.38"},
       # rss feed parsing
-      {:sweet_xml, "~> 0.6"},
+      {:sweet_xml, "~> 0.6.6"},
       {:timex, "~> 3.7"},
       {:jason, "~> 1.4"},
-      {:mimerl, "~> 1.2"},
-      {:xml_builder, "~> 2.2"},
+      {:mimerl, "~> 1.4"},
+      {:xml_builder, "~> 2.4"},
       {:sizeable, "~>1.0"},
       {:chapters, "~>1.0.1"},
       # documentation
