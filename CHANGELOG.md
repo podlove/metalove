@@ -10,7 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * API is preliminary and missing any sort of meaningful error handling.
 * ID3 tag parsing is best effort and just based on the specs and a few sample files. Needs hardening.
 
-## Unreleased
+## [0.5.0] - 2025-09-16
+
+- adds support for `itunes:owner` parsing
+- adds support for `itunes:explicit` parsing
+- adds support for `podcast:guid` parsing
+- adds support for `podcast:transcript` parsing
+- adds support for `itunes:episodeType` parsing
+
+- fix: use correct byterange when fetching mp3 meta
+- fix: handle urls with spaces
 
 - replace HTTPoison with Req
 - add application option to override req options
@@ -18,6 +27,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     config :metalove, :req_options, [
       plug: {Req.Test, Metalove}
     ]
+
+- update dependencies
+- increase minimum Elixir version to 1.15
 
 ## [0.4.0] - 2024-04-05
 
