@@ -11,7 +11,7 @@ defmodule Metalove.MixProject do
       version: @version,
       description:
         "Scrape podcast RSS feeds and extract and provide as much of the metadata available as possible. Includes ID3.2.x parsing of mp3 podcast relevant metadata (chapter marks including URLs and images)",
-      elixir: "~> 1.8",
+      elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
 
