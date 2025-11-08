@@ -36,7 +36,7 @@ defmodule Metalove.Enclosure do
     :mimerl.filename(URI.parse(url).path)
   end
 
-  def fetch_metadata(enclosure) do
+  def fetch_metadata(%__MODULE__{} = enclosure) do
     resolved_url =
       enclosure.url
       |> URI.encode()
